@@ -8,6 +8,11 @@
 
     <ItemGroup>
         <PackageReference Include="Avalonia.Browser"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Projektanker.Icons.Avalonia.FontAwesome" />
     </ItemGroup>
 

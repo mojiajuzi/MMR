@@ -3,6 +3,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
+using Avalonia.Controls.Notifications;
 using Avalonia.Markup.Xaml;
 using MMR.ViewModels;
 using MMR.Views;
@@ -11,6 +12,7 @@ namespace MMR;
 
 public partial class App : Application
 {
+    public static INotificationManager? NotificationManager { get; set; }
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
@@ -27,6 +29,7 @@ public partial class App : Application
             {
                 DataContext = new MainViewModel()
             };
+            NotificationManager = new WindowNotificationManager(desktop.MainWindow);
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
         {

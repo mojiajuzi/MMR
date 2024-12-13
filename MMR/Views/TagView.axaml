@@ -1,0 +1,117 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:i="https://github.com/projektanker/icons.avalonia"
+             xmlns:vm="clr-namespace:MMR.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MMR.Views.TagView"
+             x:DataType="vm:TagViewModel">
+    <Border>
+        <Grid RowDefinitions="60,*">
+            <!-- 顶部工具栏 -->
+            <StackPanel>
+                <Button
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Command="{Binding PopupOpenCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <i:Icon Value="fa-thin fa-plus"></i:Icon>
+                        <TextBlock Text="Add" />
+                    </StackPanel>
+                </Button>
+                <!-- tag弹窗 -->
+                <Popup Placement="Center"
+                       PlacementTarget="{Binding $parent[UserControl]}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       IsOpen="{Binding IsPopupOpen}">
+                    <Border Classes="Popup">
+                        <StackPanel Classes="Popup">
+
+                            <TextBlock Classes="ShowError"
+                                       IsVisible="{Binding HasErrors}"
+                                       Text="{Binding ErrorMessage}" />
+
+                            <Label Content="Name"></Label>
+                            <TextBox Name="Name"
+                                     Watermark="Tag Name"
+                                     Text="{Binding TagData.Name}" />
+
+                            <Label Content="Active"></Label>
+                            <ToggleSwitch Name="Status"
+                                          OnContent="Active"
+                                          OffContent="InActive"
+                                          IsChecked="{Binding TagData.IsActive}" />
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        Spacing="16">
+                                <Button Classes="Action Cancel"
+                                        Content="Cancel"
+                                        Command="{Binding PopupCloseCommand}" />
+                                <Button Content="Submit"
+                                        Command="{Binding TagSubmitedCommand}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+                <!-- tag弹窗结束-->
+            </StackPanel>
+            <!--tag list-->
+            <Border Grid.Row="1">
+                <ItemsControl x:Name="Root" ItemsSource="{Binding Tags}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Classes="Card">
+                                <StackPanel Classes="Card">
+                                    <StackPanel>
+                                        <StackPanel Classes="icon">
+                                            <TextBlock Classes="label" Text="Name" />
+                                            <TextBlock Text="{Binding Name}"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Classes="icon">
+                                            <TextBlock Classes="label" Text="Status" />
+                                            <ToggleSwitch
+                                                Command="{Binding #Root.((vm:TagViewModel)DataContext).ActiveChangeCommand}"
+                                                CommandParameter="{Binding .}"
+                                                IsChecked="{Binding IsActive}">
+                                            </ToggleSwitch>
+                                        </StackPanel>
+                                        <StackPanel Classes="icon">
+                                            <TextBlock Classes="label" Text="Update" />
+                                            <TextBlock Text="{Binding UpdatedAt, StringFormat={}{0:yyyy-MM-dd}}"></TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Classes="Action Update"
+                                                Command="{Binding #Root.((vm:TagViewModel)DataContext).ShowPopupToUpdateCommand}"
+                                                CommandParameter="{Binding .}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <i:Icon Value="fa-thin fa-edit"></i:Icon>
+                                                <TextBlock Text="Edit"></TextBlock>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button Classes="Action Delete"
+                                                Command="{Binding #Root.((vm:TagViewModel)DataContext).RemoveTagCommand}"
+                                                CommandParameter="{Binding .}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <i:Icon Value="fa-thin fa-trash"></i:Icon>
+                                                <TextBlock Text="Delete"></TextBlock>
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Border>
+            <!-- tag list end-->
+        </Grid>
+    </Border>
+</UserControl>

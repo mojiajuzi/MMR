@@ -7,6 +7,8 @@
         <entry key="MMR/Assets/Nord.axaml" value="MMR.Browser/MMR.Browser.csproj" />
         <entry key="MMR/Assets/NordStyle.axaml" value="MMR.Browser/MMR.Browser.csproj" />
         <entry key="MMR/Views/MainView.axaml" value="MMR.Browser/MMR.Browser.csproj" />
+        <entry key="MMR/Views/MainWindow.axaml" value="MMR.Browser/MMR.Browser.csproj" />
+        <entry key="MMR/Views/TagView.axaml" value="MMR.Browser/MMR.Browser.csproj" />
       </map>
     </option>
   </component>

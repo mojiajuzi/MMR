@@ -6,10 +6,10 @@
              xmlns:vm="clr-namespace:MMR.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MMR.Views.MainView"
-             x:DataType="vm:MainViewModel">
+             x:DataType="vm:MainViewModel"
+             Background="{DynamicResource BackgroundBrush}"
+             >
   <Design.DataContext>
-    <!-- This only sets the DataContext for the previewer in an IDE,
-         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
     <vm:MainViewModel />
   </Design.DataContext>
     <SplitView IsPaneOpen="{Binding PanOpen}"
@@ -23,6 +23,17 @@
                     <Button Classes="IconButton" i:Attached.Icon="fa-thin fa-bars"
                             Command="{Binding PanOpenTriggerCommand}"
                             ></Button>
+                    <ListBox ItemsSource="{Binding Items}"
+                             SelectedItem="{Binding SelectedItem}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Spacing="8" Orientation="Horizontal">
+                                    <i:Icon Value="{Binding Icon}" />
+                                    <TextBlock Text="{Binding ViewModelName}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Vertical">
                     <ToggleButton Classes="IconButton" Name="ThemeToggleButton"
@@ -35,7 +46,9 @@
             </Grid>
         </SplitView.Pane>
         <SplitView.Content>
-            
+            <Border Background="{DynamicResource BackgroundBrush}">
+                <TransitioningContentControl Content="{Binding CurrentView}"></TransitioningContentControl>
+            </Border>
         </SplitView.Content>
     </SplitView>
 </UserControl>
