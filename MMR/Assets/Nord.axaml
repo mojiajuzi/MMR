@@ -1,0 +1,58 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Nord 调色板 -->
+    <!-- Polar Night (极夜) -->
+    <Color x:Key="Nord0">#2E3440</Color>  <!-- 深灰背景色 -->
+    <Color x:Key="Nord1">#3B4252</Color>  <!-- 稍浅的灰色 -->
+    <Color x:Key="Nord2">#434C5E</Color>  <!-- 中灰色 -->
+    <Color x:Key="Nord3">#4C566A</Color>  <!-- 浅灰色 -->
+
+    <!-- Snow Storm (雪暴) -->
+    <Color x:Key="Nord4">#D8DEE9</Color>  <!-- 最浅的灰白色 -->
+    <Color x:Key="Nord5">#E5E9F0</Color>  <!-- 更亮的白色 -->
+    <Color x:Key="Nord6">#ECEFF4</Color>  <!-- 纯白色 -->
+
+    <!-- Frost (冰霜) -->
+    <Color x:Key="Nord7">#8FBCBB</Color>  <!-- 青绿色 -->
+    <Color x:Key="Nord8">#88C0D0</Color>  <!-- 浅蓝色 -->
+    <Color x:Key="Nord9">#81A1C1</Color>  <!-- 蓝色 -->
+    <Color x:Key="Nord10">#5E81AC</Color> <!-- 深蓝色 -->
+
+    <!-- Aurora (极光) -->
+    <Color x:Key="Nord11">#BF616A</Color> <!-- 红色 -->
+    <Color x:Key="Nord12">#D08770</Color> <!-- 橙色 -->
+    <Color x:Key="Nord13">#EBCB8B</Color> <!-- 黄色 -->
+    <Color x:Key="Nord14">#A3BE8C</Color> <!-- 绿色 -->
+    <Color x:Key="Nord15">#B48EAD</Color> <!-- 紫色 -->
+
+    <!-- 主题画刷 -->
+    <ResourceDictionary.ThemeDictionaries>
+        <!-- 亮色主题 -->
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource Nord6}"/>
+            <SolidColorBrush x:Key="ForegroundBrush" Color="{StaticResource Nord0}"/>
+            <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource Nord3}"/>
+            <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Nord10}"/>
+            <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Nord8}"/>
+            <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource Nord7}"/>
+            <SolidColorBrush x:Key="CardBackgroundBrush" Color="{StaticResource Nord5}"/>
+        </ResourceDictionary>
+
+        <!-- 暗色主题 -->
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource Nord0}"/>
+            <SolidColorBrush x:Key="ForegroundBrush" Color="{StaticResource Nord6}"/>
+            <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource Nord3}"/>
+            <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Nord8}"/>
+            <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Nord9}"/>
+            <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource Nord7}"/>
+            <SolidColorBrush x:Key="CardBackgroundBrush" Color="{StaticResource Nord1}"/>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <!-- 状态画刷 -->
+    <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource Nord14}"/>
+    <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource Nord13}"/>
+    <SolidColorBrush x:Key="ErrorBrush" Color="{StaticResource Nord11}"/>
+    <SolidColorBrush x:Key="InfoBrush" Color="{StaticResource Nord8}"/>
+</ResourceDictionary> 
