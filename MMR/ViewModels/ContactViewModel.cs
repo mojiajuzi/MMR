@@ -31,6 +31,11 @@ public partial class ContactViewModel : ViewModelBase
 
     [ObservableProperty] private Collection<Contact> _contacts;
 
+    [ObservableProperty] private string _searchText;
+
+    // 添加一个用于存储原始数据的集合
+    private List<Contact> _allContacts = new();
+
     public ContactViewModel()
     {
         GetContacts();
@@ -47,6 +52,7 @@ public partial class ContactViewModel : ViewModelBase
                 .AsNoTracking()
                 .ToList();
 
+            _allContacts = contacts; // 保存原始数据
             Contacts = new ObservableCollection<Contact>(contacts);
         }
         catch (Exception ex)
@@ -295,5 +301,29 @@ public partial class ContactViewModel : ViewModelBase
     {
         var notification = new Notification(title, message, type);
         App.NotificationManager?.Show(notification);
+    }
+
+    // 监听SearchText的变化
+    partial void OnSearchTextChanged(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            // 如果搜索文本为空，显示所有联系人
+            Contacts = new ObservableCollection<Contact>(_allContacts);
+            return;
+        }
+
+        // 执行搜索
+        var searchResults = _allContacts.Where(c =>
+            c.Name.Contains(value, StringComparison.OrdinalIgnoreCase) ||
+            (c.Email?.Contains(value, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            (c.Phone?.Contains(value, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            (c.Wechat?.Contains(value, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            (c.QQ?.Contains(value, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            c.ContactTags.Any(ct => 
+                ct.Tag.Name.Contains(value, StringComparison.OrdinalIgnoreCase))
+        ).ToList();
+
+        Contacts = new ObservableCollection<Contact>(searchResults);
     }
 }
