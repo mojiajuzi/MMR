@@ -10,9 +10,9 @@ using MMR.Data;
 using MMR.Models;
 using MMR.ViewModels;
 
-namespace MMR.Components.Popups.AddContact;
+namespace MMR.Components.Popups.AddExpense;
 
-public partial class AddContactViewModel : ViewModelBase
+public partial class AddExpenseViewModel : ViewModelBase
 {
     // 搜索相关
     [ObservableProperty] private string _searchText;
@@ -20,8 +20,8 @@ public partial class AddContactViewModel : ViewModelBase
     [ObservableProperty] private ObservableCollection<Contact> _filteredContacts;
 
     // 选中的联系人
-    [ObservableProperty] private WorkContact _workContactData;
     [ObservableProperty] private Contact _selectedContact;
+    [ObservableProperty] private Expense _expenseData;
 
     // 错误处理
     [ObservableProperty] private bool _hasErrors;
@@ -30,44 +30,58 @@ public partial class AddContactViewModel : ViewModelBase
     // 当前工作项目
     private Work _currentWork;
 
-    // 定义联系人添加成功事件
-    public event EventHandler<WorkContactEventArgs> ContactAdded;
+    // 定义支出添加成功事件
+    public event EventHandler<ExpenseEventArgs> ExpenseAdded;
+
+    //日期
+    [ObservableProperty] private DateTimeOffset? _selectedDate;
 
     private bool _isEdit;
-    private int _editWorkContactId;
+    private int _editExpenseId;
 
-    public AddContactViewModel()
+    public AddExpenseViewModel()
     {
         FilteredContacts = new ObservableCollection<Contact>();
+        ExpenseData = new Expense { Date = DateTime.Today };
     }
 
     public void Open(Work work)
     {
         _currentWork = work;
         _isEdit = false;
-        _editWorkContactId = 0;
+        _editExpenseId = 0;
         Reset();
     }
 
-    public void OpenForEdit(Work work, WorkContact workContact)
+    public void OpenForEdit(Work work, Expense expense)
     {
         _currentWork = work;
         _isEdit = true;
-        _editWorkContactId = workContact.Id;
+        _editExpenseId = expense.Id;
 
         // 设置编辑数据
-        WorkContactData = new WorkContact
+        ExpenseData = new Expense
         {
-            Money = workContact.Money
+            Amount = expense.Amount,
+            Date = expense.Date,
+            Income = expense.Income,
+            Notes = expense.Notes
         };
-        SelectedContact = workContact.Contact;
+        SelectedContact = expense.Contact;
+        SelectedDate = expense.Date;
     }
 
     private void Reset()
     {
         SearchText = string.Empty;
         SelectedContact = null;
-        WorkContactData = new WorkContact();
+        ExpenseData = new Expense
+        {
+            Date = DateTime.Today,
+            Income = false,
+            Notes = string.Empty
+        };
+        SelectedDate = DateTime.Today;
         FilteredContacts.Clear();
         HasErrors = false;
         ErrorMessage = string.Empty;
@@ -91,10 +105,13 @@ public partial class AddContactViewModel : ViewModelBase
     {
         try
         {
-            var contacts = DbHelper.Db.Contacts
+            var contacts = DbHelper.Db.WorkContacts
                 .AsNoTracking()
-                .Where(c => c.Name.Contains(searchText) ||
-                            (c.Email != null && c.Email.Contains(searchText)))
+                .Where(wc => wc.WorkId == _currentWork.Id)
+                .Include(wc => wc.Contact)
+                .Where(wc => wc.Contact.Name.Contains(searchText) ||
+                             (wc.Contact.Email != null && wc.Contact.Email.Contains(searchText)))
+                .Select(wc => wc.Contact)
                 .Take(10)
                 .ToList();
 
@@ -115,7 +132,7 @@ public partial class AddContactViewModel : ViewModelBase
     private void Cancel()
     {
         Reset();
-        ContactAdded?.Invoke(this, new WorkContactEventArgs(null, _isEdit)); // 通知取消
+        ExpenseAdded?.Invoke(this, new ExpenseEventArgs(null, false));
     }
 
     [RelayCommand]
@@ -141,60 +158,43 @@ public partial class AddContactViewModel : ViewModelBase
                 return;
             }
 
+            if (ExpenseData.Amount <= 0)
+            {
+                HasErrors = true;
+                ErrorMessage = "金额必须大于0";
+                return;
+            }
+
+            // 设置基本数据
+            ExpenseData.WorkId = _currentWork.Id;
+            ExpenseData.ContactId = SelectedContact.Id;
+            ExpenseData.Date = SelectedDate?.Date ?? DateTime.Today;
+            ExpenseData.UpdatedAt = DateTime.UtcNow;
+
             if (_isEdit)
             {
                 // 更新现有记录
-                var workContact = await DbHelper.Db.WorkContacts
-                    .FirstOrDefaultAsync(wc => wc.Id == _editWorkContactId);
-
-                if (workContact == null)
-                {
-                    HasErrors = true;
-                    ErrorMessage = "未找到要编辑的记录";
-                    return;
-                }
-
-                workContact.Money = WorkContactData.Money;
-                workContact.UpdatedAt = DateTime.UtcNow;
-                DbHelper.Db.WorkContacts.Update(workContact);
+                ExpenseData.Id = _editExpenseId;
+                DbHelper.Db.Expenses.Update(ExpenseData);
             }
             else
             {
-                // 检查是否已存在
-                var exists = await DbHelper.Db.WorkContacts
-                    .AnyAsync(wc => wc.WorkId == _currentWork.Id &&
-                                    wc.ContactId == SelectedContact.Id);
-
-                if (exists)
+                // 创建新记录
+                ExpenseData.CreatedAt = DateTime.UtcNow;
+                if (ExpenseData.Notes == null)
                 {
-                    HasErrors = true;
-                    ErrorMessage = "该联系人已添加到当前工作";
-                    return;
+                    ExpenseData.Notes = string.Empty;
                 }
 
-                // 创建新记录
-                var workContact = new WorkContact
-                {
-                    WorkId = _currentWork.Id,
-                    ContactId = SelectedContact.Id,
-                    Money = WorkContactData.Money,
-                    CreatedAt = DateTime.UtcNow,
-                    UpdatedAt = DateTime.UtcNow
-                };
-
-                await DbHelper.Db.WorkContacts.AddAsync(workContact);
+                await DbHelper.Db.Expenses.AddAsync(ExpenseData);
             }
 
             await DbHelper.Db.SaveChangesAsync();
 
-            ShowNotification("Success", _isEdit ? "联系人更新成功" : "联系人添加成功", NotificationType.Success);
+            ShowNotification("Success", _isEdit ? "支出记录更新成功" : "支出记录添加成功", NotificationType.Success);
 
             // 触发事件
-            var updatedWorkContact = await DbHelper.Db.WorkContacts
-                .Include(wc => wc.Contact)
-                .FirstAsync(wc => wc.WorkId == _currentWork.Id && wc.ContactId == SelectedContact.Id);
-            ContactAdded?.Invoke(this, new WorkContactEventArgs(updatedWorkContact, _isEdit));
-
+            ExpenseAdded?.Invoke(this, new ExpenseEventArgs(ExpenseData, _isEdit));
             Reset();
         }
         catch (Exception ex)
@@ -225,14 +225,14 @@ public partial class AddContactViewModel : ViewModelBase
     }
 }
 
-public class WorkContactEventArgs : EventArgs
+public class ExpenseEventArgs : EventArgs
 {
-    public WorkContact WorkContact { get; set; }
+    public Expense Expense { get; set; }
     public bool IsEdit { get; set; }
 
-    public WorkContactEventArgs(WorkContact workContact, bool isEdit)
+    public ExpenseEventArgs(Expense expense, bool isEdit)
     {
-        WorkContact = workContact;
+        Expense = expense;
         IsEdit = isEdit;
     }
 }

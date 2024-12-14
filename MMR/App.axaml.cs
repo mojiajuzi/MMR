@@ -8,6 +8,7 @@ using Avalonia.Controls.Notifications;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
 using MMR.Components.Popups.AddContact;
+using MMR.Components.Popups.AddExpense;
 using MMR.ViewModels;
 using MMR.Views;
 
@@ -76,5 +77,6 @@ public partial class App : Application
         _services!.AddTransient<ContactViewModel>();
         _services!.AddTransient<WorkViewModel>();
         _services!.AddTransient<AddContactViewModel>();
+        _services!.AddTransient<AddExpenseViewModel>();
     }
 }

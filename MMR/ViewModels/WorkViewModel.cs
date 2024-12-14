@@ -8,10 +8,10 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.EntityFrameworkCore;
 using MMR.Components.Popups.AddContact;
+using MMR.Components.Popups.AddExpense;
 using MMR.Data;
 using MMR.Models;
 using MMR.Models.Enums;
-using MMR.Components.Popups.AddContact;
 
 namespace MMR.ViewModels;
 
@@ -35,22 +35,27 @@ public partial class WorkViewModel : ViewModelBase
     //contact add 
     [ObservableProperty] private bool _contactPopupOpen;
 
-    private readonly AddContactViewModel _addContactViewModel;
-
     [ObservableProperty] private bool _isContactPopupOpen;
+    [ObservableProperty] private bool _isExpensePopupOpen;
+
+    private readonly AddContactViewModel _addContactViewModel;
+    private readonly AddExpenseViewModel _addExpenseViewModel;
 
     public AddContactViewModel AddContactViewModel => _addContactViewModel;
+    public AddExpenseViewModel AddExpenseViewModel => _addExpenseViewModel;
 
-    public WorkViewModel(AddContactViewModel addContactViewModel)
+    public WorkViewModel(AddContactViewModel addContactViewModel, AddExpenseViewModel addExpenseViewModel)
     {
         _addContactViewModel = addContactViewModel;
+        _addExpenseViewModel = addExpenseViewModel;
+
         Works = new ObservableCollection<Work>(GetWorks());
         StatusList = new ObservableCollection<WorkStatus>(Enum.GetValues<WorkStatus>());
 
-        // 订阅联系人添加事件
+        // 订阅事件
         _addContactViewModel.ContactAdded += OnContactAdded;
+        _addExpenseViewModel.ExpenseAdded += OnExpenseAdded;
     }
-
 
     private List<Work> GetWorks()
     {
@@ -156,6 +161,7 @@ public partial class WorkViewModel : ViewModelBase
         // 获取详细数据
         var detail = DbHelper.Db.Works.AsNoTracking()
             .Include(w => w.Expenses)
+            .ThenInclude(c => c.Contact)
             .Include(w => w.WorkContacts)
             .ThenInclude(wc => wc.Contact)
             .FirstOrDefault(w => w.Id == work.Id);
@@ -177,21 +183,60 @@ public partial class WorkViewModel : ViewModelBase
     [RelayCommand]
     private void AddContact()
     {
-        if (WorkDetails == null) return;
+        IsExpensePopupOpen = false;
+        if (WorkDetails == null)
+        {
+            return;
+        }
 
         _addContactViewModel.Open(WorkDetails);
         IsContactPopupOpen = true;
     }
 
-    private void OnContactAdded(object sender, WorkContact workContact)
+    private void OnContactAdded(object sender, WorkContactEventArgs e)
     {
-        //IsContactPopupOpen = false;
+        if (e.WorkContact == null)
+        {
+            IsContactPopupOpen = false;
+            return; // 用户取消
+        }
 
-        if (workContact == null) return; // 用户取消
+        if (e.IsEdit)
+        {
+            IsContactPopupOpen = false;
+        }
 
         // 刷新当前工作详情
         var detail = DbHelper.Db.Works.AsNoTracking()
             .Include(w => w.Expenses)
+            .ThenInclude(e => e.Contact)
+            .Include(w => w.WorkContacts)
+            .ThenInclude(wc => wc.Contact)
+            .FirstOrDefault(w => w.Id == WorkDetails.Id);
+
+        if (detail != null)
+        {
+            WorkDetails = detail;
+        }
+    }
+
+    private void OnExpenseAdded(object? sender, ExpenseEventArgs e)
+    {
+        if (e.Expense == null)
+        {
+            IsExpensePopupOpen = false;
+            return; // 用户取消
+        }
+
+        if (e.IsEdit)
+        {
+            IsExpensePopupOpen = false;
+        }
+
+        // 刷新当前工作详情
+        var detail = DbHelper.Db.Works.AsNoTracking()
+            .Include(w => w.Expenses)
+            .ThenInclude(e => e.Contact)
             .Include(w => w.WorkContacts)
             .ThenInclude(wc => wc.Contact)
             .FirstOrDefault(w => w.Id == WorkDetails.Id);
@@ -205,5 +250,71 @@ public partial class WorkViewModel : ViewModelBase
     [RelayCommand]
     private void AddExpense()
     {
+        IsContactPopupOpen = false;
+        if (WorkDetails == null) return;
+        _addExpenseViewModel.Open(WorkDetails);
+        IsExpensePopupOpen = true;
+    }
+
+    [RelayCommand]
+    private void EditExpense(Expense expense)
+    {
+        if (WorkDetails == null) return;
+        _addExpenseViewModel.OpenForEdit(WorkDetails, expense);
+        IsExpensePopupOpen = true;
+    }
+
+    [RelayCommand]
+    private async Task DeleteExpense(Expense expense)
+    {
+        if (WorkDetails == null) return;
+
+        // TODO: 添加确认对话框
+        DbHelper.Db.Expenses.Remove(expense);
+        await DbHelper.Db.SaveChangesAsync();
+
+        // 刷新详情
+        var detail = await DbHelper.Db.Works.AsNoTracking()
+            .Include(w => w.Expenses)
+            .ThenInclude(e => e.Contact)
+            .Include(w => w.WorkContacts)
+            .ThenInclude(wc => wc.Contact)
+            .FirstOrDefaultAsync(w => w.Id == WorkDetails.Id);
+
+        if (detail != null)
+        {
+            WorkDetails = detail;
+        }
+    }
+
+    [RelayCommand]
+    private void EditWorkContact(WorkContact workContact)
+    {
+        if (WorkDetails == null) return;
+        _addContactViewModel.OpenForEdit(WorkDetails, workContact);
+        IsContactPopupOpen = true;
+    }
+
+    [RelayCommand]
+    private async Task DeleteWorkContact(WorkContact workContact)
+    {
+        if (WorkDetails == null) return;
+
+        // TODO: 添加确认对话框
+        DbHelper.Db.WorkContacts.Remove(workContact);
+        await DbHelper.Db.SaveChangesAsync();
+
+        // 刷新详情
+        var detail = await DbHelper.Db.Works.AsNoTracking()
+            .Include(w => w.Expenses)
+            .ThenInclude(e => e.Contact)
+            .Include(w => w.WorkContacts)
+            .ThenInclude(wc => wc.Contact)
+            .FirstOrDefaultAsync(w => w.Id == WorkDetails.Id);
+
+        if (detail != null)
+        {
+            WorkDetails = detail;
+        }
     }
 }
