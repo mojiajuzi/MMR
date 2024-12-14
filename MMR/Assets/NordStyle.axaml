@@ -129,4 +129,92 @@
         <Setter Property="TextWrapping" Value="Wrap"></Setter>
         <Setter Property="Margin" Value="0,0,0,10"></Setter>
     </Style>
+
+    <Style Selector="ListBox.tagSelector">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <Style Selector="ListBox.tagSelector ListBoxItem">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+    </Style>
+
+    <Style Selector="ListBox.tagSelector ListBoxItem:selected Border.tag">
+        <Setter Property="Background" Value="{DynamicResource PrimaryBrush}" />
+    </Style>
+
+    <Style Selector="ListBox.tagSelector ListBoxItem:pointerover Border.tag">
+        <Setter Property="Background" Value="{DynamicResource PrimaryBrush}" />
+        <Setter Property="Opacity" Value="0.8" />
+    </Style>
+
+    <!--圆形图像样式-->
+    <Style Selector="Image.avatar">
+        <Setter Property="Width" Value="80" />
+        <Setter Property="Height" Value="80" />
+        <Setter Property="ClipToBounds" Value="True" />
+        <Setter Property="Clip">
+            <EllipseGeometry Rect="0,0,80,80" />
+        </Setter>
+        <Setter Property="Stretch" Value="UniformToFill" />
+    </Style>
+
+    <Style Selector="Image.avatarSmall">
+        <Setter Property="Width" Value="40" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="ClipToBounds" Value="True" />
+        <Setter Property="Clip">
+            <EllipseGeometry Rect="0,0,40,40" />
+        </Setter>
+        <Setter Property="Stretch" Value="UniformToFill" />
+    </Style>
+    <Style Selector="Border.avatarContainer">
+        <Setter Property="Width" Value="80" />
+        <Setter Property="Height" Value="80" />
+        <Setter Property="CornerRadius" Value="60" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}" />
+        <Setter Property="BoxShadow" Value="0 2 4 0 #20000000" />
+        <Setter Property="Background" Value="{DynamicResource CardBackgroundBrush}" />
+    </Style>
+
+    <Style Selector="Border.avatarSmallContainer">
+        <Setter Property="Width" Value="40" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}" />
+        <Setter Property="BoxShadow" Value="0 1 2 0 #20000000" />
+        <Setter Property="Background" Value="{DynamicResource CardBackgroundBrush}" />
+    </Style>
+    <!-- 圆形图像结束-->
+
+    <!--弹框下拉选择框border样式-->
+    <Style Selector="Border.SearchResult">
+        <Setter Property="Background" Value="{DynamicResource SecondaryBrush}"></Setter>
+        <Setter Property="CornerRadius" Value="4"></Setter>
+        <Setter Property="Padding" Value="8,4"></Setter>
+    </Style>
+    <Style Selector="Button.SearchResult">
+        <Setter Property="Padding" Value="2"></Setter>
+        <Setter Property="CornerRadius" Value="2"></Setter>
+    </Style>
+    <!--End -->
+
+    <!--tag显示-->
+    <Style Selector="Border.tag">
+        <Setter Property="Background" Value="{DynamicResource SecondaryBrush}" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.2" />
+            </Transitions>
+        </Setter>
+    </Style>
+    <!--tag show end-->
+
 </Styles>

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MMR.Models;
 
-public class BaseModel
+public abstract class BaseModel
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

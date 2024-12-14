@@ -25,7 +25,7 @@ public partial class MainViewModel : ViewModelBase
     public ObservableCollection<ListItemTemplate> Items { get; } = new()
     {
         new ListItemTemplate(typeof(TagViewModel), "Tags", "fa-thin fa-tag"),
-        //new ListItemTemplate(typeof(ContactViewModel), "Contacts", "fa-thin fa-address-book"),
+        new ListItemTemplate(typeof(ContactViewModel), "Contacts", "fa-thin fa-address-book"),
         //new ListItemTemplate(typeof(WorkViewModel), "Works", "fa-thin fa-calendar-days")
     };
 
