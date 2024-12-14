@@ -24,11 +24,10 @@
         <!--右侧导航栏-->
         <SplitView.Pane>
             <Border Background="{DynamicResource CardBackgroundBrush}"
-                    CornerRadius="12,0,0,12"
-                    BoxShadow="10 10 20 20 #40000000"
-                    BorderThickness="1"
-                    BorderBrush="{DynamicResource BorderBrush}"
-                    ZIndex="1000">
+                    CornerRadius="0"
+                    BoxShadow="10 0 0 0 #40000000"
+                    BorderThickness="1,0,0,0"
+                    BorderBrush="{DynamicResource BorderBrush}">
                 <Grid RowDefinitions="Auto,*">
                     <!-- 标题栏 -->
                     <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,24">
@@ -114,8 +113,9 @@
                                                                         IsVisible="{Binding Contact.Avatar, Converter={x:Static StringConverters.IsNullOrEmpty}}" />
                                                                 <Border Classes="avatarSmallContainer"
                                                                         IsVisible="{Binding Contact.Avatar, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
-                                                                    <Image Source="{Binding Contact.Avatar, Converter={StaticResource PathToImageConverter}}"
-                                                                           Classes="avatarSmall" />
+                                                                    <Image
+                                                                        Source="{Binding Contact.Avatar, Converter={StaticResource PathToImageConverter}}"
+                                                                        Classes="avatarSmall" />
                                                                 </Border>
                                                             </Panel>
 
@@ -134,11 +134,11 @@
                                                         </Grid>
 
                                                         <!-- 第二行：操作按钮 -->
-                                                        <StackPanel Grid.Row="1" 
-                                                                   Orientation="Horizontal" 
-                                                                   Spacing="8"
-                                                                   HorizontalAlignment="Right"
-                                                                   Margin="0,8,0,0">
+                                                        <StackPanel Grid.Row="1"
+                                                                    Orientation="Horizontal"
+                                                                    Spacing="8"
+                                                                    HorizontalAlignment="Right"
+                                                                    Margin="0,8,0,0">
                                                             <Button Classes="Action Update"
                                                                     Command="{Binding #WorksControl.((vm:WorkViewModel)DataContext).EditWorkContactCommand}"
                                                                     CommandParameter="{Binding .}">
@@ -163,7 +163,7 @@
                                 <StackPanel Classes="Card" Spacing="8">
                                     <Grid ColumnDefinitions="*,Auto">
                                         <TextBlock Text="Expenses"
-                                                           FontWeight="SemiBold" />
+                                                   FontWeight="SemiBold" />
                                         <Button Grid.Column="1"
                                                 Classes="IconButton"
                                                 Command="{Binding AddExpenseCommand}">
@@ -178,14 +178,16 @@
                                                         <!-- 第一行：金额和联系人信息 -->
                                                         <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto">
                                                             <!-- 联系人头像和名称 -->
-                                                            <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8">
+                                                            <StackPanel Grid.Column="0" Orientation="Horizontal"
+                                                                        Spacing="8">
                                                                 <Panel>
                                                                     <i:Icon Value="fa-thin fa-user"
                                                                             IsVisible="{Binding Contact.Avatar, Converter={x:Static StringConverters.IsNullOrEmpty}}" />
                                                                     <Border Classes="avatarSmallContainer"
                                                                             IsVisible="{Binding Contact.Avatar, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
-                                                                        <Image Source="{Binding Contact.Avatar, Converter={StaticResource PathToImageConverter}}"
-                                                                               Classes="avatarSmall" />
+                                                                        <Image
+                                                                            Source="{Binding Contact.Avatar, Converter={StaticResource PathToImageConverter}}"
+                                                                            Classes="avatarSmall" />
                                                                     </Border>
                                                                 </Panel>
                                                                 <TextBlock Text="{Binding Contact.Name}"
@@ -209,8 +211,9 @@
                                                             <StackPanel Grid.Column="0" Spacing="4">
                                                                 <StackPanel Orientation="Horizontal" Spacing="8">
                                                                     <i:Icon Value="fa-thin fa-calendar" />
-                                                                    <TextBlock Text="{Binding Date, StringFormat={}{0:yyyy-MM-dd}}"
-                                                                               Classes="label" />
+                                                                    <TextBlock
+                                                                        Text="{Binding Date, StringFormat={}{0:yyyy-MM-dd}}"
+                                                                        Classes="label" />
                                                                 </StackPanel>
                                                                 <TextBlock Text="{Binding Notes}"
                                                                            TextWrapping="Wrap"
@@ -218,10 +221,10 @@
                                                             </StackPanel>
 
                                                             <!-- 操作按钮 -->
-                                                            <StackPanel Grid.Column="1" 
-                                                                       Orientation="Horizontal" 
-                                                                       Spacing="8"
-                                                                       HorizontalAlignment="Right">
+                                                            <StackPanel Grid.Column="1"
+                                                                        Orientation="Horizontal"
+                                                                        Spacing="8"
+                                                                        HorizontalAlignment="Right">
                                                                 <Button Classes="Action Update"
                                                                         Command="{Binding #WorksControl.((vm:WorkViewModel)DataContext).EditExpenseCommand}"
                                                                         CommandParameter="{Binding .}">
@@ -362,7 +365,9 @@
                                                 </StackPanel>
                                             </Button>
 
-                                            <Button Classes="Action Delete">
+                                            <Button Classes="Action Delete"
+                                                    Command="{Binding #WorksControl.((vm:WorkViewModel)DataContext).DeleteWorkCommand}"
+                                                    CommandParameter="{Binding .}">
                                                 <StackPanel Orientation="Horizontal">
                                                     <i:Icon Value="fa-thin fa-trash"></i:Icon>
                                                     <TextBlock Text="Delete" />

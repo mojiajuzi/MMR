@@ -12,6 +12,7 @@ using MMR.Components.Popups.AddExpense;
 using MMR.Data;
 using MMR.Models;
 using MMR.Models.Enums;
+using MMR.Services;
 
 namespace MMR.ViewModels;
 
@@ -41,13 +42,17 @@ public partial class WorkViewModel : ViewModelBase
     private readonly AddContactViewModel _addContactViewModel;
     private readonly AddExpenseViewModel _addExpenseViewModel;
 
+    private readonly IDialogService _dialogService;
+
     public AddContactViewModel AddContactViewModel => _addContactViewModel;
     public AddExpenseViewModel AddExpenseViewModel => _addExpenseViewModel;
 
-    public WorkViewModel(AddContactViewModel addContactViewModel, AddExpenseViewModel addExpenseViewModel)
+    public WorkViewModel(AddContactViewModel addContactViewModel, AddExpenseViewModel addExpenseViewModel,
+        IDialogService dialogService)
     {
         _addContactViewModel = addContactViewModel;
         _addExpenseViewModel = addExpenseViewModel;
+        _dialogService = dialogService;
 
         Works = new ObservableCollection<Work>(GetWorks());
         StatusList = new ObservableCollection<WorkStatus>(Enum.GetValues<WorkStatus>());
@@ -145,6 +150,54 @@ public partial class WorkViewModel : ViewModelBase
         SelectedStartAt = work.StartAt;
         SelectedEndAt = work.EndAt;
         IsWorkPopupOpen = true;
+    }
+
+    [RelayCommand]
+    private async Task DeleteWork(Work work)
+    {
+        var result = await _dialogService.ShowConfirmAsync(
+            "删除确认",
+            "确定要删除这个工作项目吗？这将同时删除所有相关的联系人和支出记录。",
+            "删除",
+            "取消"
+        );
+
+        if (!result) return;
+
+        try
+        {
+            // 先从数据库获取要删除的实体
+            var workToDelete = await DbHelper.Db.Works
+                .Include(w => w.WorkContacts)
+                .Include(w => w.Expenses)
+                .FirstOrDefaultAsync(w => w.Id == work.Id);
+
+            if (workToDelete != null)
+            {
+                // 删除关联的联系人和支出记录
+                DbHelper.Db.WorkContacts.RemoveRange(workToDelete.WorkContacts);
+                DbHelper.Db.Expenses.RemoveRange(workToDelete.Expenses);
+                DbHelper.Db.Works.Remove(workToDelete);
+
+                await DbHelper.Db.SaveChangesAsync();
+
+                // 如果当前正在查看这个工作的详情，则关闭详情面板
+                if (WorkDetails?.Id == work.Id)
+                {
+                    IsDetailsPaneOpen = false;
+                    WorkDetails = null;
+                }
+
+                // 刷新工作列表
+                Works = new ObservableCollection<Work>(GetWorks());
+
+                ShowNotification("Success", "工作项目删除成功", NotificationType.Success);
+            }
+        }
+        catch (Exception ex)
+        {
+            ShowNotification("Error", $"删除失败：{ex.Message}", NotificationType.Error);
+        }
     }
 
     [RelayCommand]
@@ -269,21 +322,36 @@ public partial class WorkViewModel : ViewModelBase
     {
         if (WorkDetails == null) return;
 
-        // TODO: 添加确认对话框
-        DbHelper.Db.Expenses.Remove(expense);
-        await DbHelper.Db.SaveChangesAsync();
+        var result = await _dialogService.ShowConfirmAsync(
+            "删除确认",
+            "确定要删除这条支出记录吗？",
+            "删除",
+            "取消"
+        );
 
-        // 刷新详情
-        var detail = await DbHelper.Db.Works.AsNoTracking()
-            .Include(w => w.Expenses)
-            .ThenInclude(e => e.Contact)
-            .Include(w => w.WorkContacts)
-            .ThenInclude(wc => wc.Contact)
-            .FirstOrDefaultAsync(w => w.Id == WorkDetails.Id);
+        if (!result) return;
 
-        if (detail != null)
+        // 先从数据库获取要删除的实体
+        var expenseToDelete = await DbHelper.Db.Expenses
+            .FirstOrDefaultAsync(e => e.Id == expense.Id);
+
+        if (expenseToDelete != null)
         {
-            WorkDetails = detail;
+            DbHelper.Db.Expenses.Remove(expenseToDelete);
+            await DbHelper.Db.SaveChangesAsync();
+
+            // 刷新详情
+            var detail = await DbHelper.Db.Works.AsNoTracking()
+                .Include(w => w.Expenses)
+                .ThenInclude(e => e.Contact)
+                .Include(w => w.WorkContacts)
+                .ThenInclude(wc => wc.Contact)
+                .FirstOrDefaultAsync(w => w.Id == WorkDetails.Id);
+
+            if (detail != null)
+            {
+                WorkDetails = detail;
+            }
         }
     }
 
@@ -300,21 +368,36 @@ public partial class WorkViewModel : ViewModelBase
     {
         if (WorkDetails == null) return;
 
-        // TODO: 添加确认对话框
-        DbHelper.Db.WorkContacts.Remove(workContact);
-        await DbHelper.Db.SaveChangesAsync();
+        var result = await _dialogService.ShowConfirmAsync(
+            "删除确认",
+            "确定要删除这个联系人吗？",
+            "删除",
+            "取消"
+        );
 
-        // 刷新详情
-        var detail = await DbHelper.Db.Works.AsNoTracking()
-            .Include(w => w.Expenses)
-            .ThenInclude(e => e.Contact)
-            .Include(w => w.WorkContacts)
-            .ThenInclude(wc => wc.Contact)
-            .FirstOrDefaultAsync(w => w.Id == WorkDetails.Id);
+        if (!result) return;
 
-        if (detail != null)
+        // 先从数据库获取要删除的实体
+        var contactToDelete = await DbHelper.Db.WorkContacts
+            .FirstOrDefaultAsync(wc => wc.Id == workContact.Id);
+
+        if (contactToDelete != null)
         {
-            WorkDetails = detail;
+            DbHelper.Db.WorkContacts.Remove(contactToDelete);
+            await DbHelper.Db.SaveChangesAsync();
+
+            // 刷新详情
+            var detail = await DbHelper.Db.Works.AsNoTracking()
+                .Include(w => w.Expenses)
+                .ThenInclude(e => e.Contact)
+                .Include(w => w.WorkContacts)
+                .ThenInclude(wc => wc.Contact)
+                .FirstOrDefaultAsync(w => w.Id == WorkDetails.Id);
+
+            if (detail != null)
+            {
+                WorkDetails = detail;
+            }
         }
     }
 }

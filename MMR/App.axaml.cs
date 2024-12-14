@@ -11,6 +11,7 @@ using MMR.Components.Popups.AddContact;
 using MMR.Components.Popups.AddExpense;
 using MMR.ViewModels;
 using MMR.Views;
+using MMR.Services;
 
 namespace MMR;
 
@@ -71,6 +72,7 @@ public partial class App : Application
 
     private void RegisterServices()
     {
+        _services!.AddSingleton<IDialogService, DialogService>();
         // 注册 ViewModels
         _services!.AddTransient<MainViewModel>();
         _services!.AddTransient<TagViewModel>();

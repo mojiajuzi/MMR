@@ -1,0 +1,30 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="https://github.com/projektanker/icons.avalonia"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200"
+        Width="400" Height="200"
+        x:Class="MMR.Components.Dialogs.ConfirmDialog">
+    <Border Classes="Popup">
+        <StackPanel Spacing="20" Margin="20,20,20,10">
+            <TextBlock Name="TitleBlock"
+                       FontSize="20"
+                       FontWeight="SemiBold" />
+            <TextBlock Name="MessageBlock"
+                       TextWrapping="Wrap" />
+            <UniformGrid Rows="1" Columns="2" Margin="0">
+                <Button Name="CancelButton"
+                        Classes="Cancel"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Margin="0,0,5,0" />
+                <Button Name="OkButton"
+                        Classes="Delete"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Margin="5,0,0,0" />
+            </UniformGrid>
+        </StackPanel>
+    </Border>
+</Window>

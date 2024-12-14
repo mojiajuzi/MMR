@@ -32,4 +32,10 @@
     <ItemGroup>
         <Folder Include="Data\"/>
     </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="Components\Dialogs\ConfirmDialog.axaml.cs">
+            <DependentUpon>ConfirmDialog.axaml</DependentUpon>
+        </Compile>
+    </ItemGroup>
 </Project>
