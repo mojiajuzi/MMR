@@ -14,24 +14,23 @@
     </UserControl.Resources>
     <Border>
         <Grid RowDefinitions="80,*">
-            <Grid Row="0">
-                <Grid ColumnDefinitions="Auto,*,Auto">
+            <!-- 顶部工具栏 -->
+            <Grid Row="0" Margin="16,8">
+                <Grid ColumnDefinitions="*,400,*" VerticalAlignment="Center">
+                    <!-- 左侧添加按钮 -->
                     <Button Grid.Column="0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            Command="{Binding OpenPopupCommand}">
-                        <StackPanel Orientation="Horizontal">
+                            Classes="Default"
+                            HorizontalContentAlignment="Left"
+                            HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
                             <i:Icon Value="fa-thin fa-plus" />
                             <TextBlock Text="Add" />
                         </StackPanel>
                     </Button>
 
+                    <!-- 中间搜索框 -->
                     <Border Grid.Column="1"
-                            Classes="search-container"
-                            HorizontalAlignment="Center"
-                            Margin="16,0">
+                            Classes="search-container">
                         <Grid ColumnDefinitions="Auto,*">
                             <Border Grid.Column="0"
                                     Classes="search-icon-container">
@@ -40,144 +39,22 @@
                             </Border>
                             <TextBox Grid.Column="1"
                                      Classes="search-input"
-                                     Text="{Binding SearchText}"
-                                     Watermark="Search contacts..."
-                                     VerticalAlignment="Center" />
+                                     Watermark="Search Contacts..."
+                                     Text="{Binding SearchText}" />
                         </Grid>
                     </Border>
 
-                    <Border Grid.Column="2" Width="100" />
+                    <!-- 右侧预留空间 -->
+                    <StackPanel Grid.Column="2"
+                                Orientation="Horizontal"
+                                Spacing="8"
+                                HorizontalAlignment="Right">
+                        <!-- 这里可以添加其他操作按钮 -->
+                    </StackPanel>
                 </Grid>
-
-                <Popup Name="ContactCreatePopup"
-                       IsOpen="{Binding IsPopupOpen}"
-                       Placement="Center"
-                       PlacementTarget="{Binding $parent[UserControl]}"
-                       ZIndex="1000"
-                       WindowManagerAddShadowHint="False">
-                    <Border Classes="Popup">
-                        <StackPanel Classes="Popup">
-                            <TextBlock Text="{Binding ErrorMessage}"
-                                       IsVisible="{Binding HasErrors}"
-                                       Classes="ShowError" />
-
-                            <Button x:Name="AvatarUploadButton"
-                                    Width="100" Height="100"
-                                    BorderThickness="0"
-                                    Background="Transparent"
-                                    Click="AvatarUploadButtonClick"
-                                    HorizontalAlignment="Center"
-                                    CornerRadius="50"
-                                    RenderOptions.BitmapInterpolationMode="HighQuality">
-                                <Button.Content>
-                                    <Border Classes="avatarContainer">
-                                        <Image Classes="avatar"
-                                               Name="AvatarImage"
-                                               Source="{Binding Avatar, Mode=TwoWay}" />
-                                    </Border>
-                                </Button.Content>
-                            </Button>
-
-                            <StackPanel>
-                                <Label Content="Name" Target="Name" />
-                                <TextBox Name="Name"
-                                         Text="{Binding ContactData.Name}"
-                                         Watermark="Enter contact name" />
-                            </StackPanel>
-
-                            <Grid ColumnDefinitions="*,16,*">
-                                <StackPanel Grid.Column="0">
-                                    <Label Content="Email" Target="Email" />
-                                    <TextBox Name="Email"
-                                             Text="{Binding ContactData.Email}"
-                                             Watermark="Enter email address" />
-                                </StackPanel>
-                                <StackPanel Grid.Column="2">
-                                    <Label Content="Phone" Target="Phone" />
-                                    <TextBox Name="Phone"
-                                             Text="{Binding ContactData.Phone}"
-                                             Watermark="Enter phone number" />
-                                </StackPanel>
-                            </Grid>
-
-                            <Grid ColumnDefinitions="*,16,*">
-                                <StackPanel Grid.Column="0">
-                                    <Label Content="WeChat" Target="Wechat" />
-                                    <TextBox Name="Wechat"
-                                             Text="{Binding ContactData.Wechat}"
-                                             Watermark="Enter WeChat ID" />
-                                </StackPanel>
-                                <StackPanel Grid.Column="2">
-                                    <Label Content="QQ" Target="Qq" />
-                                    <TextBox Name="Qq"
-                                             Text="{Binding ContactData.QQ}"
-                                             Watermark="Enter QQ number" />
-                                </StackPanel>
-                            </Grid>
-                            <StackPanel>
-                                <AutoCompleteBox Name="TagSearchBox"
-                                                 Classes="tagSearch"
-                                                 FilterMode="None"
-                                                 Text="{Binding TagSearchText}"
-                                                 ItemsSource="{Binding FilterTagList}"
-                                                 Watermark="搜索标签..."
-                                                 SelectionChanged="TagSearchBox_OnSelectionChanged">
-                                    <AutoCompleteBox.ItemTemplate>
-                                        <DataTemplate DataType="{x:Type model:Tag}">
-                                            <TextBlock Text="{Binding Name}" />
-                                        </DataTemplate>
-                                    </AutoCompleteBox.ItemTemplate>
-                                </AutoCompleteBox>
-                                <ListBox Name="VModel"
-                                         Classes="tagList"
-                                         ItemsSource="{Binding SelectedTagList}">
-                                    <ListBox.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapPanel Orientation="Horizontal" />
-                                        </ItemsPanelTemplate>
-                                    </ListBox.ItemsPanel>
-                                    <ListBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <Border Classes="SearchResult">
-                                                <StackPanel Orientation="Horizontal" Spacing="8">
-                                                    <TextBlock Text="{Binding Name}"
-                                                               VerticalAlignment="Center" />
-                                                    <Button Classes="SearchResult"
-                                                            Command="{Binding #VModel.((vm:ContactViewModel)DataContext).RemoveTagCommand}"
-                                                            CommandParameter="{Binding}">
-                                                        <TextBlock Text="×"
-                                                                   VerticalAlignment="Center" />
-                                                    </Button>
-                                                </StackPanel>
-                                            </Border>
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-                                </ListBox>
-                            </StackPanel>
-                            <StackPanel>
-                                <Label Content="Remark" Target="Remark" />
-                                <TextBox Name="Remark"
-                                         Text="{Binding ContactData.Remark}"
-                                         Watermark="Enter remark"
-                                         AcceptsReturn="True"
-                                         TextWrapping="Wrap"
-                                         Height="60" />
-                            </StackPanel>
-                            <UniformGrid Rows="1" Columns="2" Margin="0,16,0,0">
-                                <Button Classes="Cancel"
-                                        Command="{Binding PopupCloseCommand}"
-                                        Content="Cancel" />
-                                <Button Classes="Update"
-                                        HorizontalAlignment="Right"
-                                        Command="{Binding ContactSubmitedCommand}"
-                                        CommandParameter="{Binding}"
-                                        Content="Submit" />
-                            </UniformGrid>
-                        </StackPanel>
-                    </Border>
-                </Popup>
             </Grid>
-            <!--List-->
+
+            <!-- 联系人列表 -->
             <Grid Grid.Row="1">
                 <ItemsControl x:Name="Root" ItemsSource="{Binding Contacts}">
                     <ItemsControl.ItemsPanel>
@@ -252,7 +129,135 @@
                     </ItemsControl.DataTemplates>
                 </ItemsControl>
             </Grid>
-            <!--List-->
+
+            <!-- 弹窗部分 -->
+            <Popup Name="ContactCreatePopup"
+                   IsOpen="{Binding IsPopupOpen}"
+                   Placement="Center"
+                   PlacementTarget="{Binding $parent[UserControl]}"
+                   ZIndex="1000"
+                   WindowManagerAddShadowHint="False">
+                <Border Classes="Popup">
+                    <StackPanel Classes="Popup">
+                        <TextBlock Text="{Binding ErrorMessage}"
+                                   IsVisible="{Binding HasErrors}"
+                                   Classes="ShowError" />
+
+                        <Button x:Name="AvatarUploadButton"
+                                Width="100" Height="100"
+                                BorderThickness="0"
+                                Background="Transparent"
+                                Click="AvatarUploadButtonClick"
+                                HorizontalAlignment="Center"
+                                CornerRadius="50"
+                                RenderOptions.BitmapInterpolationMode="HighQuality">
+                            <Button.Content>
+                                <Border Classes="avatarContainer">
+                                    <Image Classes="avatar"
+                                           Name="AvatarImage"
+                                           Source="{Binding Avatar, Mode=TwoWay}" />
+                                </Border>
+                            </Button.Content>
+                        </Button>
+
+                        <StackPanel>
+                            <Label Content="Name" Target="Name" />
+                            <TextBox Name="Name"
+                                     Text="{Binding ContactData.Name}"
+                                     Watermark="Enter contact name" />
+                        </StackPanel>
+
+                        <Grid ColumnDefinitions="*,16,*">
+                            <StackPanel Grid.Column="0">
+                                <Label Content="Email" Target="Email" />
+                                <TextBox Name="Email"
+                                         Text="{Binding ContactData.Email}"
+                                         Watermark="Enter email address" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <Label Content="Phone" Target="Phone" />
+                                <TextBox Name="Phone"
+                                         Text="{Binding ContactData.Phone}"
+                                         Watermark="Enter phone number" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid ColumnDefinitions="*,16,*">
+                            <StackPanel Grid.Column="0">
+                                <Label Content="WeChat" Target="Wechat" />
+                                <TextBox Name="Wechat"
+                                         Text="{Binding ContactData.Wechat}"
+                                         Watermark="Enter WeChat ID" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <Label Content="QQ" Target="Qq" />
+                                <TextBox Name="Qq"
+                                         Text="{Binding ContactData.QQ}"
+                                         Watermark="Enter QQ number" />
+                            </StackPanel>
+                        </Grid>
+                        <StackPanel>
+                            <AutoCompleteBox Name="TagSearchBox"
+                                             Classes="tagSearch"
+                                             FilterMode="None"
+                                             Text="{Binding TagSearchText}"
+                                             ItemsSource="{Binding FilterTagList}"
+                                             Watermark="搜索标签..."
+                                             SelectionChanged="TagSearchBox_OnSelectionChanged">
+                                <AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type model:Tag}">
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </AutoCompleteBox.ItemTemplate>
+                            </AutoCompleteBox>
+                            <ListBox Name="VModel"
+                                     Classes="tagList"
+                                     ItemsSource="{Binding SelectedTagList}">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Classes="SearchResult">
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                                <TextBlock Text="{Binding Name}"
+                                                           VerticalAlignment="Center" />
+                                                <Button Classes="SearchResult"
+                                                        Command="{Binding #VModel.((vm:ContactViewModel)DataContext).RemoveTagCommand}"
+                                                        CommandParameter="{Binding}">
+                                                    <TextBlock Text="×"
+                                                               VerticalAlignment="Center" />
+                                                </Button>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
+                        <StackPanel>
+                            <Label Content="Remark" Target="Remark" />
+                            <TextBox Name="Remark"
+                                     Text="{Binding ContactData.Remark}"
+                                     Watermark="Enter remark"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     Height="60" />
+                        </StackPanel>
+                        <UniformGrid Rows="1" Columns="2" Margin="0,16,0,0">
+                            <Button Classes="Cancel"
+                                    Command="{Binding PopupCloseCommand}"
+                                    Content="Cancel" />
+                            <Button Classes="Update"
+                                    HorizontalAlignment="Right"
+                                    Command="{Binding ContactSubmitedCommand}"
+                                    CommandParameter="{Binding}"
+                                    Content="Submit" />
+                        </UniformGrid>
+                    </StackPanel>
+                </Border>
+            </Popup>
         </Grid>
     </Border>
 </UserControl>

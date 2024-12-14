@@ -30,6 +30,7 @@ public partial class WorkViewModel : ViewModelBase
     [ObservableProperty] private ObservableCollection<Work> _works;
 
     [ObservableProperty] private ObservableCollection<WorkStatus> _statusList;
+    [ObservableProperty] private string _searchText;
 
     [ObservableProperty] private Work _workDetails;
 
@@ -65,6 +66,23 @@ public partial class WorkViewModel : ViewModelBase
     private List<Work> GetWorks()
     {
         return DbHelper.Db.Works.AsNoTracking().ToList();
+    }
+
+    partial void OnSearchTextChanged(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            Works = new ObservableCollection<Work>(GetWorks());
+            return;
+        }
+
+        var filtered = DbHelper.Db.Works
+            .AsNoTracking()
+            .Where(w => w.Name.Contains(value) ||
+                        w.Description.Contains(value))
+            .ToList();
+
+        Works = new ObservableCollection<Work>(filtered);
     }
 
     [RelayCommand]

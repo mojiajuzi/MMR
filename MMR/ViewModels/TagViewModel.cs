@@ -23,15 +23,52 @@ public partial class TagViewModel : ViewModelBase
 
     [ObservableProperty] private ObservableCollection<Tag> _tags;
 
-    public TagViewModel()
+    [ObservableProperty] 
+    private string _searchText;
+
+    partial void OnSearchTextChanged(string value)
     {
-        GetTags();
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            // 如果搜索文本为空，显示所有标签
+            Tags = new ObservableCollection<Tag>(GetTags());
+            return;
+        }
+
+        // 搜索标签
+        var filtered = DbHelper.Db.Tags
+            .AsNoTracking()
+            .Where(t => t.Name.Contains(value))
+            .OrderByDescending(t => t.UpdatedAt)
+            .ToList();
+
+        Tags = new ObservableCollection<Tag>(filtered);
     }
 
-    private void GetTags()
+    private List<Tag> GetTags()
     {
-        var tagList = DbHelper.Db.Tags.ToList();
-        Tags = new ObservableCollection<Tag>(tagList);
+        return DbHelper.Db.Tags
+            .AsNoTracking()
+            .OrderByDescending(t => t.UpdatedAt)
+            .ToList();
+    }
+
+    public TagViewModel()
+    {
+        Tags = new ObservableCollection<Tag>(GetTags());
+    }
+
+    private void RefreshTags()
+    {
+        // 如果有搜索文本，保持搜索状态
+        if (!string.IsNullOrWhiteSpace(SearchText))
+        {
+            OnSearchTextChanged(SearchText);
+        }
+        else
+        {
+            Tags = new ObservableCollection<Tag>(GetTags());
+        }
     }
 
     [RelayCommand]
@@ -96,22 +133,24 @@ public partial class TagViewModel : ViewModelBase
             ErrorMessage = e.Message;
             return;
         }
+        RefreshTags();
     }
 
     [RelayCommand]
-    private void ActiveChange(Tag tag)
+    private async Task ActiveChange(Tag tag)
     {
         var t = DbHelper.Db.Tags.FirstOrDefault(t => t.Id == tag.Id);
         if (t == null) return;
         try
         {
             t.IsActive = tag.IsActive;
-            DbHelper.Db.SaveChanges();
+            await DbHelper.Db.SaveChangesAsync();
         }
         catch (Exception e)
         {
             ShowNotification("Error", e.Message, NotificationType.Error);
         }
+        RefreshTags();
     }
 
     [RelayCommand]
