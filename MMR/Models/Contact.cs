@@ -35,4 +35,6 @@ public class Contact : BaseModel
 
     // 导航属性
     public ICollection<ContactTag> ContactTags { get; set; } = new List<ContactTag>();
+    public virtual ICollection<WorkContact> WorkContacts { get; set; } = new List<WorkContact>();
+    public virtual ICollection<Expense> Expenses { get; set; } = new List<Expense>();
 }

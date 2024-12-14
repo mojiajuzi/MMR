@@ -29,6 +29,9 @@ public class AppDbContext : DbContext
     public DbSet<Tag> Tags { get; set; } = null!;
     public DbSet<Contact> Contacts { get; set; } = null!;
     public DbSet<ContactTag> ContactTags { get; set; } = null!;
+    public DbSet<Work> Works { get; set; }
+    public DbSet<Expense> Expenses { get; set; }
+    public DbSet<WorkContact> WorkContacts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -66,6 +69,57 @@ public class AppDbContext : DbContext
                 .IsRequired();
             entity.Property(ct => ct.UpdatedAt)
                 .IsRequired();
+        });
+
+        // 配置 WorkContact 多对多关系
+        modelBuilder.Entity<WorkContact>(entity =>
+        {
+            // 设置复合主键
+            entity.HasKey(wc => new { wc.WorkId, wc.ContactId });
+
+            // 配置与 Work 的关系
+            entity.HasOne(wc => wc.Work)
+                .WithMany(w => w.WorkContacts)
+                .HasForeignKey(wc => wc.WorkId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // 配置与 Contact 的关系
+            entity.HasOne(wc => wc.Contact)
+                .WithMany(c => c.WorkContacts)
+                .HasForeignKey(wc => wc.ContactId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // 创建索引
+            entity.HasIndex(wc => wc.WorkId);
+            entity.HasIndex(wc => wc.ContactId);
+        });
+
+        // 配置 Expense 关系
+        modelBuilder.Entity<Expense>(entity =>
+        {
+            // 配置与 Work 的关系
+            entity.HasOne(e => e.Work)
+                .WithMany(w => w.Expenses)
+                .HasForeignKey(e => e.WorkId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // 配置与 Contact 的关系
+            entity.HasOne(e => e.Contact)
+                .WithMany(c => c.Expenses)
+                .HasForeignKey(e => e.ContactId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // 创建索引
+            entity.HasIndex(e => e.WorkId);
+            entity.HasIndex(e => e.ContactId);
+            entity.HasIndex(e => e.Date);
+        });
+
+        // 配置 Work
+        modelBuilder.Entity<Work>(entity =>
+        {
+            entity.Property(w => w.TotalMoney)
+                .HasPrecision(18, 2);  // 设置金额精度
         });
     }
 }
