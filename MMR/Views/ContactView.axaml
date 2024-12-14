@@ -5,12 +5,12 @@
              xmlns:i="https://github.com/projektanker/icons.avalonia"
              xmlns:model="clr-namespace:MMR.Models"
              xmlns:vm="clr-namespace:MMR.ViewModels"
-             xmlns:coverters="clr-namespace:MMR.Coverters"
+             xmlns:converters="clr-namespace:MMR.Converters"
              x:DataType="vm:ContactViewModel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MMR.Views.ContactView">
     <UserControl.Resources>
-        <coverters:PathToImageConverter x:Key="PathToImageConverter" />
+        <converters:PathToImageConverter x:Key="PathToImageConverter" />
     </UserControl.Resources>
     <Border>
         <Grid RowDefinitions="80,*">

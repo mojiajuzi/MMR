@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using MMR.Models.Enums;
 
 namespace MMR.Models;
 
@@ -30,6 +31,8 @@ public class Work : BaseModel
     [DataType(DataType.Currency, ErrorMessage = "总金额格式不正确")]
     [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = true)]
     public decimal? TotalMoney { get; set; } = 0; //总款项
+
+    [Required(ErrorMessage = "状态不能为空")] public WorkStatus Status { get; set; } = WorkStatus.PreStart; //状态
 
     public ICollection<WorkContact> WorkContacts { get; set; } = new List<WorkContact>();
     public virtual ICollection<Expense> Expenses { get; set; } = new List<Expense>();

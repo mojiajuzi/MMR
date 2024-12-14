@@ -26,7 +26,7 @@ public partial class MainViewModel : ViewModelBase
     {
         new ListItemTemplate(typeof(TagViewModel), "Tags", "fa-thin fa-tag"),
         new ListItemTemplate(typeof(ContactViewModel), "Contacts", "fa-thin fa-address-book"),
-        //new ListItemTemplate(typeof(WorkViewModel), "Works", "fa-thin fa-calendar-days")
+        new ListItemTemplate(typeof(WorkViewModel), "Works", "fa-thin fa-calendar-days")
     };
 
     [ObservableProperty] private ListItemTemplate _selectedItem;

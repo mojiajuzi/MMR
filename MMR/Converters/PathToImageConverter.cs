@@ -3,7 +3,7 @@ using System.Globalization;
 using Avalonia.Data.Converters;
 using Avalonia.Media.Imaging;
 
-namespace MMR.Coverters;
+namespace MMR.Converters;
 
 public class PathToImageConverter : IValueConverter
 {

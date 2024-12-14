@@ -10,6 +10,7 @@
         <entry key="MMR/Views/MainView.axaml" value="MMR.Browser/MMR.Browser.csproj" />
         <entry key="MMR/Views/MainWindow.axaml" value="MMR.Browser/MMR.Browser.csproj" />
         <entry key="MMR/Views/TagView.axaml" value="MMR.Browser/MMR.Browser.csproj" />
+        <entry key="MMR/Views/WorkView.axaml" value="MMR.Browser/MMR.Browser.csproj" />
       </map>
     </option>
   </component>
