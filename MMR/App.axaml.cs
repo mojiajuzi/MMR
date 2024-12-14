@@ -1,3 +1,4 @@
+using System;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
@@ -5,6 +6,8 @@ using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Controls.Notifications;
 using Avalonia.Markup.Xaml;
+using Microsoft.Extensions.DependencyInjection;
+using MMR.Components.Popups.AddContact;
 using MMR.ViewModels;
 using MMR.Views;
 
@@ -13,29 +16,39 @@ namespace MMR;
 public partial class App : Application
 {
     public static INotificationManager? NotificationManager { get; set; }
+    private IServiceCollection? _services;
+    private IServiceProvider? _serviceProvider;
+
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
+
+        // 初始化服务容器
+        _services = new ServiceCollection();
+        RegisterServices();
+        _serviceProvider = _services.BuildServiceProvider();
     }
 
     public override void OnFrameworkInitializationCompleted()
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
-            // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
             DisableAvaloniaDataAnnotationValidation();
+
+            // 使用 DI 创建 MainViewModel
+            var mainViewModel = _serviceProvider!.GetRequiredService<MainViewModel>();
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainViewModel()
+                DataContext = mainViewModel
             };
             NotificationManager = new WindowNotificationManager(desktop.MainWindow);
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
         {
+            var mainViewModel = _serviceProvider!.GetRequiredService<MainViewModel>();
             singleViewPlatform.MainView = new MainView
             {
-                DataContext = new MainViewModel()
+                DataContext = mainViewModel
             };
         }
 
@@ -53,5 +66,15 @@ public partial class App : Application
         {
             BindingPlugins.DataValidators.Remove(plugin);
         }
+    }
+
+    private void RegisterServices()
+    {
+        // 注册 ViewModels
+        _services!.AddTransient<MainViewModel>();
+        _services!.AddTransient<TagViewModel>();
+        _services!.AddTransient<ContactViewModel>();
+        _services!.AddTransient<WorkViewModel>();
+        _services!.AddTransient<AddContactViewModel>();
     }
 }

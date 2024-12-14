@@ -2,18 +2,21 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MMR.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
+    private readonly IServiceProvider _serviceProvider;
+    
     [ObservableProperty] private bool _panOpen = true;
-
     [ObservableProperty] private ViewModelBase _currentView;
 
-    public MainViewModel()
+    public MainViewModel(IServiceProvider serviceProvider)
     {
-        CurrentView = new TagViewModel();
+        _serviceProvider = serviceProvider;
+        CurrentView = _serviceProvider.GetRequiredService<TagViewModel>();
     }
 
     [RelayCommand]
@@ -34,9 +37,7 @@ public partial class MainViewModel : ViewModelBase
     partial void OnSelectedItemChanged(ListItemTemplate? value)
     {
         if (value is null) return;
-        var instance = Activator.CreateInstance(value.ViewModelType);
-        if (instance is null) return;
-        CurrentView = (ViewModelBase)instance;
+        CurrentView = (ViewModelBase)_serviceProvider.GetRequiredService(value.ViewModelType);
     }
 
     public class ListItemTemplate

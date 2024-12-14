@@ -7,9 +7,11 @@ using Avalonia.Controls.Notifications;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.EntityFrameworkCore;
+using MMR.Components.Popups.AddContact;
 using MMR.Data;
 using MMR.Models;
 using MMR.Models.Enums;
+using MMR.Components.Popups.AddContact;
 
 namespace MMR.ViewModels;
 
@@ -30,12 +32,25 @@ public partial class WorkViewModel : ViewModelBase
 
     [ObservableProperty] private Work _workDetails;
 
-    public WorkViewModel()
+    //contact add 
+    [ObservableProperty] private bool _contactPopupOpen;
+
+    private readonly AddContactViewModel _addContactViewModel;
+
+    [ObservableProperty] private bool _isContactPopupOpen;
+
+    public AddContactViewModel AddContactViewModel => _addContactViewModel;
+
+    public WorkViewModel(AddContactViewModel addContactViewModel)
     {
+        _addContactViewModel = addContactViewModel;
         Works = new ObservableCollection<Work>(GetWorks());
-        // 初始化状态列表
         StatusList = new ObservableCollection<WorkStatus>(Enum.GetValues<WorkStatus>());
+
+        // 订阅联系人添加事件
+        _addContactViewModel.ContactAdded += OnContactAdded;
     }
+
 
     private List<Work> GetWorks()
     {
@@ -130,8 +145,15 @@ public partial class WorkViewModel : ViewModelBase
     [RelayCommand]
     private void OpenDetailsPane(Work work)
     {
-        IsDetailsPaneOpen = true;
+        // 如果已经打开且是同一个work，则关闭
+        if (IsDetailsPaneOpen && WorkDetails?.Id == work.Id)
+        {
+            IsDetailsPaneOpen = false;
+            WorkDetails = null;
+            return;
+        }
 
+        // 获取详细数据
         var detail = DbHelper.Db.Works.AsNoTracking()
             .Include(w => w.Expenses)
             .Include(w => w.WorkContacts)
@@ -139,7 +161,10 @@ public partial class WorkViewModel : ViewModelBase
             .FirstOrDefault(w => w.Id == work.Id);
 
         if (detail == null) return;
+
+        // 更新数据和状态
         WorkDetails = detail;
+        IsDetailsPaneOpen = true;
     }
 
     [RelayCommand]
@@ -152,6 +177,29 @@ public partial class WorkViewModel : ViewModelBase
     [RelayCommand]
     private void AddContact()
     {
+        if (WorkDetails == null) return;
+
+        _addContactViewModel.Open(WorkDetails);
+        IsContactPopupOpen = true;
+    }
+
+    private void OnContactAdded(object sender, WorkContact workContact)
+    {
+        //IsContactPopupOpen = false;
+
+        if (workContact == null) return; // 用户取消
+
+        // 刷新当前工作详情
+        var detail = DbHelper.Db.Works.AsNoTracking()
+            .Include(w => w.Expenses)
+            .Include(w => w.WorkContacts)
+            .ThenInclude(wc => wc.Contact)
+            .FirstOrDefault(w => w.Id == WorkDetails.Id);
+
+        if (detail != null)
+        {
+            WorkDetails = detail;
+        }
     }
 
     [RelayCommand]

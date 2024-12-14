@@ -6,6 +6,8 @@
              xmlns:vm="clr-namespace:MMR.ViewModels"
              xmlns:model="clr-namespace:MMR.Models"
              xmlns:converters="clr-namespace:MMR.Converters"
+             xmlns:components="clr-namespace:MMR.Components"
+             xmlns:addContact="clr-namespace:MMR.Components.Popups.AddContact"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MMR.Views.WorkView"
              x:DataType="vm:WorkViewModel">
@@ -15,7 +17,8 @@
     <SplitView IsPaneOpen="{Binding IsDetailsPaneOpen}"
                DisplayMode="Overlay"
                OpenPaneLength="360"
-               PanePlacement="Right">
+               PanePlacement="Right"
+               UseLightDismissOverlayMode="False">
 
         <!--右侧导航栏-->
         <SplitView.Pane>
@@ -382,6 +385,15 @@
                 </Popup>
                 <!-- end work creeate popup-->
 
+                <!-- show contact add popup-->
+                <Popup Name="ContactAddPopup"
+                       IsOpen="{Binding IsContactPopupOpen}"
+                       WindowManagerAddShadowHint="False"
+                       PlacementTarget="{Binding $parent[UserControl]}"
+                       Placement="AnchorAndGravity">
+                    <addContact:AddContact DataContext="{Binding AddContactViewModel}" />
+                </Popup>
+                <!-- end show contact add popup-->
             </Grid>
         </SplitView.Content>
 
