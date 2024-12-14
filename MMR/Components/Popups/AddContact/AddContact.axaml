@@ -15,8 +15,10 @@
 
     <Border Classes="Popup">
         <StackPanel Classes="Popup">
-            <TextBlock Text="Add Contact" FontSize="20" FontWeight="SemiBold" />
-
+            <TextBlock Text="Contact" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" />
+            <TextBlock Classes="ShowError"
+                       IsVisible="{Binding HasErrors}"
+                       Text="{Binding ErrorMessage}" />
             <!-- 搜索框 -->
             <Grid>
                 <TextBox Classes="Search"
@@ -46,8 +48,9 @@
                                                 IsVisible="{Binding Avatar, Converter={x:Static StringConverters.IsNullOrEmpty}}" />
                                         <Border Classes="avatarSmallContainer"
                                                 IsVisible="{Binding Avatar, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
-                                            <Image Source="{Binding Avatar, Converter={StaticResource PathToImageConverter}}"
-                                                   Classes="avatarSmall" />
+                                            <Image
+                                                Source="{Binding Avatar, Converter={StaticResource PathToImageConverter}}"
+                                                Classes="avatarSmall" />
                                         </Border>
                                     </Panel>
                                     <StackPanel Grid.Column="1">
@@ -69,8 +72,9 @@
                                 IsVisible="{Binding SelectedContact.Avatar, Converter={x:Static StringConverters.IsNullOrEmpty}}" />
                         <Border Classes="avatarSmallContainer"
                                 IsVisible="{Binding SelectedContact.Avatar, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
-                            <Image Source="{Binding SelectedContact.Avatar, Converter={StaticResource PathToImageConverter}}"
-                                   Classes="avatarSmall" />
+                            <Image
+                                Source="{Binding SelectedContact.Avatar, Converter={StaticResource PathToImageConverter}}"
+                                Classes="avatarSmall" />
                         </Border>
                     </Panel>
                     <TextBlock Grid.Column="1"

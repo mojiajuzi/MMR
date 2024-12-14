@@ -96,6 +96,7 @@
                                                 <TextBlock Text="Edit"></TextBlock>
                                             </StackPanel>
                                         </Button>
+                                        <!--
                                         <Button Classes="Action Delete"
                                                 Command="{Binding #Root.((vm:TagViewModel)DataContext).RemoveTagCommand}"
                                                 CommandParameter="{Binding .}">
@@ -104,6 +105,7 @@
                                                 <TextBlock Text="Delete"></TextBlock>
                                             </StackPanel>
                                         </Button>
+                                        -->
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
