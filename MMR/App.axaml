@@ -3,21 +3,21 @@
              xmlns:local="using:MMR"
              x:Class="MMR.App"
              RequestedThemeVariant="Light">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
-        <local:ViewLocator/>
+        <local:ViewLocator />
     </Application.DataTemplates>
-
     <Application.Styles>
         <FluentTheme />
         <StyleInclude Source="avares://MMR/Assets/NordStyle.axaml"></StyleInclude>
     </Application.Styles>
-             <Application.Resources>
-                 <ResourceDictionary>
-                     <ResourceDictionary.MergedDictionaries>
-                         <ResourceInclude Source="avares://MMR/Assets/Nord.axaml" />
-                     </ResourceDictionary.MergedDictionaries>
-                 </ResourceDictionary>
-             </Application.Resources>
+    <Application.Resources>
+        <ResourceDictionary>
+            <FontFamily x:Key="ContentControlThemeFontFamily">Nunito</FontFamily>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="avares://MMR/Assets/Nord.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>
