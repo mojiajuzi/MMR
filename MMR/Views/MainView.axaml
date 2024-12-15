@@ -61,14 +61,20 @@
                             Margin="8,0,8,8"
                             CornerRadius="4"
                             Padding="8,8">
-                        <ToggleButton Classes="IconButton"
-                                      Name="ThemeToggleButton"
-                                      IsCheckedChanged="ThemeToggleButton_OnIsCheckedChanged"
-                                      HorizontalAlignment="Left">
-                            <i:Icon Name="IconToggle"
-                                    Value="fa-thin fa-sun"
-                                    FontSize="16" />
-                        </ToggleButton>
+                        <StackPanel Orientation="Horizontal" 
+                                    Spacing="8" 
+                                    HorizontalAlignment="Left">
+                            <ToggleButton Classes="IconButton"
+                                          Name="ThemeToggleButton"
+                                          IsCheckedChanged="ThemeToggleButton_OnIsCheckedChanged">
+                                <i:Icon Name="IconToggle" 
+                                        Value="fa-thin fa-sun" 
+                                        FontSize="16"/>
+                            </ToggleButton>
+                            <TextBlock Name="ThemeText"
+                                       Text="Light Mode"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
                     </Border>
                 </Grid>
             </Border>

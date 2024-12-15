@@ -10,11 +10,13 @@ namespace MMR.Views;
 public partial class MainView : UserControl
 {
     private bool _isDarkTheme = false;
+
     public MainView()
     {
         InitializeComponent();
         InitializeTheme();
     }
+
     private void InitializeTheme()
     {
         var app = Application.Current;
@@ -35,11 +37,23 @@ public partial class MainView : UserControl
 
         UpdateThemeIcon();
     }
+
     private void ThemeToggleButton_OnIsCheckedChanged(object? sender, RoutedEventArgs e)
     {
         if (sender is ToggleButton toggleButton)
         {
-            SetTheme(toggleButton.IsChecked ?? false);
+            if (toggleButton.IsChecked == true)
+            {
+                IconToggle.Value = "fa-thin fa-moon";
+                ThemeText.Text = "Dark Mode";
+                Application.Current.RequestedThemeVariant = ThemeVariant.Dark;
+            }
+            else
+            {
+                IconToggle.Value = "fa-thin fa-sun";
+                ThemeText.Text = "Light Mode";
+                Application.Current.RequestedThemeVariant = ThemeVariant.Light;
+            }
         }
     }
 
@@ -58,11 +72,11 @@ public partial class MainView : UserControl
     private void UpdateThemeIcon()
     {
         var themeIcon = this.FindControl<Icon>("IconToggle");
-        //var ThemeText = this.FindControl<TextBlock>("ThemeText");
+        var ThemeText = this.FindControl<TextBlock>("ThemeText");
         if (themeIcon != null)
         {
             themeIcon.Value = _isDarkTheme ? "fa-thin fa-moon" : "fa-thin fa-sun";
-            //ThemeText.Text = _isDarkTheme ? "Dark" : "Light";
+            ThemeText.Text = _isDarkTheme ? "Dark" : "Light";
         }
     }
 }
