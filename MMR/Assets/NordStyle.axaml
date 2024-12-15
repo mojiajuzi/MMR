@@ -54,13 +54,15 @@
     </Style>
 
     <Style Selector="Border.Popup">
-        <Setter Property="Width" Value="400"></Setter>
-        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"></Setter>
-        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="Width" Value="400" />
+        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
-        <Setter Property="CornerRadius" Value="8" />
-        <Setter Property="BoxShadow" Value="0 4 12 0 #40000000" />
+        <Setter Property="BoxShadow" Value="0 0 8 0 #66000000, 0 0 2 0 #33000000, 0 4 16 0 #1A000000" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="20" />
     </Style>
+
 
     <!-- 标签卡片样式 -->
     <Style Selector="Border.Card">
@@ -221,50 +223,61 @@
 
     <!-- 搜索框样式 -->
     <Style Selector="Border.search-container">
-        <Setter Property="Height" Value="36"/>
-        <Setter Property="Background" Value="{DynamicResource CardBackgroundBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="CornerRadius" Value="8"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Height" Value="36" />
+        <Setter Property="Background" Value="{DynamicResource CardBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
     <Style Selector="Border.search-icon-container">
-        <Setter Property="Margin" Value="8,0,0,0"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="8,0,0,0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
     <Style Selector="i|Icon.search-icon">
-        <Setter Property="FontSize" Value="14"/>
-        <Setter Property="Foreground" Value="{DynamicResource TextForegroundBrush}"/>
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="{DynamicResource TextForegroundBrush}" />
     </Style>
 
     <Style Selector="TextBox.search-input">
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Margin" Value="8,0"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Height" Value="36"/>
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Margin" Value="8,0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Height" Value="36" />
     </Style>
 
     <Style Selector="TextBox.search-input:focus">
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
     </Style>
 
     <Style Selector="TextBox.search-input:pointerover /template/ Border#PART_BorderElement">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
     </Style>
 
     <Style Selector="TextBox.search-input:focus /template/ Border#PART_BorderElement">
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Background" Value="Transparent" />
     </Style>
 
     <Style Selector="TextBox.search-input /template/ TextBlock#PART_Watermark">
-        <Setter Property="Foreground" Value="{DynamicResource BorderBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource BorderBrush}" />
     </Style>
     <!-- 搜索框样式结束-->
+
+    <Style Selector="Popup">
+        <Setter Property="ZIndex" Value="1000" />
+    </Style>
+
+    <Style Selector="Border.PopupOverlay">
+        <Setter Property="Background" Value="#80000000" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="IsHitTestVisible" Value="True" />
+    </Style>
 </Styles>
