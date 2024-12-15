@@ -12,7 +12,6 @@ using MMR.Components.Popups.AddExpense;
 using MMR.Data;
 using MMR.Models;
 using MMR.Models.Enums;
-using MMR.Services;
 
 namespace MMR.ViewModels;
 
@@ -29,7 +28,7 @@ public partial class WorkViewModel : ViewModelBase
 
     [ObservableProperty] private ObservableCollection<Work> _works;
 
-    [ObservableProperty] private ObservableCollection<WorkStatus> _statusList;
+    [ObservableProperty] private ObservableCollection<WorkStatus?> _statusList;
     [ObservableProperty] private string _searchText;
 
     [ObservableProperty] private Work _workDetails;
@@ -51,6 +50,8 @@ public partial class WorkViewModel : ViewModelBase
     [ObservableProperty] private decimal _receivingPayment;
     [ObservableProperty] private decimal _cost;
 
+    [ObservableProperty] private WorkStatus? _selectedStatus;
+
     public WorkViewModel(AddContactViewModel addContactViewModel, AddExpenseViewModel addExpenseViewModel,
         IDialogService dialogService)
     {
@@ -59,7 +60,11 @@ public partial class WorkViewModel : ViewModelBase
         _dialogService = dialogService;
 
         Works = new ObservableCollection<Work>(GetWorks());
-        StatusList = new ObservableCollection<WorkStatus>(Enum.GetValues<WorkStatus>());
+        
+        // 创建状态列表，添加 All 选项
+        var statusList = new List<WorkStatus?> { null };  // null 代表 "All"
+        statusList.AddRange(Enum.GetValues<WorkStatus>().Cast<WorkStatus?>());
+        StatusList = new ObservableCollection<WorkStatus?>(statusList);
 
         // 订阅事件
         _addContactViewModel.ContactAdded += OnContactAdded;
@@ -70,6 +75,22 @@ public partial class WorkViewModel : ViewModelBase
     {
         var list = DbHelper.Db.Works.Include(w => w.Expenses).AsNoTracking().ToList();
         return list;
+    }
+
+    partial void OnSelectedStatusChanged(WorkStatus? value)
+    {
+        if (value == null)
+        {
+            Works = new ObservableCollection<Work>(GetWorks());
+            return;
+        }
+
+        var filtered = DbHelper.Db.Works
+            .AsNoTracking()
+            .Where(w => w.Status == value)
+            .ToList();
+
+        Works = new ObservableCollection<Work>(filtered);
     }
 
     partial void OnSearchTextChanged(string value)
