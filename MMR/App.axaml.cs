@@ -80,5 +80,6 @@ public partial class App : Application
         _services!.AddTransient<WorkViewModel>();
         _services!.AddTransient<AddContactViewModel>();
         _services!.AddTransient<AddExpenseViewModel>();
+        _services!.AddTransient<DashboardViewModel>();
     }
 }

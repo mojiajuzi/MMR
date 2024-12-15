@@ -8,6 +8,7 @@
 
     <ItemGroup>
         <PackageReference Include="Avalonia.Browser"/>
+        <PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
             <PrivateAssets>all</PrivateAssets>

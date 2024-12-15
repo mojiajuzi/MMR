@@ -20,6 +20,7 @@
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm"/>
+        <PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
             <PrivateAssets>all</PrivateAssets>
@@ -36,6 +37,9 @@
     <ItemGroup>
         <Compile Update="Components\Dialogs\ConfirmDialog.axaml.cs">
             <DependentUpon>ConfirmDialog.axaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\DashboardView.axaml.cs">
+            <DependentUpon>DashboardView.axaml</DependentUpon>
         </Compile>
     </ItemGroup>
 </Project>

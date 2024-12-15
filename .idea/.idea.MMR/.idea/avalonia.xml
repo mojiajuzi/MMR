@@ -12,6 +12,7 @@
         <entry key="MMR/Components/Popups/AddExpenes/AddExpenesView.axaml" value="MMR.Browser/MMR.Browser.csproj" />
         <entry key="MMR/Components/Popups/AddExpense/AddExpenseView.axaml" value="MMR.Browser/MMR.Browser.csproj" />
         <entry key="MMR/Views/ContactView.axaml" value="MMR.Browser/MMR.Browser.csproj" />
+        <entry key="MMR/Views/DashboardView.axaml" value="MMR.Browser/MMR.Browser.csproj" />
         <entry key="MMR/Views/MainView.axaml" value="MMR.Browser/MMR.Browser.csproj" />
         <entry key="MMR/Views/MainWindow.axaml" value="MMR.Browser/MMR.Browser.csproj" />
         <entry key="MMR/Views/TagView.axaml" value="MMR.Browser/MMR.Browser.csproj" />

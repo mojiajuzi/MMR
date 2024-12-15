@@ -9,14 +9,14 @@ namespace MMR.ViewModels;
 public partial class MainViewModel : ViewModelBase
 {
     private readonly IServiceProvider _serviceProvider;
-    
+
     [ObservableProperty] private bool _panOpen = true;
     [ObservableProperty] private ViewModelBase _currentView;
 
     public MainViewModel(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
-        CurrentView = _serviceProvider.GetRequiredService<TagViewModel>();
+        CurrentView = _serviceProvider.GetRequiredService<DashboardViewModel>();
     }
 
     [RelayCommand]
@@ -27,6 +27,7 @@ public partial class MainViewModel : ViewModelBase
 
     public ObservableCollection<ListItemTemplate> Items { get; } = new()
     {
+        new ListItemTemplate(typeof(DashboardViewModel), "Dashboard", "fa-thin fa-chart-line"),
         new ListItemTemplate(typeof(TagViewModel), "Tags", "fa-thin fa-tag"),
         new ListItemTemplate(typeof(ContactViewModel), "Contacts", "fa-thin fa-address-book"),
         new ListItemTemplate(typeof(WorkViewModel), "Works", "fa-thin fa-calendar-days")
