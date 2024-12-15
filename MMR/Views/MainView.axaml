@@ -21,7 +21,7 @@
                 <Grid RowDefinitions="Auto,*,Auto">
                     <Button Grid.Row="0"
                             Classes="IconButton"
-                            i:Attached.Icon="fa-thin fa-bars"
+                            i:Attached.Icon="fa-solid fa-bars"
                             Command="{Binding PanOpenTriggerCommand}"
                             Margin="8,8,8,0"
                             HorizontalAlignment="Left" />
@@ -68,7 +68,7 @@
                                           Name="ThemeToggleButton"
                                           IsCheckedChanged="ThemeToggleButton_OnIsCheckedChanged">
                                 <i:Icon Name="IconToggle" 
-                                        Value="fa-thin fa-sun" 
+                                        Value="fa-solid fa-sun" 
                                         FontSize="16"/>
                             </ToggleButton>
                             <TextBlock Name="ThemeText"

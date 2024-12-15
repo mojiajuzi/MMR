@@ -26,7 +26,7 @@
                         <Border Classes="Card" Width="180">
                             <StackPanel Spacing="8" Margin="16">
                                 <StackPanel Orientation="Horizontal" Spacing="8">
-                                    <i:Icon Value="fa-thin fa-briefcase" FontSize="20" />
+                                    <i:Icon Value="fa-solid fa-briefcase" FontSize="20" />
                                     <TextBlock Text="工作统计" FontWeight="SemiBold" />
                                 </StackPanel>
                                 <Separator />
@@ -45,7 +45,7 @@
                         <Border Classes="Card" Width="180">
                             <StackPanel Spacing="8" Margin="16">
                                 <StackPanel Orientation="Horizontal" Spacing="8">
-                                    <i:Icon Value="fa-thin fa-calendar-days" FontSize="20" />
+                                    <i:Icon Value="fa-solid fa-calendar-days" FontSize="20" />
                                     <TextBlock Text="本月收支" FontWeight="SemiBold" />
                                 </StackPanel>
                                 <Separator />
@@ -66,7 +66,7 @@
                         <Border Classes="Card" Width="180">
                             <StackPanel Spacing="8" Margin="16">
                                 <StackPanel Orientation="Horizontal" Spacing="8">
-                                    <i:Icon Value="fa-thin fa-sack-dollar" FontSize="20" />
+                                    <i:Icon Value="fa-solid fa-sack-dollar" FontSize="20" />
                                     <TextBlock Text="总收支" FontWeight="SemiBold" />
                                 </StackPanel>
                                 <Separator />
@@ -75,7 +75,7 @@
                                     <TextBlock Text="{Binding TotalIncome, StringFormat={}{0:C2}}"
                                                Grid.Row="0" Grid.Column="1"
                                                Foreground="{DynamicResource SuccessBrush}" />
-                                    <TextBlock Text="总��出" Grid.Row="1" Grid.Column="0" />
+                                    <TextBlock Text="总支出" Grid.Row="1" Grid.Column="0" />
                                     <TextBlock Text="{Binding TotalExpense, StringFormat={}{0:C2}}"
                                                Grid.Row="1" Grid.Column="1"
                                                Foreground="{DynamicResource WarningBrush}" />
@@ -87,7 +87,7 @@
                         <Border Classes="Card" Width="180">
                             <StackPanel Spacing="8" Margin="16">
                                 <StackPanel Orientation="Horizontal" Spacing="8">
-                                    <i:Icon Value="fa-thin fa-money-bill" FontSize="20" />
+                                    <i:Icon Value="fa-solid fa-money-bill" FontSize="20" />
                                     <TextBlock Text="预计总收入" FontWeight="SemiBold" />
                                 </StackPanel>
                                 <Separator />
@@ -107,7 +107,7 @@
                         <Border Classes="Card">
                             <StackPanel Spacing="8" Margin="16">
                                 <StackPanel Orientation="Horizontal" Spacing="8">
-                                    <i:Icon Value="fa-thin fa-chart-pie" FontSize="20" />
+                                    <i:Icon Value="fa-solid fa-chart-pie" FontSize="20" />
                                     <TextBlock Text="工作状态分布" FontWeight="SemiBold" />
                                 </StackPanel>
                                 <Separator />
@@ -123,7 +123,7 @@
                         <Border Classes="Card">
                             <StackPanel Spacing="8" Margin="16">
                                 <StackPanel Orientation="Horizontal" Spacing="8">
-                                    <i:Icon Value="fa-thin fa-chart-line" FontSize="20" />
+                                    <i:Icon Value="fa-solid fa-chart-line" FontSize="20" />
                                     <TextBlock Text="月度收支趋势" FontWeight="SemiBold" />
                                 </StackPanel>
                                 <Separator />
@@ -138,7 +138,7 @@
                 <Border Grid.Column="1" Classes="Card">
                     <StackPanel Spacing="8" Margin="16">
                         <StackPanel Orientation="Horizontal" Spacing="8">
-                            <i:Icon Value="fa-thin fa-clock-rotate-left" FontSize="20" />
+                            <i:Icon Value="fa-solid fa-clock-rotate-left" FontSize="20" />
                             <TextBlock Text="最近活动" FontWeight="SemiBold" />
                         </StackPanel>
                         <Separator />

@@ -24,7 +24,7 @@
                             HorizontalAlignment="Left"
                             Command="{Binding OpenPopupCommand}">
                         <StackPanel Orientation="Horizontal" Spacing="8">
-                            <i:Icon Value="fa-thin fa-plus" />
+                            <i:Icon Value="fa-solid fa-plus" />
                             <TextBlock Text="Add" />
                         </StackPanel>
                     </Button>
@@ -35,7 +35,7 @@
                         <Grid ColumnDefinitions="Auto,*">
                             <Border Grid.Column="0"
                                     Classes="search-icon-container">
-                                <i:Icon Value="fa-thin fa-search"
+                                <i:Icon Value="fa-solid fa-search"
                                         Classes="search-icon" />
                             </Border>
                             <TextBox Grid.Column="1"
@@ -74,15 +74,15 @@
                                     </Border>
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Classes="icon">
-                                            <i:Icon Value="fa-thin fa-user"></i:Icon>
+                                            <i:Icon Value="fa-solid fa-user"></i:Icon>
                                             <TextBlock Text="{Binding Name}"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Classes="icon">
-                                            <i:Icon Value="fa-thin fa-phone"></i:Icon>
+                                            <i:Icon Value="fa-solid fa-phone"></i:Icon>
                                             <TextBlock Text="{Binding Phone}"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Classes="icon">
-                                            <i:Icon Value="fa-thin fa-envelope"></i:Icon>
+                                            <i:Icon Value="fa-solid fa-envelope"></i:Icon>
                                             <TextBlock Text="{Binding Email}"></TextBlock>
                                         </StackPanel>
                                         <!-- show action button-->
@@ -91,7 +91,7 @@
                                                     Command="{Binding #Root.((vm:ContactViewModel)DataContext).ShowPopupToUpdateCommand}"
                                                     CommandParameter="{Binding .}">
                                                 <StackPanel Orientation="Horizontal">
-                                                    <i:Icon Value="fa-thin fa-edit"></i:Icon>
+                                                    <i:Icon Value="fa-solid fa-edit"></i:Icon>
                                                     <TextBlock Text="Edit"></TextBlock>
                                                 </StackPanel>
                                             </Button>
@@ -99,7 +99,7 @@
                                                     Command="{Binding #Root.((vm:ContactViewModel)DataContext).RemoveContactCommand}"
                                                     CommandParameter="{Binding .}">
                                                 <StackPanel Orientation="Horizontal">
-                                                    <i:Icon Value="fa-thin fa-trash"></i:Icon>
+                                                    <i:Icon Value="fa-solid fa-trash"></i:Icon>
                                                     <TextBlock Text="Delete"></TextBlock>
                                                 </StackPanel>
                                             </Button>

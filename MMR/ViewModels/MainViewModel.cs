@@ -27,10 +27,10 @@ public partial class MainViewModel : ViewModelBase
 
     public ObservableCollection<ListItemTemplate> Items { get; } = new()
     {
-        new ListItemTemplate(typeof(DashboardViewModel), "Dashboard", "fa-thin fa-chart-line"),
-        new ListItemTemplate(typeof(TagViewModel), "Tags", "fa-thin fa-tag"),
-        new ListItemTemplate(typeof(ContactViewModel), "Contacts", "fa-thin fa-address-book"),
-        new ListItemTemplate(typeof(WorkViewModel), "Works", "fa-thin fa-calendar-days")
+        new ListItemTemplate(typeof(DashboardViewModel), "Dashboard", "fa-solid fa-chart-line"),
+        new ListItemTemplate(typeof(TagViewModel), "Tags", "fa-solid fa-tag"),
+        new ListItemTemplate(typeof(ContactViewModel), "Contacts", "fa-solid fa-address-book"),
+        new ListItemTemplate(typeof(WorkViewModel), "Works", "fa-solid fa-calendar-days")
     };
 
     [ObservableProperty] private ListItemTemplate _selectedItem;

@@ -44,13 +44,13 @@ public partial class MainView : UserControl
         {
             if (toggleButton.IsChecked == true)
             {
-                IconToggle.Value = "fa-thin fa-moon";
+                IconToggle.Value = "fa-solid fa-moon";
                 ThemeText.Text = "Dark Mode";
                 Application.Current.RequestedThemeVariant = ThemeVariant.Dark;
             }
             else
             {
-                IconToggle.Value = "fa-thin fa-sun";
+                IconToggle.Value = "fa-solid fa-sun";
                 ThemeText.Text = "Light Mode";
                 Application.Current.RequestedThemeVariant = ThemeVariant.Light;
             }
@@ -75,7 +75,7 @@ public partial class MainView : UserControl
         var ThemeText = this.FindControl<TextBlock>("ThemeText");
         if (themeIcon != null)
         {
-            themeIcon.Value = _isDarkTheme ? "fa-thin fa-moon" : "fa-thin fa-sun";
+            themeIcon.Value = _isDarkTheme ? "fa-solid fa-moon" : "fa-solid fa-sun";
             ThemeText.Text = _isDarkTheme ? "Dark" : "Light";
         }
     }

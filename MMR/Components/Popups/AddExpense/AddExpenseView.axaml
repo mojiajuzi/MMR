@@ -48,7 +48,7 @@
                         Command="{Binding ClearContactCommand}"
                         IsVisible="{Binding !!SelectedContact}"
                         HorizontalAlignment="Right">
-                    <i:Icon Value="fa-thin fa-xmark" />
+                    <i:Icon Value="fa-solid fa-xmark" />
                 </Button>
                 <ListBox ItemsSource="{Binding FilteredContacts}"
                          SelectionMode="Single"
@@ -59,7 +59,7 @@
                             <Border Padding="8,4">
                                 <Grid ColumnDefinitions="Auto,*">
                                     <Panel Grid.Column="0" Margin="0,0,8,0">
-                                        <i:Icon Value="fa-thin fa-user"
+                                        <i:Icon Value="fa-solid fa-user"
                                                 IsVisible="{Binding Avatar, Converter={x:Static StringConverters.IsNullOrEmpty}}" />
                                         <Border Classes="avatarSmallContainer"
                                                 IsVisible="{Binding Avatar, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
@@ -82,7 +82,7 @@
             <Border Classes="Card" IsVisible="{Binding !!SelectedContact}">
                 <Grid ColumnDefinitions="Auto,*">
                     <Panel Grid.Column="0" Margin="0,0,8,0">
-                        <i:Icon Value="fa-thin fa-user"
+                        <i:Icon Value="fa-solid fa-user"
                                 IsVisible="{Binding SelectedContact.Avatar, Converter={x:Static StringConverters.IsNullOrEmpty}}" />
                         <Border Classes="avatarSmallContainer"
                                 IsVisible="{Binding SelectedContact.Avatar, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
