@@ -69,7 +69,7 @@
         <Setter Property="Background" Value="{DynamicResource CardBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="CornerRadius" Value="3" />
         <Setter Property="Margin" Value="8" />
         <Setter Property="BoxShadow" Value="0 2 4 0 #20000000" />
         <Setter Property="Transitions">
@@ -87,6 +87,29 @@
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}" />
         <Setter Property="Cursor" Value="Hand" />
     </Style>
+
+    <!--列表样式-->
+    <Style Selector="Border.List">
+        <Setter Property="Background" Value="{DynamicResource CardBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="BoxShadow" Value="0 2 4 0 #20000000" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+            </Transitions>
+        </Setter>
+        <Setter Property="RenderTransform" Value="none" />
+    </Style>
+
+    <Style Selector="Border.List:pointerover">
+        <Setter Property="BoxShadow" Value="0 4 8 0 #40000000" />
+        <Setter Property="RenderTransform" Value="scale(1.02)" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}" />
+    </Style>
+    <!-- border list -->
 
     <Style Selector="StackPanel.Popup">
         <Setter Property="Spacing" Value="8"></Setter>
