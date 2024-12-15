@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using MMR.Models.Enums;
 
 namespace MMR.Models;
@@ -36,4 +38,9 @@ public class Work : BaseModel
 
     public ICollection<WorkContact> WorkContacts { get; set; } = new List<WorkContact>();
     public virtual ICollection<Expense> Expenses { get; set; } = new List<Expense>();
+
+    // 不存储在数据库中的计算属性
+    [NotMapped] public decimal ReceivingPayment => Expenses?.Where(e => e.Income).Sum(e => e.Amount) ?? 0;
+
+    [NotMapped] public decimal Cost => Expenses?.Where(e => !e.Income).Sum(e => e.Amount) ?? 0;
 }

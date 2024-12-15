@@ -47,28 +47,28 @@
                         <ScrollViewer Grid.Row="1">
                             <StackPanel>
                                 <!-- 工作详情 -->
-                                <Border Classes="Card">
+                                <Border>
                                     <StackPanel Classes="Card" Spacing="16">
                                         <TextBlock Text="Details"
                                                    FontWeight="SemiBold" />
-                                        <StackPanel Spacing="8">
+                                        <StackPanel>
                                             <TextBlock Text="{Binding WorkDetails.Description}"
                                                        TextWrapping="Wrap" />
-                                            <StackPanel Orientation="Horizontal" Spacing="16">
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
                                                 <StackPanel Classes="icon" Orientation="Vertical">
                                                     <TextBlock Text="{Binding WorkDetails.TotalMoney}" />
                                                     <TextBlock Text="Total" Classes="label" />
                                                 </StackPanel>
-                                                <!--
-                                            <StackPanel Classes="icon" Orientation="Vertical">
-                                                <TextBlock Text="{Binding WorkDetails.ReceivingPayment}" />
-                                                <TextBlock Text="Received" Classes="label" />
-                                            </StackPanel>
-                                            <StackPanel Classes="icon" Orientation="Vertical">
-                                                <TextBlock Text="{Binding SelectWorkDetailsedWork.CostMoney}" />
-                                                <TextBlock Text="Cost" Classes="label" />
-                                            </StackPanel>
-                                        -->
+
+                                                <StackPanel Classes="icon" Orientation="Vertical">
+                                                    <TextBlock Text="{Binding WorkDetails.ReceivingPayment}" />
+                                                    <TextBlock Text="Received" Classes="label" />
+                                                </StackPanel>
+                                                <StackPanel Classes="icon" Orientation="Vertical">
+                                                    <TextBlock Text="{Binding WorkDetails.Cost}" />
+                                                    <TextBlock Text="Cost" Classes="label" />
+                                                </StackPanel>
+
                                             </StackPanel>
 
                                             <StackPanel Orientation="Vertical" Spacing="4">
@@ -90,7 +90,7 @@
                                 </Border>
 
                                 <!-- 联系人列表 -->
-                                <Border Classes="Card">
+                                <Border>
                                     <StackPanel Classes="Card" Spacing="8">
                                         <Grid ColumnDefinitions="*,Auto">
                                             <TextBlock Text="Contact"
@@ -114,8 +114,9 @@
                                                                             IsVisible="{Binding Contact.Avatar, Converter={x:Static StringConverters.IsNullOrEmpty}}" />
                                                                     <Border Classes="avatarSmallContainer"
                                                                             IsVisible="{Binding Contact.Avatar, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
-                                                                        <Image Source="{Binding Contact.Avatar, Converter={StaticResource PathToImageConverter}}"
-                                                                               Classes="avatarSmall" />
+                                                                        <Image
+                                                                            Source="{Binding Contact.Avatar, Converter={StaticResource PathToImageConverter}}"
+                                                                            Classes="avatarSmall" />
                                                                     </Border>
                                                                 </Panel>
                                                                 <!-- 联系人信息 -->
@@ -129,9 +130,10 @@
                                                             <!-- 右列：金额和操作按钮 -->
                                                             <StackPanel Grid.Column="1" Spacing="8">
                                                                 <!-- 金额 -->
-                                                                <TextBlock Text="{Binding Money, StringFormat={}{0:C2}}"
-                                                                           FontWeight="SemiBold"
-                                                                           HorizontalAlignment="Right" />
+                                                                <TextBlock
+                                                                    Text="{Binding Money, StringFormat={}{0:C2}}"
+                                                                    FontWeight="SemiBold"
+                                                                    HorizontalAlignment="Right" />
                                                                 <!-- 操作按钮 -->
                                                                 <StackPanel Orientation="Horizontal"
                                                                             Spacing="8"
@@ -157,7 +159,7 @@
                                 </Border>
 
                                 <!-- 支出列表 -->
-                                <Border Classes="Card">
+                                <Border>
                                     <StackPanel Classes="Card" Spacing="8">
                                         <Grid ColumnDefinitions="*,Auto">
                                             <TextBlock Text="Expenses"
@@ -176,50 +178,52 @@
                                                             <!-- 第一行：联系人、日期和金额 -->
                                                             <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto">
                                                                 <!-- 左列：联系人头像和信息 -->
-                                                                <StackPanel Grid.Column="0" 
-                                                                          Orientation="Horizontal"
-                                                                          Spacing="8">
+                                                                <StackPanel Grid.Column="0"
+                                                                            Orientation="Horizontal"
+                                                                            Spacing="8">
                                                                     <Panel>
                                                                         <i:Icon Value="fa-thin fa-user"
-                                                                               IsVisible="{Binding Contact.Avatar, Converter={x:Static StringConverters.IsNullOrEmpty}}" />
+                                                                            IsVisible="{Binding Contact.Avatar, Converter={x:Static StringConverters.IsNullOrEmpty}}" />
                                                                         <Border Classes="avatarSmallContainer"
-                                                                                IsVisible="{Binding Contact.Avatar, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
-                                                                            <Image Source="{Binding Contact.Avatar, Converter={StaticResource PathToImageConverter}}"
-                                                                                   Classes="avatarSmall" />
+                                                                            IsVisible="{Binding Contact.Avatar, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                                                                            <Image
+                                                                                Source="{Binding Contact.Avatar, Converter={StaticResource PathToImageConverter}}"
+                                                                                Classes="avatarSmall" />
                                                                         </Border>
                                                                     </Panel>
                                                                     <StackPanel>
                                                                         <TextBlock Text="{Binding Contact.Name}" />
-                                                                        <TextBlock Text="{Binding Contact.Email}" 
-                                                                                 Classes="label" />
+                                                                        <TextBlock Text="{Binding Contact.Email}"
+                                                                            Classes="label" />
                                                                     </StackPanel>
                                                                 </StackPanel>
 
                                                                 <!-- 中间：日期 -->
-                                                                <StackPanel Grid.Column="1" 
-                                                                          Orientation="Horizontal" 
-                                                                          Spacing="8"
-                                                                          HorizontalAlignment="Center"
-                                                                          VerticalAlignment="Center">
+                                                                <StackPanel Grid.Column="1"
+                                                                            Orientation="Horizontal"
+                                                                            Spacing="8"
+                                                                            HorizontalAlignment="Center"
+                                                                            VerticalAlignment="Center">
                                                                     <i:Icon Value="fa-thin fa-calendar" />
-                                                                    <TextBlock Text="{Binding Date, StringFormat={}{0:yyyy-MM-dd}}"
-                                                                             Classes="label" />
+                                                                    <TextBlock
+                                                                        Text="{Binding Date, StringFormat={}{0:yyyy-MM-dd}}"
+                                                                        Classes="label" />
                                                                 </StackPanel>
 
                                                                 <!-- 右列：金额 -->
                                                                 <TextBlock Grid.Column="2"
-                                                                         Text="{Binding Amount, StringFormat={}{0:C2}}"
-                                                                         FontWeight="SemiBold"
-                                                                         HorizontalAlignment="Right"
-                                                                         VerticalAlignment="Center"
-                                                                         Foreground="{Binding Income, 
+                                                                           Text="{Binding Amount, StringFormat={}{0:C2}}"
+                                                                           FontWeight="SemiBold"
+                                                                           HorizontalAlignment="Right"
+                                                                           VerticalAlignment="Center"
+                                                                           Foreground="{Binding Income, 
                                                                                      Converter={x:Static converters:BoolConverters.True},
                                                                                      ConverterParameter={StaticResource SuccessBrush},
                                                                                      FallbackValue={StaticResource WarningBrush}}" />
                                                             </Grid>
 
                                                             <!-- 第二行：备注和操作按钮 -->
-                                                            <Grid Grid.Row="1" 
+                                                            <Grid Grid.Row="1"
                                                                   ColumnDefinitions="*,Auto"
                                                                   Margin="0,8,0,0">
                                                                 <!-- 备注 -->
@@ -323,6 +327,7 @@
                                                     <TextBlock Text="{Binding Name}" />
                                                 </StackPanel>
                                                 <StackPanel Classes="icon">
+                                                    <Label Content="Status"></Label>
                                                     <TextBlock Text="{Binding Status}" Classes="label" />
                                                 </StackPanel>
                                             </StackPanel>
@@ -333,11 +338,11 @@
                                                     <TextBlock Text="Total" Classes="label" />
                                                 </StackPanel>
                                                 <StackPanel Classes="icon" Orientation="Vertical">
-                                                    <TextBlock Text="0" />
+                                                    <TextBlock Text="{Binding ReceivingPayment}" />
                                                     <TextBlock Text="Received" Classes="label" />
                                                 </StackPanel>
                                                 <StackPanel Classes="icon" Orientation="Vertical">
-                                                    <TextBlock Text="0" />
+                                                    <TextBlock Text="{Binding Cost}" />
                                                     <TextBlock Text="Cost" Classes="label" />
                                                 </StackPanel>
                                             </StackPanel>

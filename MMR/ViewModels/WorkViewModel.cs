@@ -48,6 +48,9 @@ public partial class WorkViewModel : ViewModelBase
     public AddContactViewModel AddContactViewModel => _addContactViewModel;
     public AddExpenseViewModel AddExpenseViewModel => _addExpenseViewModel;
 
+    [ObservableProperty] private decimal _receivingPayment;
+    [ObservableProperty] private decimal _cost;
+
     public WorkViewModel(AddContactViewModel addContactViewModel, AddExpenseViewModel addExpenseViewModel,
         IDialogService dialogService)
     {
@@ -65,7 +68,8 @@ public partial class WorkViewModel : ViewModelBase
 
     private List<Work> GetWorks()
     {
-        return DbHelper.Db.Works.AsNoTracking().ToList();
+        var list = DbHelper.Db.Works.Include(w => w.Expenses).AsNoTracking().ToList();
+        return list;
     }
 
     partial void OnSearchTextChanged(string value)
@@ -242,6 +246,8 @@ public partial class WorkViewModel : ViewModelBase
         // 更新数据和状态
         WorkDetails = detail;
         IsDetailsPaneOpen = true;
+
+        UpdateWorkCalculations();
     }
 
     [RelayCommand]
@@ -289,6 +295,8 @@ public partial class WorkViewModel : ViewModelBase
         {
             WorkDetails = detail;
         }
+
+        UpdateWorkCalculations();
     }
 
     private void OnExpenseAdded(object? sender, ExpenseEventArgs e)
@@ -316,6 +324,8 @@ public partial class WorkViewModel : ViewModelBase
         {
             WorkDetails = detail;
         }
+
+        UpdateWorkCalculations();
     }
 
     [RelayCommand]
@@ -370,6 +380,8 @@ public partial class WorkViewModel : ViewModelBase
             {
                 WorkDetails = detail;
             }
+
+            UpdateWorkCalculations();
         }
     }
 
@@ -416,6 +428,16 @@ public partial class WorkViewModel : ViewModelBase
             {
                 WorkDetails = detail;
             }
+
+            UpdateWorkCalculations();
         }
+    }
+
+    private void UpdateWorkCalculations()
+    {
+        if (WorkDetails?.Expenses == null) return;
+
+        ReceivingPayment = WorkDetails.Expenses.Where(e => e.Income).Sum(e => e.Amount);
+        Cost = WorkDetails.Expenses.Where(e => !e.Income).Sum(e => e.Amount);
     }
 }
