@@ -150,6 +150,10 @@
         <Setter Property="Foreground" Value="{DynamicResource SecondaryBrush}"></Setter>
         <Setter Property="FontSize" Value="12"></Setter>
     </Style>
+    <Style Selector="Label">
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryBrush}"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+    </Style>
     <Style Selector="TextBlock.ShowError">
         <Setter Property="Foreground" Value="{DynamicResource ErrorBrush}"></Setter>
         <Setter Property="TextWrapping" Value="Wrap"></Setter>

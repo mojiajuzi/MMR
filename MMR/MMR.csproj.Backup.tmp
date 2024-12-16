@@ -15,6 +15,25 @@
     </ItemGroup>
 
     <ItemGroup>
+      <AvaloniaResource Remove="Assets\Lang\Resources.resx" />
+      <AvaloniaResource Remove="Assets\Lang\Resources.zh-hans.resx" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Update="Assets\Lang\Resources.resx">
+            <Generator>PublicResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+            <CustomToolNamespace>MMR.Assets.Lang</CustomToolNamespace>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Assets\Lang\Resources.zh-CN.resx">
+            <Generator>PublicResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.zh-CN.Designer.cs</LastGenOutput>
+            <CustomToolNamespace>MMR.Assets.Lang</CustomToolNamespace>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Avalonia" />
         <PackageReference Include="Avalonia.Themes.Fluent" />
         <PackageReference Include="Avalonia.Fonts.Inter" />
@@ -36,27 +55,33 @@
 
     <ItemGroup>
         <Folder Include="Assets\Fonts\" />
+        <Folder Include="Assets\Lang\" />
         <Folder Include="Data\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Update="Assets\Lang\Resources.resx">
+            <Generator>PublicResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+            <CustomToolNamespace>MMR.Assets.Lang</CustomToolNamespace>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Assets\Lang\Resources.zh-hans.resx">
+          <Generator>PublicResXFileCodeGenerator</Generator>
+          <CustomToolNamespace>MMR.Assets.Lang</CustomToolNamespace>
+        </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
         <Compile Update="Components\Dialogs\ConfirmDialog.axaml.cs">
             <DependentUpon>ConfirmDialog.axaml</DependentUpon>
         </Compile>
-        <Compile Update="Lang\Resources.Designer.cs">
-          <DesignTime>True</DesignTime>
-          <AutoGen>True</AutoGen>
-          <DependentUpon>Resources.resx</DependentUpon>
-        </Compile>
         <Compile Update="Views\DashboardView.axaml.cs">
             <DependentUpon>DashboardView.axaml</DependentUpon>
         </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Update="Lang\Resources.resx">
-        <Generator>PublicResXFileCodeGenerator</Generator>
-        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
+        <Compile Update="Assets\Lang\Resources.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Resources.resx</DependentUpon>
+        </Compile>
     </ItemGroup>
 </Project>

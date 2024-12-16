@@ -1,9 +1,11 @@
 using System;
+using System.Globalization;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
+using System.Threading;
 using Avalonia.Controls.Notifications;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,25 +35,31 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("zh-hans");
+        switch (ApplicationLifetime)
         {
-            DisableAvaloniaDataAnnotationValidation();
+            case IClassicDesktopStyleApplicationLifetime desktop:
+            {
+                DisableAvaloniaDataAnnotationValidation();
 
-            // 使用 DI 创建 MainViewModel
-            var mainViewModel = _serviceProvider!.GetRequiredService<MainViewModel>();
-            desktop.MainWindow = new MainWindow
+                // 使用 DI 创建 MainViewModel
+                var mainViewModel = _serviceProvider!.GetRequiredService<MainViewModel>();
+                desktop.MainWindow = new MainWindow
+                {
+                    DataContext = mainViewModel
+                };
+                NotificationManager = new WindowNotificationManager(desktop.MainWindow);
+                break;
+            }
+            case ISingleViewApplicationLifetime singleViewPlatform:
             {
-                DataContext = mainViewModel
-            };
-            NotificationManager = new WindowNotificationManager(desktop.MainWindow);
-        }
-        else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
-        {
-            var mainViewModel = _serviceProvider!.GetRequiredService<MainViewModel>();
-            singleViewPlatform.MainView = new MainView
-            {
-                DataContext = mainViewModel
-            };
+                var mainViewModel = _serviceProvider!.GetRequiredService<MainViewModel>();
+                singleViewPlatform.MainView = new MainView
+                {
+                    DataContext = mainViewModel
+                };
+                break;
+            }
         }
 
         base.OnFrameworkInitializationCompleted();

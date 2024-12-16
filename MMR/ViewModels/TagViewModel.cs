@@ -10,6 +10,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.EntityFrameworkCore;
 using MMR.Data;
 using MMR.Models;
+using MMR.Services;
 
 namespace MMR.ViewModels;
 
@@ -89,13 +90,13 @@ public partial class TagViewModel : ViewModelBase
     private async Task TagSubmited()
     {
         if (TagData == null) return;
-        if (!TagData.Validate(out var result))
+        
+        // 使用新的验证方法
+        ValidateTag();
+        if (HasErrors)
         {
-            HasErrors = true;
-            ErrorMessage = string.Join(Environment.NewLine, result.Select(r => r.ErrorMessage));
             return;
         }
-
 
         try
         {
@@ -105,8 +106,7 @@ public partial class TagViewModel : ViewModelBase
                     .FirstOrDefault(t => t.Name.ToLower() == TagData.Name.ToLower() && t.Id != TagData.Id);
                 if (exiting != null)
                 {
-                    HasErrors = true;
-                    ErrorMessage = $"tag name {TagData.Name} already exists!";
+                    AddError(nameof(TagData.Name), Lang.Resources.TagNameExists);
                     return;
                 }
 
@@ -115,22 +115,23 @@ public partial class TagViewModel : ViewModelBase
                 var index = Tags.IndexOf(Tags.FirstOrDefault(t => t.Id == TagData.Id));
                 Tags.RemoveAt(index);
                 Tags.Insert(index, TagData);
-                ShowNotification("success", "tag update success", NotificationType.Success);
+                var msg = LangCombService.Succerss(Lang.Resources.Tag, TagData.Name, true);
+                ShowNotification(Lang.Resources.Success, msg, NotificationType.Success);
                 IsPopupOpen = false;
             }
             else
             {
                 DbHelper.Db.Tags.Add(TagData);
                 Tags.Add(TagData);
-                ShowNotification("Success", "Successfully added tag", NotificationType.Success);
+                var msg = LangCombService.Succerss(Lang.Resources.Tag, TagData.Name, false);
+                ShowNotification(Lang.Resources.Success, msg, NotificationType.Success);
                 TagData = new Tag();
                 await DbHelper.Db.SaveChangesAsync();
             }
         }
         catch (Exception e)
         {
-            HasErrors = true;
-            ErrorMessage = e.Message;
+            AddError(string.Empty, e.Message);
             return;
         }
         RefreshTags();
@@ -145,10 +146,13 @@ public partial class TagViewModel : ViewModelBase
         {
             t.IsActive = tag.IsActive;
             await DbHelper.Db.SaveChangesAsync();
+            var status = tag.IsActive ? Lang.Resources.Active : Lang.Resources.InActive;
+            var msg = $"{Lang.Resources.Tag} {tag.Name} {Lang.Resources.Status}: {status}";
+            ShowNotification(Lang.Resources.Success, msg, NotificationType.Success);
         }
         catch (Exception e)
         {
-            ShowNotification("Error", e.Message, NotificationType.Error);
+            ShowNotification(Lang.Resources.Error, e.Message, NotificationType.Error);
         }
         RefreshTags();
     }
@@ -172,11 +176,52 @@ public partial class TagViewModel : ViewModelBase
             DbHelper.Db.Tags.Remove(t);
             DbHelper.Db.SaveChanges();
             Tags.Remove(tag);
-            ShowNotification("Success", "Successfully removed tag", NotificationType.Success);
+            var msg = LangCombService.Succerss(Lang.Resources.Tag, tag.Name, true);
+            ShowNotification(Lang.Resources.Success, msg, NotificationType.Success);
         }
         catch (Exception e)
         {
-            ShowNotification("Error", e.Message, NotificationType.Error);
+            ShowNotification(Lang.Resources.Error, e.Message, NotificationType.Error);
         }
+    }
+
+    private void ValidateTag()
+    {
+        ClearErrors();
+
+        // 名称验证
+        if (string.IsNullOrWhiteSpace(TagData.Name))
+        {
+            AddError(nameof(TagData.Name), Lang.Resources.TagNameRequired);
+            return;
+        }
+
+        if (TagData.Name.Length < 2 || TagData.Name.Length > 50)
+        {
+            AddError(nameof(TagData.Name), Lang.Resources.TagNameLength);
+            return;
+        }
+
+        // 检查名称是否已存在
+        if (_tags.Any(t => t.Name.Equals(TagData.Name, StringComparison.OrdinalIgnoreCase) 
+            && t.Id != TagData.Id))
+        {
+            AddError(nameof(TagData.Name), Lang.Resources.TagNameExists);
+            return;
+        }
+    }
+
+    private void AddError(string propertyName, string errorMessage)
+    {
+        HasErrors = true;
+        ErrorMessage = errorMessage;
+        // 如果需要，这里可以添加更多的错误处理逻辑
+    }
+
+    private void ClearErrors()
+    {
+        HasErrors = false;
+        ErrorMessage = string.Empty;
+        // 如果需要，这里可以添加更多的错误清理逻辑
     }
 }

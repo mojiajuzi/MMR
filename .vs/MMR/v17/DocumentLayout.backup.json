@@ -1,0 +1,186 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\code\\blazor\\MMR\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\models\\tag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\models\\tag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\viewmodels\\tagviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\viewmodels\\tagviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\services\\langcombservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\services\\langcombservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\services\\filepathservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\services\\filepathservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\services\\idialogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\services\\idialogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\services\\dialogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\services\\dialogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\views\\tagview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\views\\tagview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\assets\\nordstyle.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\assets\\nordstyle.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\app.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\app.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\views\\mainview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\views\\mainview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Tag.cs",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Models\\Tag.cs",
+              "RelativeDocumentMoniker": "MMR\\Models\\Tag.cs",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Models\\Tag.cs",
+              "RelativeToolTip": "MMR\\Models\\Tag.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T07:33:23.416Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DialogService.cs",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Services\\DialogService.cs",
+              "RelativeDocumentMoniker": "MMR\\Services\\DialogService.cs",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Services\\DialogService.cs",
+              "RelativeToolTip": "MMR\\Services\\DialogService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T07:13:56.681Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LangCombService.cs",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Services\\LangCombService.cs",
+              "RelativeDocumentMoniker": "MMR\\Services\\LangCombService.cs",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Services\\LangCombService.cs",
+              "RelativeToolTip": "MMR\\Services\\LangCombService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T07:13:47.377Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TagViewModel.cs",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\ViewModels\\TagViewModel.cs",
+              "RelativeDocumentMoniker": "MMR\\ViewModels\\TagViewModel.cs",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\ViewModels\\TagViewModel.cs",
+              "RelativeToolTip": "MMR\\ViewModels\\TagViewModel.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAACMAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T03:52:16.588Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "NordStyle.axaml",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Assets\\NordStyle.axaml",
+              "RelativeDocumentMoniker": "MMR\\Assets\\NordStyle.axaml",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Assets\\NordStyle.axaml",
+              "RelativeToolTip": "MMR\\Assets\\NordStyle.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-16T03:45:00.822Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TagView.axaml",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Views\\TagView.axaml",
+              "RelativeDocumentMoniker": "MMR\\Views\\TagView.axaml",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Views\\TagView.axaml",
+              "RelativeToolTip": "MMR\\Views\\TagView.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-16T03:13:43.635Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "App.axaml.cs",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\App.axaml.cs",
+              "RelativeDocumentMoniker": "MMR\\App.axaml.cs",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\App.axaml.cs",
+              "RelativeToolTip": "MMR\\App.axaml.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAADgvyUAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T02:02:56.197Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MainView.axaml",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Views\\MainView.axaml",
+              "RelativeDocumentMoniker": "MMR\\Views\\MainView.axaml",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Views\\MainView.axaml",
+              "RelativeToolTip": "MMR\\Views\\MainView.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-16T00:57:18.084Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FilePathService.cs",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Services\\FilePathService.cs",
+              "RelativeDocumentMoniker": "MMR\\Services\\FilePathService.cs",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Services\\FilePathService.cs",
+              "RelativeToolTip": "MMR\\Services\\FilePathService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T07:13:59.175Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IDialogService.cs",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Services\\IDialogService.cs",
+              "RelativeDocumentMoniker": "MMR\\Services\\IDialogService.cs",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Services\\IDialogService.cs",
+              "RelativeToolTip": "MMR\\Services\\IDialogService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T07:14:00.901Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
