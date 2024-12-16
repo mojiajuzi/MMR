@@ -1,23 +1,19 @@
+using MMR.Lang;
+using MMR.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using MMR.Models.Enums;
-using MMR.Lang;
 
 namespace MMR.Models;
 
 public class Work : BaseModel
 {
-    [Required(ErrorMessageResourceType = typeof(Resources), 
+    [Required(ErrorMessageResourceType = typeof(Resources),
               ErrorMessageResourceName = "WorkNameRequired")]
-    [MaxLength(100, ErrorMessageResourceType = typeof(Resources),
-               ErrorMessageResourceName = "WorkNameLength")]
     public string Name { get; set; } = null!;
 
-    [MaxLength(500, ErrorMessageResourceType = typeof(Resources),
-               ErrorMessageResourceName = "WorkDescriptionLength")]
     public string? Description { get; set; }
 
     [Required(ErrorMessageResourceType = typeof(Resources),
@@ -40,15 +36,11 @@ public class Work : BaseModel
 
     [Required(ErrorMessageResourceType = typeof(Resources),
               ErrorMessageResourceName = "WorkTotalMoneyRequired")]
-    [Range(0, double.MaxValue, ErrorMessageResourceType = typeof(Resources),
-           ErrorMessageResourceName = "WorkTotalMoneyRange")]
-    [DataType(DataType.Currency, ErrorMessageResourceType = typeof(Resources),
-              ErrorMessageResourceName = "WorkTotalMoneyInvalid")]
     [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = true)]
     public decimal? TotalMoney { get; set; } = 0; //总款项
 
     [Required(ErrorMessageResourceType = typeof(Resources),
-              ErrorMessageResourceName = "WorkStatusRequired")] 
+              ErrorMessageResourceName = "WorkStatusRequired")]
     public WorkStatus Status { get; set; } = WorkStatus.PreStart; //状态
 
     public ICollection<WorkContact> WorkContacts { get; set; } = new List<WorkContact>();

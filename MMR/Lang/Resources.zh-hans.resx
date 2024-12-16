@@ -375,4 +375,91 @@
   <data name="Dashboard" xml:space="preserve">
     <value>首页</value>
   </data>
+  <data name="QQInvalid" xml:space="preserve">
+    <value>QQ 号码验证失败</value>
+  </data>
+  <data name="WorkNameRequired" xml:space="preserve">
+    <value>项目名称不能为空</value>
+  </data>
+  <data name="WorkNameError" xml:space="preserve">
+    <value>项目名称不能为空</value>
+  </data>
+  <data name="WorkDescriptionError" xml:space="preserve">
+    <value>描述不能超过500个字符</value>
+  </data>
+  <data name="WorkStartTimeError" xml:space="preserve">
+    <value>开始时间不能为空</value>
+  </data>
+  <data name="WorkEndTimeError" xml:space="preserve">
+    <value>结束时间必须晚于开始时间</value>
+  </data>
+  <data name="WorkStatusError" xml:space="preserve">
+    <value>请选择项目状态</value>
+  </data>
+  <data name="WorkNameLengthError" xml:space="preserve">
+    <value>项目名称不能超过50个字符</value>
+  </data>
+  <data name="ContactNameError" xml:space="preserve">
+    <value>联系人姓名不能为空</value>
+  </data>
+  <data name="ContactNameLengthError" xml:space="preserve">
+    <value>联系人姓名不能超过50个字符</value>
+  </data>
+  <data name="PhoneError" xml:space="preserve">
+    <value>无效的电话号码格式</value>
+  </data>
+  <data name="EmailError" xml:space="preserve">
+    <value>无效的邮箱地址格式</value>
+  </data>
+  <data name="QQError" xml:space="preserve">
+    <value>QQ号必须是5-11位数字</value>
+  </data>
+  <data name="WechatLengthError" xml:space="preserve">
+    <value>微信号不能超过50个字符</value>
+  </data>
+  <data name="AddressLengthError" xml:space="preserve">
+    <value>地址不能超过200个字符</value>
+  </data>
+  <data name="RemarkLengthError" xml:space="preserve">
+    <value>备注不能超过500个字符</value>
+  </data>
+  <data name="ExpenseAmountError" xml:space="preserve">
+    <value>金额不能为空</value>
+  </data>
+  <data name="ExpenseAmountRangeError" xml:space="preserve">
+    <value>金额必须大于0</value>
+  </data>
+  <data name="ExpenseTimeError" xml:space="preserve">
+    <value>时间不能为空</value>
+  </data>
+  <data name="ExpenseDescriptionError" xml:space="preserve">
+    <value>描述不能超过200个字符</value>
+  </data>
+    <data name="WorkStartTimeInvalid" xml:space="preserve">
+    <value>开始时间格式无效</value>
+  </data>
+  <data name="WorkEndTimeInvalid" xml:space="preserve">
+    <value>结束时间格式无效</value>
+  </data>
+  <data name="WorkEndTimeMustLaterThanStart" xml:space="preserve">
+    <value>结束时间必须晚于开始时间</value>
+  </data>
+  <data name="WorkExceptionTimeInvalid" xml:space="preserve">
+    <value>实际完成时间格式无效</value>
+  </data>
+  <data name="WorkExceptionTimeMustLaterThanStart" xml:space="preserve">
+    <value>实际完成时间必须晚于开始时间</value>
+  </data>
+  <data name="WorkTotalMoneyRequired" xml:space="preserve">
+    <value>总金额不能为空</value>
+  </data>
+  <data name="WorkTotalMoneyRange" xml:space="preserve">
+    <value>总金额必须大于或等于0</value>
+  </data>
+  <data name="WorkTotalMoneyInvalid" xml:space="preserve">
+    <value>总金额格式无效</value>
+  </data>
+  <data name="WorkStatusRequired" xml:space="preserve">
+    <value>工作状态不能为空</value>
+  </data>
 </root>

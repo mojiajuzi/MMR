@@ -86,8 +86,33 @@
                                             <i:Icon Value="fa-solid fa-envelope"></i:Icon>
                                             <TextBlock Text="{Binding Email}"></TextBlock>
                                         </StackPanel>
+                                        <!-- tags start-->
+                                        <ItemsControl ItemsSource="{Binding ContactTags}" Padding="0,10">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel Orientation="Horizontal"
+                                                               MaxWidth="200" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate DataType="{x:Type model:ContactTag}">
+                                                    <Border Classes="tag">
+                                                        <TextBlock Text="{Binding Tag.Name}" />
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                        <!-- tags show end-->
                                         <!-- show action button-->
                                         <StackPanel Orientation="Horizontal">
+                                            <Button Classes="Action Info"
+                                                    Command="{Binding #Root.((vm:ContactViewModel)DataContext).ShowPopupToUpdateCommand}"
+                                                    CommandParameter="{Binding .}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <i:Icon Value="fa-solid fa-eye"></i:Icon>
+                                                    <TextBlock Text="{x:Static loc:Resources.Show}"></TextBlock>
+                                                </StackPanel>
+                                            </Button>
                                             <Button Classes="Action Update"
                                                     Command="{Binding #Root.((vm:ContactViewModel)DataContext).ShowPopupToUpdateCommand}"
                                                     CommandParameter="{Binding .}">
@@ -107,23 +132,6 @@
                                         </StackPanel>
                                         <!-- end action button-->
 
-                                        <!-- tags start-->
-                                        <ItemsControl ItemsSource="{Binding ContactTags}" Padding="0,10">
-                                            <ItemsControl.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <WrapPanel Orientation="Horizontal"
-                                                               MaxWidth="200" />
-                                                </ItemsPanelTemplate>
-                                            </ItemsControl.ItemsPanel>
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate DataType="{x:Type model:ContactTag}">
-                                                    <Border Classes="tag">
-                                                        <TextBlock Text="{Binding Tag.Name}" />
-                                                    </Border>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                        <!-- tags show end-->
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
@@ -168,8 +176,7 @@
                             <StackPanel>
                                 <Label Content="{x:Static loc:Resources.Name}" Target="Name" />
                                 <TextBox Name="Name"
-                                         Text="{Binding ContactData.Name}"
-                                          />
+                                         Text="{Binding ContactData.Name}" />
                             </StackPanel>
 
                             <Grid ColumnDefinitions="*,16,*">

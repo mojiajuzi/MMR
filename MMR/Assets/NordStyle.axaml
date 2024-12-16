@@ -353,4 +353,8 @@
         <Setter Property="Background" Value="{DynamicResource Nord1}" />
         <Setter Property="Opacity" Value="0.5" />
     </Style>
+
+    <Style Selector="i|Icon">
+        <Setter Property="Margin" Value="0,0,4,0" />
+    </Style>
 </Styles>

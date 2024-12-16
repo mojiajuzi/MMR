@@ -30,8 +30,7 @@
                             Classes="search-container">
                         <Grid ColumnDefinitions="Auto,*">
                             <Border Grid.Column="0"
-                                    Classes="search-icon-container"
-                                    >
+                                    Classes="search-icon-container">
                                 <i:Icon Value="fa-solid fa-search"
                                         Classes="search-icon" />
                             </Border>
@@ -106,8 +105,7 @@
                                                 CommandParameter="{Binding .}"
                                                 IsChecked="{Binding IsActive}"
                                                 OnContent="{x:Static loc:Resources.Active}"
-                                                OffContent="{x:Static loc:Resources.InActive}"
-                                                >
+                                                OffContent="{x:Static loc:Resources.InActive}">
                                             </ToggleSwitch>
                                         </StackPanel>
                                         <StackPanel Classes="icon">
@@ -119,7 +117,7 @@
                                         <Button Classes="Action Update"
                                                 Command="{Binding #Root.((vm:TagViewModel)DataContext).ShowPopupToUpdateCommand}"
                                                 CommandParameter="{Binding .}">
-                                            <StackPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <i:Icon Value="fa-solid fa-edit"></i:Icon>
                                                 <TextBlock Text="{x:Static loc:Resources.Edit}"></TextBlock>
                                             </StackPanel>

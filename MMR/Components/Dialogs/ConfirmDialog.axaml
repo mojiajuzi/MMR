@@ -6,7 +6,7 @@
         mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200"
         Width="400" Height="200"
         x:Class="MMR.Components.Dialogs.ConfirmDialog">
-    <Border Classes="Popup">
+    <Border>
         <StackPanel Spacing="20" Margin="20,20,20,10">
             <TextBlock Name="TitleBlock"
                        FontSize="20"
