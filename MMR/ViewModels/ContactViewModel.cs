@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using Avalonia.Controls.Notifications;
@@ -10,6 +11,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.EntityFrameworkCore;
 using MMR.Data;
 using MMR.Models;
+using MMR.Services;
 
 namespace MMR.ViewModels;
 
@@ -57,7 +59,7 @@ public partial class ContactViewModel : ViewModelBase
         }
         catch (Exception ex)
         {
-            ShowNotification("Error", ex.Message, NotificationType.Error);
+            ShowNotification(Lang.Resources.Error, ex.Message, NotificationType.Error);
         }
     }
 
@@ -134,16 +136,32 @@ public partial class ContactViewModel : ViewModelBase
         IsPopupOpen = false;
     }
 
+    private bool ValidateContact()
+    {
+        ClearErrors();
+
+        // 使用 DataAnnotations 进行验证
+        var validationContext = new ValidationContext(ContactData);
+        var validationResults = new List<ValidationResult>();
+        var isValid = Validator.TryValidateObject(ContactData, validationContext, validationResults, true);
+
+        if (!isValid)
+        {
+            HasErrors = true;
+            ErrorMessage = validationResults.First().ErrorMessage ?? string.Empty;
+            return false;
+        }
+
+        return true;
+    }
+
     [RelayCommand]
     private void ContactSubmited()
     {
         try
         {
-            // 基本验证
-            if (string.IsNullOrWhiteSpace(ContactData.Name))
+            if (!ValidateContact())
             {
-                HasErrors = true;
-                ErrorMessage = "联系人姓名不能为空";
                 return;
             }
 
@@ -168,11 +186,9 @@ public partial class ContactViewModel : ViewModelBase
                     contact.UpdatedAt = DateTime.Now;
 
                     // 更新标签关联
-                    // 先删除所有现有标签
                     DbHelper.Db.ContactTags.RemoveRange(contact.ContactTags);
                     DbHelper.Db.SaveChanges();
 
-                    // 添加新的标签关联
                     if (SelectedTagList.Any())
                     {
                         var contactTags = SelectedTagList.Select(tag => new ContactTag
@@ -205,7 +221,6 @@ public partial class ContactViewModel : ViewModelBase
                     DbHelper.Db.Contacts.Add(contact);
                     DbHelper.Db.SaveChanges();
 
-                    // 添加标签关联
                     if (SelectedTagList.Any())
                     {
                         var contactTags = SelectedTagList.Select(tag => new ContactTag
@@ -223,30 +238,24 @@ public partial class ContactViewModel : ViewModelBase
                 DbHelper.Db.SaveChanges();
                 transaction.Commit();
 
-                // 重置状态
                 HasErrors = false;
                 ErrorMessage = string.Empty;
                 IsPopupOpen = false;
 
-                ShowNotification("Success", "data commit successed", NotificationType.Success);
-                // 刷新联系人列表
+                ShowNotification(Lang.Resources.Success, 
+                               LangCombService.Succerss(Lang.Resources.Contact, ContactData.Name, ContactData.Id > 0), 
+                               NotificationType.Success);
                 GetContacts();
             }
             catch (Exception ex)
             {
                 transaction.Rollback();
-                HasErrors = true;
-                ErrorMessage = ex.Message;
-                return;
-                throw new Exception($"保存过程中出错: {ex.Message}\n{ex.InnerException?.Message ?? ""}", ex);
+                AddError(string.Empty, ex.Message);
             }
         }
         catch (Exception ex)
         {
-            HasErrors = true;
-            ErrorMessage = $"保存失败: {ex.Message}";
-            return;
-            System.Diagnostics.Debug.WriteLine($"Contact save error: {ex}");
+            AddError(string.Empty, ex.Message);
         }
     }
 
@@ -288,13 +297,29 @@ public partial class ContactViewModel : ViewModelBase
         }
         catch (Exception ex)
         {
-            ShowNotification("Error", $"加载联系人信息失败: {ex.Message}", NotificationType.Error);
+            ShowNotification(Lang.Resources.Error, ex.Message, NotificationType.Error);
         }
     }
 
     [RelayCommand]
     private void RemoveContact(Contact contact)
     {
+        try
+        {
+            var c = DbHelper.Db.Contacts.FirstOrDefault(c => c.Id == contact.Id);
+            if (c == null) return;
+            
+            DbHelper.Db.Contacts.Remove(c);
+            DbHelper.Db.SaveChanges();
+            Contacts.Remove(contact);
+            
+            var msg = LangCombService.Succerss(Lang.Resources.Contact, contact.Name, true);
+            ShowNotification(Lang.Resources.Success, msg, NotificationType.Success);
+        }
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, ex.Message, NotificationType.Error);
+        }
     }
 
     private void ShowNotification(string title, string message, NotificationType type)
@@ -325,5 +350,36 @@ public partial class ContactViewModel : ViewModelBase
         ).ToList();
 
         Contacts = new ObservableCollection<Contact>(searchResults);
+    }
+
+    private bool IsValidEmail(string email)
+    {
+        try
+        {
+            var addr = new System.Net.Mail.MailAddress(email);
+            return addr.Address == email;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private bool IsValidPhone(string phone)
+    {
+        // 简单的电话号码验证，可以根据需要修改正则表达式
+        return System.Text.RegularExpressions.Regex.IsMatch(phone, @"^\d{11}$");
+    }
+
+    private void AddError(string propertyName, string errorMessage)
+    {
+        HasErrors = true;
+        ErrorMessage = errorMessage;
+    }
+
+    private void ClearErrors()
+    {
+        HasErrors = false;
+        ErrorMessage = string.Empty;
     }
 }

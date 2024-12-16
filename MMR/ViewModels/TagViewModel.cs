@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Avalonia.Controls.Notifications;
@@ -86,14 +87,39 @@ public partial class TagViewModel : ViewModelBase
         TagData = null;
     }
 
+    private bool ValidateTag()
+    {
+        ClearErrors();
+
+        // 使用 DataAnnotations 进行验证
+        var validationContext = new ValidationContext(TagData);
+        var validationResults = new List<ValidationResult>();
+        var isValid = Validator.TryValidateObject(TagData, validationContext, validationResults, true);
+
+        if (!isValid)
+        {
+            HasErrors = true;
+            ErrorMessage = validationResults.First().ErrorMessage ?? string.Empty;
+            return false;
+        }
+
+        // 检查名称是否已存在（这个验证不能通过 DataAnnotations 实现）
+        if (_tags.Any(t => t.Name.Equals(TagData.Name, StringComparison.OrdinalIgnoreCase) 
+            && t.Id != TagData.Id))
+        {
+            AddError(nameof(TagData.Name), Lang.Resources.TagNameExists);
+            return false;
+        }
+
+        return true;
+    }
+
     [RelayCommand]
     private async Task TagSubmited()
     {
         if (TagData == null) return;
         
-        // 使用新的验证方法
-        ValidateTag();
-        if (HasErrors)
+        if (!ValidateTag())
         {
             return;
         }
@@ -185,43 +211,15 @@ public partial class TagViewModel : ViewModelBase
         }
     }
 
-    private void ValidateTag()
-    {
-        ClearErrors();
-
-        // 名称验证
-        if (string.IsNullOrWhiteSpace(TagData.Name))
-        {
-            AddError(nameof(TagData.Name), Lang.Resources.TagNameRequired);
-            return;
-        }
-
-        if (TagData.Name.Length < 2 || TagData.Name.Length > 50)
-        {
-            AddError(nameof(TagData.Name), Lang.Resources.TagNameLength);
-            return;
-        }
-
-        // 检查名称是否已存在
-        if (_tags.Any(t => t.Name.Equals(TagData.Name, StringComparison.OrdinalIgnoreCase) 
-            && t.Id != TagData.Id))
-        {
-            AddError(nameof(TagData.Name), Lang.Resources.TagNameExists);
-            return;
-        }
-    }
-
     private void AddError(string propertyName, string errorMessage)
     {
         HasErrors = true;
         ErrorMessage = errorMessage;
-        // 如果需要，这里可以添加更多的错误处理逻辑
     }
 
     private void ClearErrors()
     {
         HasErrors = false;
         ErrorMessage = string.Empty;
-        // 如果需要，这里可以添加更多的错误清理逻辑
     }
 }

@@ -181,16 +181,16 @@
     <value>标签名称重复</value>
   </data>
   <data name="ContactNameRequired" xml:space="preserve">
-    <value>联系人名称不能为空</value>
+    <value>联系人姓名不能为空</value>
   </data>
   <data name="ContactNameLength" xml:space="preserve">
-    <value>联系人名称长度过长</value>
+    <value>联系人姓名长度必须在2到50个字符之间</value>
   </data>
   <data name="ContactEmailInvalid" xml:space="preserve">
-    <value>邮件格式错误</value>
+    <value>邮箱格式不正确</value>
   </data>
   <data name="ContactPhoneInvalid" xml:space="preserve">
-    <value>手机号码格式错误</value>
+    <value>电话号码格式不正确</value>
   </data>
   <data name="WorkTitleRequired" xml:space="preserve">
     <value>项目名称不能为空</value>
@@ -203,5 +203,176 @@
   </data>
   <data name="WorkAmountRange" xml:space="preserve">
     <value>项目金额不能小于等于0</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>联系人</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>邮箱</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>电话</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>地址</value>
+  </data>
+  <data name="Remark" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="Wechat" xml:space="preserve">
+    <value>微信</value>
+  </data>
+  <data name="QQ" xml:space="preserve">
+    <value>QQ</value>
+  </data>
+  <data name="ContactList" xml:space="preserve">
+    <value>联系人列表</value>
+  </data>
+  <data name="AddContact" xml:space="preserve">
+    <value>添加联系人</value>
+  </data>
+  <data name="EditContact" xml:space="preserve">
+    <value>编辑联系人</value>
+  </data>
+  <data name="DeleteContact" xml:space="preserve">
+    <value>删除联系人</value>
+  </data>
+  <data name="SelectTags" xml:space="preserve">
+    <value>选择标签</value>
+  </data>
+  <data name="SearchContacts" xml:space="preserve">
+    <value>搜索联系人...</value>
+  </data>
+  <data name="SearchTags" xml:space="preserve">
+    <value>搜索标签...</value>
+  </data>
+  <data name="Avatar" xml:space="preserve">
+    <value>头像</value>
+  </data>
+  <data name="UploadAvatar" xml:space="preserve">
+    <value>上传头像</value>
+  </data>
+  <data name="BasicInfo" xml:space="preserve">
+    <value>基本信息</value>
+  </data>
+  <data name="ContactInfo" xml:space="preserve">
+    <value>联系方式</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="WorkList" xml:space="preserve">
+    <value>工作列表</value>
+  </data>
+  <data name="AddWork" xml:space="preserve">
+    <value>添加工作</value>
+  </data>
+  <data name="EditWork" xml:space="preserve">
+    <value>编辑工作</value>
+  </data>
+  <data name="WorkDetails" xml:space="preserve">
+    <value>工作详情</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="PreStart" xml:space="preserve">
+    <value>未开始</value>
+  </data>
+  <data name="InProgress" xml:space="preserve">
+    <value>进行中</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>已完成</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>已暂停</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>已取消</value>
+  </data>
+  <data name="WorkName" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="WorkDescription" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>开始时间</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>结束时间</value>
+  </data>
+  <data name="TotalAmount" xml:space="preserve">
+    <value>总费用</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>联系人</value>
+  </data>
+  <data name="Expenses" xml:space="preserve">
+    <value>支出记录</value>
+  </data>
+  <data name="AddExpense" xml:space="preserve">
+    <value>添加支出</value>
+  </data>
+  <data name="Income" xml:space="preserve">
+    <value>收入</value>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>支出</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>筛选</value>
+  </data>
+  <data name="WorkStatus" xml:space="preserve">
+    <value>进度</value>
+  </data>
+  <data name="ReceivedAmount" xml:space="preserve">
+    <value>已收</value>
+  </data>
+  <data name="WorkStartDate" xml:space="preserve">
+    <value>开始日期</value>
+  </data>
+  <data name="WorkEndDate" xml:space="preserve">
+    <value>结束</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>查看</value>
+  </data>
+  <data name="InitializationError" xml:space="preserve">
+    <value>获取数据失败</value>
+  </data>
+  <data name="LoadError" xml:space="preserve">
+    <value>数据加载失败</value>
+  </data>
+  <data name="SearchError" xml:space="preserve">
+    <value>查询数据失败</value>
+  </data>
+  <data name="WorkStartTimeRequired" xml:space="preserve">
+    <value>请选择项目开始日期</value>
+  </data>
+  <data name="Work" xml:space="preserve">
+    <value>项目</value>
+  </data>
+  <data name="DeleteConfirmTitle" xml:space="preserve">
+    <value>是否要删除</value>
+  </data>
+  <data name="DeleteWorkConfirmMessage" xml:space="preserve">
+    <value>是否确定删除该项目</value>
+  </data>
+  <data name="Expense" xml:space="preserve">
+    <value>收支明细</value>
+  </data>
+  <data name="DeleteExpenseConfirmMessage" xml:space="preserve">
+    <value>是否删除该收支记录</value>
+  </data>
+  <data name="DeleteWorkContactConfirmMessage" xml:space="preserve">
+    <value>是否确定删除该项目联系人</value>
+  </data>
+  <data name="CalculationError" xml:space="preserve">
+    <value>计算失败</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>首页</value>
   </data>
 </root>

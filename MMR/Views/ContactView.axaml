@@ -6,6 +6,7 @@
              xmlns:model="clr-namespace:MMR.Models"
              xmlns:vm="clr-namespace:MMR.ViewModels"
              xmlns:converters="clr-namespace:MMR.Converters"
+             xmlns:loc="clr-namespace:MMR.Lang"
              x:DataType="vm:ContactViewModel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MMR.Views.ContactView">
@@ -25,7 +26,7 @@
                             Command="{Binding OpenPopupCommand}">
                         <StackPanel Orientation="Horizontal" Spacing="8">
                             <i:Icon Value="fa-solid fa-plus" />
-                            <TextBlock Text="Add" />
+                            <TextBlock Text="{x:Static loc:Resources.Add}" />
                         </StackPanel>
                     </Button>
 
@@ -40,7 +41,7 @@
                             </Border>
                             <TextBox Grid.Column="1"
                                      Classes="search-input"
-                                     Watermark="Search Contacts..."
+                                     Watermark="{x:Static loc:Resources.Search}"
                                      Text="{Binding SearchText}" />
                         </Grid>
                     </Border>
@@ -92,7 +93,7 @@
                                                     CommandParameter="{Binding .}">
                                                 <StackPanel Orientation="Horizontal">
                                                     <i:Icon Value="fa-solid fa-edit"></i:Icon>
-                                                    <TextBlock Text="Edit"></TextBlock>
+                                                    <TextBlock Text="{x:Static loc:Resources.Edit}"></TextBlock>
                                                 </StackPanel>
                                             </Button>
                                             <Button Classes="Action Delete"
@@ -100,7 +101,7 @@
                                                     CommandParameter="{Binding .}">
                                                 <StackPanel Orientation="Horizontal">
                                                     <i:Icon Value="fa-solid fa-trash"></i:Icon>
-                                                    <TextBlock Text="Delete"></TextBlock>
+                                                    <TextBlock Text="{x:Static loc:Resources.Delete}"></TextBlock>
                                                 </StackPanel>
                                             </Button>
                                         </StackPanel>
@@ -165,39 +166,35 @@
                             </Button>
 
                             <StackPanel>
-                                <Label Content="Name" Target="Name" />
+                                <Label Content="{x:Static loc:Resources.Name}" Target="Name" />
                                 <TextBox Name="Name"
                                          Text="{Binding ContactData.Name}"
-                                         Watermark="Enter contact name" />
+                                          />
                             </StackPanel>
 
                             <Grid ColumnDefinitions="*,16,*">
                                 <StackPanel Grid.Column="0">
-                                    <Label Content="Email" Target="Email" />
+                                    <Label Content="{x:Static loc:Resources.Email}" Target="Email" />
                                     <TextBox Name="Email"
-                                             Text="{Binding ContactData.Email}"
-                                             Watermark="Enter email address" />
+                                             Text="{Binding ContactData.Email}" />
                                 </StackPanel>
                                 <StackPanel Grid.Column="2">
-                                    <Label Content="Phone" Target="Phone" />
+                                    <Label Content="{x:Static loc:Resources.Phone}" Target="Phone" />
                                     <TextBox Name="Phone"
-                                             Text="{Binding ContactData.Phone}"
-                                             Watermark="Enter phone number" />
+                                             Text="{Binding ContactData.Phone}" />
                                 </StackPanel>
                             </Grid>
 
                             <Grid ColumnDefinitions="*,16,*">
                                 <StackPanel Grid.Column="0">
-                                    <Label Content="WeChat" Target="Wechat" />
+                                    <Label Content="{x:Static loc:Resources.Wechat}" Target="Wechat" />
                                     <TextBox Name="Wechat"
-                                             Text="{Binding ContactData.Wechat}"
-                                             Watermark="Enter WeChat ID" />
+                                             Text="{Binding ContactData.Wechat}" />
                                 </StackPanel>
                                 <StackPanel Grid.Column="2">
                                     <Label Content="QQ" Target="Qq" />
                                     <TextBox Name="Qq"
-                                             Text="{Binding ContactData.QQ}"
-                                             Watermark="Enter QQ number" />
+                                             Text="{Binding ContactData.QQ}" />
                                 </StackPanel>
                             </Grid>
                             <StackPanel>
@@ -206,7 +203,7 @@
                                                  FilterMode="None"
                                                  Text="{Binding TagSearchText}"
                                                  ItemsSource="{Binding FilterTagList}"
-                                                 Watermark="搜索标签..."
+                                                 Watermark="{x:Static loc:Resources.SearchTags}"
                                                  SelectionChanged="TagSearchBox_OnSelectionChanged">
                                     <AutoCompleteBox.ItemTemplate>
                                         <DataTemplate DataType="{x:Type model:Tag}">
@@ -241,10 +238,9 @@
                                 </ListBox>
                             </StackPanel>
                             <StackPanel>
-                                <Label Content="Remark" Target="Remark" />
+                                <Label Content="{x:Static loc:Resources.Remark}" Target="Remark" />
                                 <TextBox Name="Remark"
                                          Text="{Binding ContactData.Remark}"
-                                         Watermark="Enter remark"
                                          AcceptsReturn="True"
                                          TextWrapping="Wrap"
                                          Height="60" />
@@ -252,12 +248,12 @@
                             <UniformGrid Rows="1" Columns="2" Margin="0,16,0,0">
                                 <Button Classes="Cancel"
                                         Command="{Binding PopupCloseCommand}"
-                                        Content="Cancel" />
+                                        Content="{x:Static loc:Resources.Cancel}" />
                                 <Button Classes="Update"
                                         HorizontalAlignment="Right"
                                         Command="{Binding ContactSubmitedCommand}"
                                         CommandParameter="{Binding}"
-                                        Content="Submit" />
+                                        Content="{x:Static loc:Resources.Submit}" />
                             </UniformGrid>
                         </StackPanel>
                     </Border>

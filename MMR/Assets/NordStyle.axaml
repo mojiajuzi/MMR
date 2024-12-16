@@ -309,23 +309,48 @@
     </Style>
 
     <Style Selector="ComboBox">
-        <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundAltHighBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Padding" Value="8,4"/>
-        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundAltHighBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="CornerRadius" Value="4" />
     </Style>
 
     <Style Selector="ComboBoxItem">
-        <Setter Property="Padding" Value="4,8"/>
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Padding" Value="4,8" />
+        <Setter Property="Background" Value="Transparent" />
     </Style>
 
     <Style Selector="ComboBoxItem:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource SystemControlHighlightListLowBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SystemControlHighlightListLowBrush}" />
     </Style>
 
     <Style Selector="ComboBoxItem:selected /template/ ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource SystemControlHighlightListAccentLowBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SystemControlHighlightListAccentLowBrush}" />
+    </Style>
+
+
+    <!--侧边栏底部按钮样式-->
+    <Style Selector="ToggleButton.IconButton">
+        <Setter Property="Background" Value="{DynamicResource Nord3}" />
+        <Setter Property="Foreground" Value="{DynamicResource Nord6}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="8" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="Width" Value="32" />
+        <Setter Property="Height" Value="32" />
+    </Style>
+    <Style Selector="ToggleButton.IconButton:pointerover">
+        <Setter Property="Background" Value="{DynamicResource Nord2}" />
+    </Style>
+    <Style Selector="ToggleButton.IconButton:pressed">
+        <Setter Property="Background" Value="{DynamicResource Nord1}" />
+    </Style>
+    <Style Selector="ToggleButton.IconButton:checked">
+        <Setter Property="Background" Value="{DynamicResource Nord8}" />
+    </Style>
+    <Style Selector="ToggleButton.IconButton:disabled">
+        <Setter Property="Background" Value="{DynamicResource Nord1}" />
+        <Setter Property="Opacity" Value="0.5" />
     </Style>
 </Styles>

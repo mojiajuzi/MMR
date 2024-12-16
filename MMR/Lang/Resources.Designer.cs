@@ -79,6 +79,78 @@ namespace MMR.Lang {
         }
         
         /// <summary>
+        ///   查找类似 Add Contact 的本地化字符串。
+        /// </summary>
+        public static string AddContact {
+            get {
+                return ResourceManager.GetString("AddContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Add Expense 的本地化字符串。
+        /// </summary>
+        public static string AddExpense {
+            get {
+                return ResourceManager.GetString("AddExpense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Address 的本地化字符串。
+        /// </summary>
+        public static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Add Work 的本地化字符串。
+        /// </summary>
+        public static string AddWork {
+            get {
+                return ResourceManager.GetString("AddWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 All 的本地化字符串。
+        /// </summary>
+        public static string All {
+            get {
+                return ResourceManager.GetString("All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Avatar 的本地化字符串。
+        /// </summary>
+        public static string Avatar {
+            get {
+                return ResourceManager.GetString("Avatar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Basic Information 的本地化字符串。
+        /// </summary>
+        public static string BasicInfo {
+            get {
+                return ResourceManager.GetString("BasicInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 CalculationError 的本地化字符串。
+        /// </summary>
+        public static string CalculationError {
+            get {
+                return ResourceManager.GetString("CalculationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Cancel 的本地化字符串。
         /// </summary>
         public static string Cancel {
@@ -88,11 +160,56 @@ namespace MMR.Lang {
         }
         
         /// <summary>
+        ///   查找类似 Cancelled 的本地化字符串。
+        /// </summary>
+        public static string Cancelled {
+            get {
+                return ResourceManager.GetString("Cancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Completed 的本地化字符串。
+        /// </summary>
+        public static string Completed {
+            get {
+                return ResourceManager.GetString("Completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Contact 的本地化字符串。
+        /// </summary>
+        public static string Contact {
+            get {
+                return ResourceManager.GetString("Contact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Invalid email format 的本地化字符串。
         /// </summary>
         public static string ContactEmailInvalid {
             get {
                 return ResourceManager.GetString("ContactEmailInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Contact Information 的本地化字符串。
+        /// </summary>
+        public static string ContactInfo {
+            get {
+                return ResourceManager.GetString("ContactInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Contact List 的本地化字符串。
+        /// </summary>
+        public static string ContactList {
+            get {
+                return ResourceManager.GetString("ContactList", resourceCulture);
             }
         }
         
@@ -124,11 +241,92 @@ namespace MMR.Lang {
         }
         
         /// <summary>
+        ///   查找类似 Contacts 的本地化字符串。
+        /// </summary>
+        public static string Contacts {
+            get {
+                return ResourceManager.GetString("Contacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Cost 的本地化字符串。
+        /// </summary>
+        public static string Cost {
+            get {
+                return ResourceManager.GetString("Cost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 CreatedAt 的本地化字符串。
         /// </summary>
         public static string CreatedAt {
             get {
                 return ResourceManager.GetString("CreatedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Dashboard 的本地化字符串。
+        /// </summary>
+        public static string Dashboard {
+            get {
+                return ResourceManager.GetString("Dashboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Delete 的本地化字符串。
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Delete Confirm Title 的本地化字符串。
+        /// </summary>
+        public static string DeleteConfirmTitle {
+            get {
+                return ResourceManager.GetString("DeleteConfirmTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Delete Contact 的本地化字符串。
+        /// </summary>
+        public static string DeleteContact {
+            get {
+                return ResourceManager.GetString("DeleteContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 can you sure delete the expense? 的本地化字符串。
+        /// </summary>
+        public static string DeleteExpenseConfirmMessage {
+            get {
+                return ResourceManager.GetString("DeleteExpenseConfirmMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 can you sure delete the work? 的本地化字符串。
+        /// </summary>
+        public static string DeleteWorkConfirmMessage {
+            get {
+                return ResourceManager.GetString("DeleteWorkConfirmMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 can you sure delete the Contact record? 的本地化字符串。
+        /// </summary>
+        public static string DeleteWorkContactConfirmMessage {
+            get {
+                return ResourceManager.GetString("DeleteWorkContactConfirmMessage", resourceCulture);
             }
         }
         
@@ -142,6 +340,42 @@ namespace MMR.Lang {
         }
         
         /// <summary>
+        ///   查找类似 Edit Contact 的本地化字符串。
+        /// </summary>
+        public static string EditContact {
+            get {
+                return ResourceManager.GetString("EditContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Edit Work 的本地化字符串。
+        /// </summary>
+        public static string EditWork {
+            get {
+                return ResourceManager.GetString("EditWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Email 的本地化字符串。
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 End Time 的本地化字符串。
+        /// </summary>
+        public static string EndTime {
+            get {
+                return ResourceManager.GetString("EndTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Error 的本地化字符串。
         /// </summary>
         public static string Error {
@@ -151,11 +385,74 @@ namespace MMR.Lang {
         }
         
         /// <summary>
+        ///   查找类似 Expense 的本地化字符串。
+        /// </summary>
+        public static string Expense {
+            get {
+                return ResourceManager.GetString("Expense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Expenses 的本地化字符串。
+        /// </summary>
+        public static string Expenses {
+            get {
+                return ResourceManager.GetString("Expenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Filter 的本地化字符串。
+        /// </summary>
+        public static string Filter {
+            get {
+                return ResourceManager.GetString("Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 InActive 的本地化字符串。
         /// </summary>
         public static string InActive {
             get {
                 return ResourceManager.GetString("InActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Income 的本地化字符串。
+        /// </summary>
+        public static string Income {
+            get {
+                return ResourceManager.GetString("Income", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 InitializationError 的本地化字符串。
+        /// </summary>
+        public static string InitializationError {
+            get {
+                return ResourceManager.GetString("InitializationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 In Progress 的本地化字符串。
+        /// </summary>
+        public static string InProgress {
+            get {
+                return ResourceManager.GetString("InProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Load Data Error 的本地化字符串。
+        /// </summary>
+        public static string LoadError {
+            get {
+                return ResourceManager.GetString("LoadError", resourceCulture);
             }
         }
         
@@ -178,6 +475,51 @@ namespace MMR.Lang {
         }
         
         /// <summary>
+        ///   查找类似 Phone 的本地化字符串。
+        /// </summary>
+        public static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Not Started 的本地化字符串。
+        /// </summary>
+        public static string PreStart {
+            get {
+                return ResourceManager.GetString("PreStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 QQ 的本地化字符串。
+        /// </summary>
+        public static string QQ {
+            get {
+                return ResourceManager.GetString("QQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Received Amount 的本地化字符串。
+        /// </summary>
+        public static string ReceivedAmount {
+            get {
+                return ResourceManager.GetString("ReceivedAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Remark 的本地化字符串。
+        /// </summary>
+        public static string Remark {
+            get {
+                return ResourceManager.GetString("Remark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 {0} is required 的本地化字符串。
         /// </summary>
         public static string Required {
@@ -192,6 +534,60 @@ namespace MMR.Lang {
         public static string Search {
             get {
                 return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Search contacts... 的本地化字符串。
+        /// </summary>
+        public static string SearchContacts {
+            get {
+                return ResourceManager.GetString("SearchContacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Search Error 的本地化字符串。
+        /// </summary>
+        public static string SearchError {
+            get {
+                return ResourceManager.GetString("SearchError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Search tags... 的本地化字符串。
+        /// </summary>
+        public static string SearchTags {
+            get {
+                return ResourceManager.GetString("SearchTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Select Tags 的本地化字符串。
+        /// </summary>
+        public static string SelectTags {
+            get {
+                return ResourceManager.GetString("SelectTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Show 的本地化字符串。
+        /// </summary>
+        public static string Show {
+            get {
+                return ResourceManager.GetString("Show", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Start Time 的本地化字符串。
+        /// </summary>
+        public static string StartTime {
+            get {
+                return ResourceManager.GetString("StartTime", resourceCulture);
             }
         }
         
@@ -232,6 +628,15 @@ namespace MMR.Lang {
         }
         
         /// <summary>
+        ///   查找类似 Suspended 的本地化字符串。
+        /// </summary>
+        public static string Suspended {
+            get {
+                return ResourceManager.GetString("Suspended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Tag 的本地化字符串。
         /// </summary>
         public static string Tag {
@@ -268,6 +673,15 @@ namespace MMR.Lang {
         }
         
         /// <summary>
+        ///   查找类似 Total Amount 的本地化字符串。
+        /// </summary>
+        public static string TotalAmount {
+            get {
+                return ResourceManager.GetString("TotalAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Update 的本地化字符串。
         /// </summary>
         public static string Update {
@@ -286,6 +700,33 @@ namespace MMR.Lang {
         }
         
         /// <summary>
+        ///   查找类似 Upload Avatar 的本地化字符串。
+        /// </summary>
+        public static string UploadAvatar {
+            get {
+                return ResourceManager.GetString("UploadAvatar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Wechat 的本地化字符串。
+        /// </summary>
+        public static string Wechat {
+            get {
+                return ResourceManager.GetString("Wechat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Work 的本地化字符串。
+        /// </summary>
+        public static string Work {
+            get {
+                return ResourceManager.GetString("Work", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Work amount must be greater than 0 的本地化字符串。
         /// </summary>
         public static string WorkAmountRange {
@@ -300,6 +741,78 @@ namespace MMR.Lang {
         public static string WorkAmountRequired {
             get {
                 return ResourceManager.GetString("WorkAmountRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Description 的本地化字符串。
+        /// </summary>
+        public static string WorkDescription {
+            get {
+                return ResourceManager.GetString("WorkDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Work Details 的本地化字符串。
+        /// </summary>
+        public static string WorkDetails {
+            get {
+                return ResourceManager.GetString("WorkDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Work End Date 的本地化字符串。
+        /// </summary>
+        public static string WorkEndDate {
+            get {
+                return ResourceManager.GetString("WorkEndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Work List 的本地化字符串。
+        /// </summary>
+        public static string WorkList {
+            get {
+                return ResourceManager.GetString("WorkList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Name 的本地化字符串。
+        /// </summary>
+        public static string WorkName {
+            get {
+                return ResourceManager.GetString("WorkName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Work StartDate 的本地化字符串。
+        /// </summary>
+        public static string WorkStartDate {
+            get {
+                return ResourceManager.GetString("WorkStartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Work StartTime Required 的本地化字符串。
+        /// </summary>
+        public static string WorkStartTimeRequired {
+            get {
+                return ResourceManager.GetString("WorkStartTimeRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Status 的本地化字符串。
+        /// </summary>
+        public static string WorkStatus {
+            get {
+                return ResourceManager.GetString("WorkStatus", resourceCulture);
             }
         }
         

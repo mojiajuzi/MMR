@@ -35,7 +35,9 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        Thread.CurrentThread.CurrentCulture = new CultureInfo("zh-hans");
+        // 初始化默认语言
+        LanguageService.Instance.ChangeLanguage("zh-Hans");
+        
         switch (ApplicationLifetime)
         {
             case IClassicDesktopStyleApplicationLifetime desktop:
@@ -81,6 +83,7 @@ public partial class App : Application
     private void RegisterServices()
     {
         _services!.AddSingleton<IDialogService, DialogService>();
+        _services!.AddSingleton<LanguageService>();
         // 注册 ViewModels
         _services!.AddTransient<MainViewModel>();
         _services!.AddTransient<TagViewModel>();

@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:MMR.Converters"
+             x:Class="MMR.Components.LangToggleButton">
+    <UserControl.Resources>
+        <converters:BoolConverters x:Key="BoolConverters" />
+    </UserControl.Resources>
+    <Border Background="{DynamicResource CardBackgroundBrush}"
+            CornerRadius="4"
+            Padding="8">
+        <StackPanel Orientation="Horizontal"
+                    Spacing="8">
+            <ToggleButton x:Name="LangButton"
+                          IsCheckedChanged="OnLangButtonCheckedChanged"
+                          Classes="IconButton">
+                <Panel>
+                    <TextBlock Text="En"
+                               IsVisible="{Binding !IsChecked, ElementName=LangButton}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="12" />
+                    <TextBlock Text="中"
+                               IsVisible="{Binding IsChecked, ElementName=LangButton}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="12" />
+                </Panel>
+            </ToggleButton>
+            <TextBlock
+                Text="{Binding IsChecked, ElementName=LangButton, 
+                     Converter={StaticResource BoolConverters}, 
+                     ConverterParameter=中文, FallbackValue=English}"
+                VerticalAlignment="Center" />
+        </StackPanel>
+    </Border>
+</UserControl>

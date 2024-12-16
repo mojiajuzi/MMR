@@ -7,6 +7,7 @@
         <entry key="MMR/Assets/Nord.axaml" value="MMR.Browser/MMR.Browser.csproj" />
         <entry key="MMR/Assets/NordStyle.axaml" value="MMR.Browser/MMR.Browser.csproj" />
         <entry key="MMR/Components/Dialogs/ConfirmDialog.axaml" value="MMR.Browser/MMR.Browser.csproj" />
+        <entry key="MMR/Components/LangToggleButton.axaml" value="MMR.Browser/MMR.Browser.csproj" />
         <entry key="MMR/Components/Popups/AddContact/AddContact.axaml" value="MMR.Browser/MMR.Browser.csproj" />
         <entry key="MMR/Components/Popups/AddExpenes/AddExpenes.axaml" value="MMR.Browser/MMR.Browser.csproj" />
         <entry key="MMR/Components/Popups/AddExpenes/AddExpenesView.axaml" value="MMR.Browser/MMR.Browser.csproj" />

@@ -3,12 +3,56 @@
   "WorkspaceRootPath": "D:\\code\\blazor\\MMR\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\models\\tag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\models\\tag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\views\\mainview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\views\\mainview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\views\\workview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\views\\workview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\viewmodels\\workviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\viewmodels\\workviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\views\\tagview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\views\\tagview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\models\\work.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\models\\work.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\viewmodels\\tagviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\viewmodels\\tagviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\models\\basemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\models\\basemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\models\\tag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\models\\tag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\viewmodels\\contactviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\viewmodels\\contactviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\views\\contactview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\views\\contactview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\services\\langcombservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,20 +71,12 @@
       "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\services\\dialogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\views\\tagview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\views\\tagview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\assets\\nordstyle.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
       "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\assets\\nordstyle.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\app.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\app.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|d:\\code\\blazor\\mmr\\mmr\\views\\mainview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}|MMR\\MMR.csproj|solutionrelative:mmr\\views\\mainview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,7 +86,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,20 +94,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Tag.cs",
-              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Models\\Tag.cs",
-              "RelativeDocumentMoniker": "MMR\\Models\\Tag.cs",
-              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Models\\Tag.cs",
-              "RelativeToolTip": "MMR\\Models\\Tag.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAeAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\ViewModels\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "MMR\\ViewModels\\MainViewModel.cs",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\ViewModels\\MainViewModel.cs",
+              "RelativeToolTip": "MMR\\ViewModels\\MainViewModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB0AAABRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T07:33:23.416Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-16T11:34:38.164Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
+              "Title": "WorkView.axaml",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Views\\WorkView.axaml",
+              "RelativeDocumentMoniker": "MMR\\Views\\WorkView.axaml",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Views\\WorkView.axaml",
+              "RelativeToolTip": "MMR\\Views\\WorkView.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-16T10:01:32.54Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WorkViewModel.cs",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\ViewModels\\WorkViewModel.cs",
+              "RelativeDocumentMoniker": "MMR\\ViewModels\\WorkViewModel.cs",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\ViewModels\\WorkViewModel.cs",
+              "RelativeToolTip": "MMR\\ViewModels\\WorkViewModel.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAkwHgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T09:12:56.207Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ContactViewModel.cs",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\ViewModels\\ContactViewModel.cs",
+              "RelativeDocumentMoniker": "MMR\\ViewModels\\ContactViewModel.cs",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\ViewModels\\ContactViewModel.cs",
+              "RelativeToolTip": "MMR\\ViewModels\\ContactViewModel.cs",
+              "ViewState": "AgIAAIgAAAAAAAAAAAAAAD0AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T07:57:10.985Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "DialogService.cs",
               "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Services\\DialogService.cs",
               "RelativeDocumentMoniker": "MMR\\Services\\DialogService.cs",
@@ -83,7 +153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 13,
               "Title": "LangCombService.cs",
               "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Services\\LangCombService.cs",
               "RelativeDocumentMoniker": "MMR\\Services\\LangCombService.cs",
@@ -95,30 +165,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TagViewModel.cs",
-              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\ViewModels\\TagViewModel.cs",
-              "RelativeDocumentMoniker": "MMR\\ViewModels\\TagViewModel.cs",
-              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\ViewModels\\TagViewModel.cs",
-              "RelativeToolTip": "MMR\\ViewModels\\TagViewModel.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAAACMAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T03:52:16.588Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "NordStyle.axaml",
-              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Assets\\NordStyle.axaml",
-              "RelativeDocumentMoniker": "MMR\\Assets\\NordStyle.axaml",
-              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Assets\\NordStyle.axaml",
-              "RelativeToolTip": "MMR\\Assets\\NordStyle.axaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-16T03:45:00.822Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "TagView.axaml",
               "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Views\\TagView.axaml",
               "RelativeDocumentMoniker": "MMR\\Views\\TagView.axaml",
@@ -129,7 +176,101 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainView.axaml",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Views\\MainView.axaml",
+              "RelativeDocumentMoniker": "MMR\\Views\\MainView.axaml",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Views\\MainView.axaml",
+              "RelativeToolTip": "MMR\\Views\\MainView.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-16T00:57:18.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Contact.cs",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Models\\Contact.cs",
+              "RelativeDocumentMoniker": "MMR\\Models\\Contact.cs",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Models\\Contact.cs",
+              "RelativeToolTip": "MMR\\Models\\Contact.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T07:58:37.602Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "BaseModel.cs",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Models\\BaseModel.cs",
+              "RelativeDocumentMoniker": "MMR\\Models\\BaseModel.cs",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Models\\BaseModel.cs",
+              "RelativeToolTip": "MMR\\Models\\BaseModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T08:43:57.019Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Work.cs",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Models\\Work.cs",
+              "RelativeDocumentMoniker": "MMR\\Models\\Work.cs",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Models\\Work.cs",
+              "RelativeToolTip": "MMR\\Models\\Work.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAgwDcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T09:11:00.084Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "MMR\\Data\\AppDbContext.cs",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "MMR\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAFUAAAAAAAAAAAArwGcAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T09:11:26.504Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TagViewModel.cs",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\ViewModels\\TagViewModel.cs",
+              "RelativeDocumentMoniker": "MMR\\ViewModels\\TagViewModel.cs",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\ViewModels\\TagViewModel.cs",
+              "RelativeToolTip": "MMR\\ViewModels\\TagViewModel.cs",
+              "ViewState": "AgIAAL0AAAAAAAAAAAAAANkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T03:52:16.588Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ContactView.axaml",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Views\\ContactView.axaml",
+              "RelativeDocumentMoniker": "MMR\\Views\\ContactView.axaml",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Views\\ContactView.axaml",
+              "RelativeToolTip": "MMR\\Views\\ContactView.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-16T07:59:25.201Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "NordStyle.axaml",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Assets\\NordStyle.axaml",
+              "RelativeDocumentMoniker": "MMR\\Assets\\NordStyle.axaml",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Assets\\NordStyle.axaml",
+              "RelativeToolTip": "MMR\\Assets\\NordStyle.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-16T03:45:00.822Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "App.axaml.cs",
               "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\App.axaml.cs",
               "RelativeDocumentMoniker": "MMR\\App.axaml.cs",
@@ -142,21 +283,18 @@
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "MainView.axaml",
-              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Views\\MainView.axaml",
-              "RelativeDocumentMoniker": "MMR\\Views\\MainView.axaml",
-              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Views\\MainView.axaml",
-              "RelativeToolTip": "MMR\\Views\\MainView.axaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-16T00:57:18.084Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+              "Title": "Tag.cs",
+              "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Models\\Tag.cs",
+              "RelativeDocumentMoniker": "MMR\\Models\\Tag.cs",
+              "ToolTip": "D:\\code\\blazor\\MMR\\MMR\\Models\\Tag.cs",
+              "RelativeToolTip": "MMR\\Models\\Tag.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T07:33:23.416Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 14,
               "Title": "FilePathService.cs",
               "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Services\\FilePathService.cs",
               "RelativeDocumentMoniker": "MMR\\Services\\FilePathService.cs",
@@ -168,7 +306,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 15,
               "Title": "IDialogService.cs",
               "DocumentMoniker": "D:\\code\\blazor\\MMR\\MMR\\Services\\IDialogService.cs",
               "RelativeDocumentMoniker": "MMR\\Services\\IDialogService.cs",
@@ -177,6 +315,10 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-16T07:14:00.901Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
             }
           ]
         }

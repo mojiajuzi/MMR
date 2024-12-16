@@ -1,16 +1,23 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using MMR.Lang;
 
 namespace MMR.Models;
 
 public class Tag : BaseModel
 {
-    [Required(ErrorMessage = "")]
-    [MaxLength(50, ErrorMessage = "名称长度不能超过50个字符")]
-    public string Name { get; set; }
+    [Required(ErrorMessageResourceType = typeof(Resources), 
+              ErrorMessageResourceName = "TagNameRequired")]
+    [StringLength(50, MinimumLength = 2, 
+                 ErrorMessageResourceType = typeof(Resources),
+                 ErrorMessageResourceName = "TagNameLength")]
+    public string Name { get; set; } = null!;
 
-    [Required(ErrorMessage = "状态不能为空")] public bool IsActive { get; set; }
+    [Required(ErrorMessageResourceType = typeof(Resources),
+             ErrorMessageResourceName = "Required")]
+    public bool IsActive { get; set; }
 
     // 导航属性
-    public ICollection<ContactTag> ContactTags { get; set; } = new List<ContactTag>();
+    public virtual ICollection<ContactTag> ContactTags { get; set; } = new List<ContactTag>();
 }

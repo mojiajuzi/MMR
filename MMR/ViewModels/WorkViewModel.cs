@@ -12,6 +12,8 @@ using MMR.Components.Popups.AddExpense;
 using MMR.Data;
 using MMR.Models;
 using MMR.Models.Enums;
+using System.ComponentModel.DataAnnotations;
+using MMR.Services;
 
 namespace MMR.ViewModels;
 
@@ -55,42 +57,99 @@ public partial class WorkViewModel : ViewModelBase
     public WorkViewModel(AddContactViewModel addContactViewModel, AddExpenseViewModel addExpenseViewModel,
         IDialogService dialogService)
     {
-        _addContactViewModel = addContactViewModel;
-        _addExpenseViewModel = addExpenseViewModel;
-        _dialogService = dialogService;
+        try
+        {
+            _addContactViewModel = addContactViewModel ?? throw new ArgumentNullException(nameof(addContactViewModel));
+            _addExpenseViewModel = addExpenseViewModel ?? throw new ArgumentNullException(nameof(addExpenseViewModel));
+            _dialogService = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
 
-        Works = new ObservableCollection<Work>(GetWorks());
-        
-        // 创建状态列表，添加 All 选项
-        var statusList = new List<WorkStatus?> { null };  // null 代表 "All"
-        statusList.AddRange(Enum.GetValues<WorkStatus>().Cast<WorkStatus?>());
-        StatusList = new ObservableCollection<WorkStatus?>(statusList);
+            Works = new ObservableCollection<Work>(GetWorks());
 
-        // 订阅事件
-        _addContactViewModel.ContactAdded += OnContactAdded;
-        _addExpenseViewModel.ExpenseAdded += OnExpenseAdded;
+            // 创建状态列表，添加 All 选项
+            var statusList = new List<WorkStatus?> { null };  // null 代表 "All"
+            statusList.AddRange(Enum.GetValues<WorkStatus>().Cast<WorkStatus?>());
+            StatusList = new ObservableCollection<WorkStatus?>(statusList);
+
+            // 订阅事件
+            _addContactViewModel.ContactAdded += OnContactAdded;
+            _addExpenseViewModel.ExpenseAdded += OnExpenseAdded;
+
+            // 初始化其他属性
+            ErrorMessage = string.Empty;
+            HasErrors = false;
+        }
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, Lang.Resources.InitializationError, NotificationType.Error);
+            System.Diagnostics.Debug.WriteLine($"WorkViewModel initialization error: {ex}");
+        }
+    }
+
+    ~WorkViewModel()
+    {
+        try
+        {
+            if (_addContactViewModel != null)
+            {
+                _addContactViewModel.ContactAdded -= OnContactAdded;
+            }
+            if (_addExpenseViewModel != null)
+            {
+                _addExpenseViewModel.ExpenseAdded -= OnExpenseAdded;
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"WorkViewModel cleanup error: {ex}");
+        }
     }
 
     private List<Work> GetWorks()
     {
-        var list = DbHelper.Db.Works.Include(w => w.Expenses).AsNoTracking().ToList();
-        return list;
+        try
+        {
+            return DbHelper.Db.Works
+                .Include(w => w.Expenses)
+                .AsNoTracking()
+                .OrderByDescending(w => w.UpdatedAt)
+                .ToList();
+        }
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, Lang.Resources.LoadError, NotificationType.Error);
+            return new List<Work>();
+        }
     }
 
     partial void OnSelectedStatusChanged(WorkStatus? value)
     {
-        if (value == null)
+        try
         {
-            Works = new ObservableCollection<Work>(GetWorks());
-            return;
+            IQueryable<Work> query = DbHelper.Db.Works.AsNoTracking();
+
+            // 应用状态筛选
+            if (value.HasValue)
+            {
+                query = query.Where(w => w.Status == value);
+            }
+
+            // 应用搜索条件（如果有）
+            if (!string.IsNullOrWhiteSpace(SearchText))
+            {
+                var searchTerm = SearchText.Trim().ToLower();
+                query = query.Where(w => w.Name.ToLower().Contains(searchTerm) ||
+                                       (w.Description != null && w.Description.ToLower().Contains(searchTerm)));
+            }
+
+            // 排序并获取结果
+            var filtered = query.OrderByDescending(w => w.UpdatedAt).ToList();
+            Works = new ObservableCollection<Work>(filtered);
         }
-
-        var filtered = DbHelper.Db.Works
-            .AsNoTracking()
-            .Where(w => w.Status == value)
-            .ToList();
-
-        Works = new ObservableCollection<Work>(filtered);
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, Lang.Resources.LoadError, NotificationType.Error);
+            System.Diagnostics.Debug.WriteLine($"Status filter error: {ex}");
+        }
     }
 
     partial void OnSearchTextChanged(string value)
@@ -101,30 +160,86 @@ public partial class WorkViewModel : ViewModelBase
             return;
         }
 
-        var filtered = DbHelper.Db.Works
-            .AsNoTracking()
-            .Where(w => w.Name.Contains(value) ||
-                        w.Description.Contains(value))
-            .ToList();
+        try
+        {
+            var searchTerm = value.Trim().ToLower();
+            var filtered = DbHelper.Db.Works
+                .AsNoTracking()
+                .Where(w => w.Name.ToLower().Contains(searchTerm) ||
+                           (w.Description != null && w.Description.ToLower().Contains(searchTerm)) ||
+                           w.TotalMoney.ToString().Contains(searchTerm) ||
+                           w.Status.ToString().ToLower().Contains(searchTerm))
+                .OrderByDescending(w => w.UpdatedAt)
+                .ToList();
 
-        Works = new ObservableCollection<Work>(filtered);
+            Works = new ObservableCollection<Work>(filtered);
+        }
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, Lang.Resources.SearchError, NotificationType.Error);
+            System.Diagnostics.Debug.WriteLine($"Search error: {ex}");
+        }
     }
 
     [RelayCommand]
     private void OpenWorkPopup()
     {
-        WorkData = new Work
+        try
         {
-            Status = WorkStatus.PreStart // 设置默认状态
-        };
-        IsWorkPopupOpen = true;
+            WorkData = new Work
+            {
+                Status = WorkStatus.PreStart,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            };
+            IsWorkPopupOpen = true;
+        }
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, ex.Message, NotificationType.Error);
+        }
     }
 
     [RelayCommand]
     private void CloseWorkPopup()
     {
-        WorkData = new Work();
-        IsWorkPopupOpen = false;
+        try
+        {
+            WorkData = new Work();
+            IsWorkPopupOpen = false;
+            ClearErrors(); // 清除可能存在的错误信息
+        }
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, ex.Message, NotificationType.Error);
+        }
+    }
+
+    private bool ValidateWork()
+    {
+        ClearErrors();
+
+        // 使用 DataAnnotations 进行验证
+        var validationContext = new ValidationContext(WorkData);
+        var validationResults = new List<ValidationResult>();
+        var isValid = Validator.TryValidateObject(WorkData, validationContext, validationResults, true);
+
+        if (!isValid)
+        {
+            HasErrors = true;
+            ErrorMessage = validationResults.First().ErrorMessage ?? string.Empty;
+            return false;
+        }
+
+        // 验证必填日期（因为 DateTimeOffset 需要特殊处理）
+        if (SelectedStartAt == null)
+        {
+            HasErrors = true;
+            ErrorMessage = Lang.Resources.WorkStartTimeRequired;
+            return false;
+        }
+
+        return true;
     }
 
     [RelayCommand]
@@ -132,26 +247,13 @@ public partial class WorkViewModel : ViewModelBase
     {
         try
         {
-            HasErrors = false;
-            ErrorMessage = string.Empty;
-
-            // 数据验证
-            if (string.IsNullOrWhiteSpace(WorkData.Name))
+            if (!ValidateWork())
             {
-                HasErrors = true;
-                ErrorMessage = "名称不能为空";
-                return;
-            }
-
-            if (SelectedStartAt == null)
-            {
-                HasErrors = true;
-                ErrorMessage = "开始时间不能为空";
                 return;
             }
 
             // 设置时间
-            WorkData.StartAt = SelectedStartAt.Value.DateTime;
+            WorkData.StartAt = SelectedStartAt!.Value.DateTime;
             WorkData.EndAt = SelectedEndAt?.DateTime;
 
             // 设置创建和更新时间
@@ -169,26 +271,46 @@ public partial class WorkViewModel : ViewModelBase
 
             await DbHelper.Db.SaveChangesAsync();
 
-            ShowNotification("success", "Success", NotificationType.Success);
+            ShowNotification(Lang.Resources.Success, 
+                           LangCombService.Succerss(Lang.Resources.Work, WorkData.Name, WorkData.Id > 0), 
+                           NotificationType.Success);
+
             // 关闭弹窗并重置数据
             IsWorkPopupOpen = false;
             WorkData = new Work();
             SelectedStartAt = null;
             SelectedEndAt = null;
 
-            //更新works
+            // 更新works
             Works = new ObservableCollection<Work>(GetWorks());
         }
         catch (Exception ex)
         {
-            HasErrors = true;
-            ErrorMessage = $"保存失败：{ex.Message}";
+            AddError(string.Empty, ex.Message);
         }
+    }
+
+    private void AddError(string propertyName, string errorMessage)
+    {
+        HasErrors = true;
+        ErrorMessage = errorMessage;
+    }
+
+    private void ClearErrors()
+    {
+        HasErrors = false;
+        ErrorMessage = string.Empty;
     }
 
     [RelayCommand]
     public void ShowPopupToWorkUpdate(Work work)
     {
+        if (work == null)
+        {
+            ShowNotification(Lang.Resources.Error, Lang.Resources.LoadError, NotificationType.Error);
+            return;
+        }
+
         WorkData = work;
         SelectedStartAt = work.StartAt;
         SelectedEndAt = work.EndAt;
@@ -199,10 +321,10 @@ public partial class WorkViewModel : ViewModelBase
     private async Task DeleteWork(Work work)
     {
         var result = await _dialogService.ShowConfirmAsync(
-            "删除确认",
-            "确定要删除这个工作项目吗？这将同时删除所有相关的联系人和支出记录。",
-            "删除",
-            "取消"
+            Lang.Resources.DeleteConfirmTitle,
+            Lang.Resources.DeleteWorkConfirmMessage,
+            Lang.Resources.Delete,
+            Lang.Resources.Cancel
         );
 
         if (!result) return;
@@ -234,61 +356,93 @@ public partial class WorkViewModel : ViewModelBase
                 // 刷新工作列表
                 Works = new ObservableCollection<Work>(GetWorks());
 
-                ShowNotification("Success", "工作项目删除成功", NotificationType.Success);
+                var msg = LangCombService.Succerss(Lang.Resources.Work, work.Name, true);
+                ShowNotification(Lang.Resources.Success, msg, NotificationType.Success);
+            }
+            else
+            {
+                ShowNotification(Lang.Resources.Error, Lang.Resources.LoadError, NotificationType.Error);
             }
         }
         catch (Exception ex)
         {
-            ShowNotification("Error", $"删除失败：{ex.Message}", NotificationType.Error);
+            ShowNotification(Lang.Resources.Error, ex.Message, NotificationType.Error);
         }
     }
 
     [RelayCommand]
     private void OpenDetailsPane(Work work)
     {
-        // 如果已经打开且是同一个work，则关闭
-        if (IsDetailsPaneOpen && WorkDetails?.Id == work.Id)
+        try
         {
-            IsDetailsPaneOpen = false;
-            WorkDetails = null;
-            return;
+            // 如果已经打开且是同一个work，则关闭
+            if (IsDetailsPaneOpen && WorkDetails?.Id == work.Id)
+            {
+                IsDetailsPaneOpen = false;
+                WorkDetails = null;
+                UpdateWorkCalculations(); // 清除计算结果
+                return;
+            }
+
+            // 获取详细数据
+            var detail = DbHelper.Db.Works.AsNoTracking()
+                .Include(w => w.Expenses)
+                .ThenInclude(e => e.Contact)
+                .Include(w => w.WorkContacts)
+                .ThenInclude(wc => wc.Contact)
+                .FirstOrDefault(w => w.Id == work.Id);
+
+            if (detail != null)
+            {
+                WorkDetails = detail;
+                UpdateWorkCalculations();
+                IsDetailsPaneOpen = true;
+            }
+            else
+            {
+                ShowNotification(Lang.Resources.Error, Lang.Resources.LoadError, NotificationType.Error);
+            }
         }
-
-        // 获取详细数据
-        var detail = DbHelper.Db.Works.AsNoTracking()
-            .Include(w => w.Expenses)
-            .ThenInclude(c => c.Contact)
-            .Include(w => w.WorkContacts)
-            .ThenInclude(wc => wc.Contact)
-            .FirstOrDefault(w => w.Id == work.Id);
-
-        if (detail == null) return;
-
-        // 更新数据和状态
-        WorkDetails = detail;
-        IsDetailsPaneOpen = true;
-
-        UpdateWorkCalculations();
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, ex.Message, NotificationType.Error);
+        }
     }
 
     [RelayCommand]
     private void CloseDetailsPane()
     {
-        IsDetailsPaneOpen = false;
-        WorkDetails = null;
+        try
+        {
+            IsDetailsPaneOpen = false;
+            WorkDetails = null;
+            UpdateWorkCalculations(); // 清除计算结果
+        }
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, ex.Message, NotificationType.Error);
+        }
     }
 
     [RelayCommand]
     private void AddContact()
     {
-        IsExpensePopupOpen = false;
-        if (WorkDetails == null)
+        try
         {
-            return;
-        }
+            IsExpensePopupOpen = false;
+            if (WorkDetails == null)
+            {
+                ShowNotification(Lang.Resources.Error, Lang.Resources.LoadError, NotificationType.Error);
+                return;
+            }
 
-        _addContactViewModel.Open(WorkDetails);
-        IsContactPopupOpen = true;
+            _addContactViewModel.Open(WorkDetails);
+            IsContactPopupOpen = true;
+        }
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, ex.Message, NotificationType.Error);
+        }
     }
 
     private void OnContactAdded(object sender, WorkContactEventArgs e)
@@ -296,28 +450,23 @@ public partial class WorkViewModel : ViewModelBase
         if (e.WorkContact == null)
         {
             IsContactPopupOpen = false;
-            return; // 用户取消
+            return;
         }
 
         if (e.IsEdit)
         {
             IsContactPopupOpen = false;
+            var msg = LangCombService.Succerss(Lang.Resources.Contact, e.WorkContact.Contact.Name, true);
+            ShowNotification(Lang.Resources.Success, msg, NotificationType.Success);
+        }
+        else
+        {
+            var msg = LangCombService.Succerss(Lang.Resources.Contact, e.WorkContact.Contact.Name, false);
+            ShowNotification(Lang.Resources.Success, msg, NotificationType.Success);
         }
 
         // 刷新当前工作详情
-        var detail = DbHelper.Db.Works.AsNoTracking()
-            .Include(w => w.Expenses)
-            .ThenInclude(e => e.Contact)
-            .Include(w => w.WorkContacts)
-            .ThenInclude(wc => wc.Contact)
-            .FirstOrDefault(w => w.Id == WorkDetails.Id);
-
-        if (detail != null)
-        {
-            WorkDetails = detail;
-        }
-
-        UpdateWorkCalculations();
+        RefreshWorkDetails();
     }
 
     private void OnExpenseAdded(object? sender, ExpenseEventArgs e)
@@ -325,45 +474,94 @@ public partial class WorkViewModel : ViewModelBase
         if (e.Expense == null)
         {
             IsExpensePopupOpen = false;
-            return; // 用户取消
+            return;
         }
 
         if (e.IsEdit)
         {
             IsExpensePopupOpen = false;
+            var msg = LangCombService.Succerss(Lang.Resources.Expense, e.Expense.Notes, true);
+            ShowNotification(Lang.Resources.Success, msg, NotificationType.Success);
+        }
+        else
+        {
+            var msg = LangCombService.Succerss(Lang.Resources.Expense, e.Expense.Notes, false);
+            ShowNotification(Lang.Resources.Success, msg, NotificationType.Success);
         }
 
         // 刷新当前工作详情
-        var detail = DbHelper.Db.Works.AsNoTracking()
-            .Include(w => w.Expenses)
-            .ThenInclude(e => e.Contact)
-            .Include(w => w.WorkContacts)
-            .ThenInclude(wc => wc.Contact)
-            .FirstOrDefault(w => w.Id == WorkDetails.Id);
+        RefreshWorkDetails();
+    }
 
-        if (detail != null)
+    // 提取重复的刷新逻辑为单独的方法
+    private void RefreshWorkDetails()
+    {
+        try
         {
-            WorkDetails = detail;
-        }
+            if (WorkDetails == null) return;
 
-        UpdateWorkCalculations();
+            var detail = DbHelper.Db.Works.AsNoTracking()
+                .Include(w => w.Expenses)
+                .ThenInclude(e => e.Contact)
+                .Include(w => w.WorkContacts)
+                .ThenInclude(wc => wc.Contact)
+                .FirstOrDefault(w => w.Id == WorkDetails.Id);
+
+            if (detail != null)
+            {
+                WorkDetails = detail;
+                UpdateWorkCalculations();
+            }
+            else
+            {
+                ShowNotification(Lang.Resources.Error, Lang.Resources.LoadError, NotificationType.Error);
+            }
+        }
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, ex.Message, NotificationType.Error);
+        }
     }
 
     [RelayCommand]
     private void AddExpense()
     {
-        IsContactPopupOpen = false;
-        if (WorkDetails == null) return;
-        _addExpenseViewModel.Open(WorkDetails);
-        IsExpensePopupOpen = true;
+        try
+        {
+            IsContactPopupOpen = false;
+            if (WorkDetails == null)
+            {
+                ShowNotification(Lang.Resources.Error, Lang.Resources.LoadError, NotificationType.Error);
+                return;
+            }
+
+            _addExpenseViewModel.Open(WorkDetails);
+            IsExpensePopupOpen = true;
+        }
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, ex.Message, NotificationType.Error);
+        }
     }
 
     [RelayCommand]
     private void EditExpense(Expense expense)
     {
-        if (WorkDetails == null) return;
-        _addExpenseViewModel.OpenForEdit(WorkDetails, expense);
-        IsExpensePopupOpen = true;
+        try
+        {
+            if (WorkDetails == null)
+            {
+                ShowNotification(Lang.Resources.Error, Lang.Resources.LoadError, NotificationType.Error);
+                return;
+            }
+
+            _addExpenseViewModel.OpenForEdit(WorkDetails, expense);
+            IsExpensePopupOpen = true;
+        }
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, ex.Message, NotificationType.Error);
+        }
     }
 
     [RelayCommand]
@@ -372,46 +570,66 @@ public partial class WorkViewModel : ViewModelBase
         if (WorkDetails == null) return;
 
         var result = await _dialogService.ShowConfirmAsync(
-            "删除确认",
-            "确定要删除这条支出记录吗？",
-            "删除",
-            "取消"
+            Lang.Resources.DeleteConfirmTitle,
+            Lang.Resources.DeleteExpenseConfirmMessage,
+            Lang.Resources.Delete,
+            Lang.Resources.Cancel
         );
 
         if (!result) return;
 
-        // 先从数据库获取要删除的实体
-        var expenseToDelete = await DbHelper.Db.Expenses
-            .FirstOrDefaultAsync(e => e.Id == expense.Id);
-
-        if (expenseToDelete != null)
+        try
         {
-            DbHelper.Db.Expenses.Remove(expenseToDelete);
-            await DbHelper.Db.SaveChangesAsync();
+            var expenseToDelete = await DbHelper.Db.Expenses
+                .FirstOrDefaultAsync(e => e.Id == expense.Id);
 
-            // 刷新详情
-            var detail = await DbHelper.Db.Works.AsNoTracking()
-                .Include(w => w.Expenses)
-                .ThenInclude(e => e.Contact)
-                .Include(w => w.WorkContacts)
-                .ThenInclude(wc => wc.Contact)
-                .FirstOrDefaultAsync(w => w.Id == WorkDetails.Id);
-
-            if (detail != null)
+            if (expenseToDelete != null)
             {
-                WorkDetails = detail;
-            }
+                DbHelper.Db.Expenses.Remove(expenseToDelete);
+                await DbHelper.Db.SaveChangesAsync();
 
-            UpdateWorkCalculations();
+                // 刷新详情
+                var detail = await DbHelper.Db.Works.AsNoTracking()
+                    .Include(w => w.Expenses)
+                    .ThenInclude(e => e.Contact)
+                    .Include(w => w.WorkContacts)
+                    .ThenInclude(wc => wc.Contact)
+                    .FirstOrDefaultAsync(w => w.Id == WorkDetails.Id);
+
+                if (detail != null)
+                {
+                    WorkDetails = detail;
+                    var msg = LangCombService.Succerss(Lang.Resources.Expense, expense.Notes, true);
+                    ShowNotification(Lang.Resources.Success, msg, NotificationType.Success);
+                }
+
+                UpdateWorkCalculations();
+            }
+        }
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, ex.Message, NotificationType.Error);
         }
     }
 
     [RelayCommand]
     private void EditWorkContact(WorkContact workContact)
     {
-        if (WorkDetails == null) return;
-        _addContactViewModel.OpenForEdit(WorkDetails, workContact);
-        IsContactPopupOpen = true;
+        try
+        {
+            if (WorkDetails == null)
+            {
+                ShowNotification(Lang.Resources.Error, Lang.Resources.LoadError, NotificationType.Error);
+                return;
+            }
+
+            _addContactViewModel.OpenForEdit(WorkDetails, workContact);
+            IsContactPopupOpen = true;
+        }
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, ex.Message, NotificationType.Error);
+        }
     }
 
     [RelayCommand]
@@ -420,45 +638,67 @@ public partial class WorkViewModel : ViewModelBase
         if (WorkDetails == null) return;
 
         var result = await _dialogService.ShowConfirmAsync(
-            "删除确认",
-            "确定要删除这个联系人吗？",
-            "删除",
-            "取消"
+            Lang.Resources.DeleteConfirmTitle,
+            Lang.Resources.DeleteWorkContactConfirmMessage,
+            Lang.Resources.Delete,
+            Lang.Resources.Cancel
         );
 
         if (!result) return;
 
-        // 先从数据库获取要删除的实体
-        var contactToDelete = await DbHelper.Db.WorkContacts
-            .FirstOrDefaultAsync(wc => wc.Id == workContact.Id);
-
-        if (contactToDelete != null)
+        try
         {
-            DbHelper.Db.WorkContacts.Remove(contactToDelete);
-            await DbHelper.Db.SaveChangesAsync();
+            var contactToDelete = await DbHelper.Db.WorkContacts
+                .FirstOrDefaultAsync(wc => wc.Id == workContact.Id);
 
-            // 刷新详情
-            var detail = await DbHelper.Db.Works.AsNoTracking()
-                .Include(w => w.Expenses)
-                .ThenInclude(e => e.Contact)
-                .Include(w => w.WorkContacts)
-                .ThenInclude(wc => wc.Contact)
-                .FirstOrDefaultAsync(w => w.Id == WorkDetails.Id);
-
-            if (detail != null)
+            if (contactToDelete != null)
             {
-                WorkDetails = detail;
-            }
+                DbHelper.Db.WorkContacts.Remove(contactToDelete);
+                await DbHelper.Db.SaveChangesAsync();
 
-            UpdateWorkCalculations();
+                // 刷新详
+                var detail = await DbHelper.Db.Works.AsNoTracking()
+                    .Include(w => w.Expenses)
+                    .ThenInclude(e => e.Contact)
+                    .Include(w => w.WorkContacts)
+                    .ThenInclude(wc => wc.Contact)
+                    .FirstOrDefaultAsync(w => w.Id == WorkDetails.Id);
+
+                if (detail != null)
+                {
+                    WorkDetails = detail;
+                    var msg = LangCombService.Succerss(Lang.Resources.Contact, workContact.Contact.Name, true);
+                    ShowNotification(Lang.Resources.Success, msg, NotificationType.Success);
+                }
+
+                UpdateWorkCalculations();
+            }
+        }
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, ex.Message, NotificationType.Error);
         }
     }
 
     private void UpdateWorkCalculations()
     {
-        if (WorkDetails?.Expenses == null) return;
+        try
+        {
+            if (WorkDetails?.Expenses == null)
+            {
+                ReceivingPayment = 0;
+                Cost = 0;
+                return;
+            }
 
-        ReceivingPayment = WorkDetails.Expenses.Where(e => e.Income).Sum(e => e.Amount);
-        Cost = WorkDetails.Expenses.Where(e => !e.Income).Sum(e => e.Amount);
+            ReceivingPayment = WorkDetails.Expenses.Where(e => e.Income).Sum(e => e.Amount);
+            Cost = WorkDetails.Expenses.Where(e => !e.Income).Sum(e => e.Amount);
+        }
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, Lang.Resources.CalculationError, NotificationType.Error);
+            ReceivingPayment = 0;
+            Cost = 0;
+        }
     }
 }

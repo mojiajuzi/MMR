@@ -1,36 +1,59 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using MMR.Lang;
 
 namespace MMR.Models;
 
 public class Contact : BaseModel
 {
-    [Required(ErrorMessage = "姓名不能为空")]
-    [MaxLength(50, ErrorMessage = "姓名长度不能超过50个字符")]
+    [Required(ErrorMessageResourceType = typeof(Resources), 
+              ErrorMessageResourceName = "ContactNameRequired")]
+    [StringLength(50, MinimumLength = 2, 
+                 ErrorMessageResourceType = typeof(Resources),
+                 ErrorMessageResourceName = "ContactNameLength")]
     public string Name { get; set; } = null!;
 
-    [EmailAddress(ErrorMessage = "邮箱格式不正确")]
-    [MaxLength(100, ErrorMessage = "邮箱长度不能超过100个字符")]
+    [EmailAddress(ErrorMessageResourceType = typeof(Resources),
+                 ErrorMessageResourceName = "ContactEmailInvalid")]
+    [StringLength(100, 
+                 ErrorMessageResourceType = typeof(Resources),
+                 ErrorMessageResourceName = "StringLength")]
     public string? Email { get; set; }
 
-    [Phone(ErrorMessage = "电话号码格式不正确")]
-    [MaxLength(20, ErrorMessage = "电话号码长度不能超过20个字符")]
+    [RegularExpression(@"^\d{11}$", 
+                      ErrorMessageResourceType = typeof(Resources),
+                      ErrorMessageResourceName = "ContactPhoneInvalid")]
+    [StringLength(20, 
+                 ErrorMessageResourceType = typeof(Resources),
+                 ErrorMessageResourceName = "StringLength")]
     public string? Phone { get; set; }
 
-    [MaxLength(50, ErrorMessage = "微信号长度不能超过50个字符")]
+    [StringLength(50, 
+                 ErrorMessageResourceType = typeof(Resources),
+                 ErrorMessageResourceName = "StringLength")]
     public string? Wechat { get; set; }
 
-    [MaxLength(20, ErrorMessage = "QQ号长度不能超过20个字符")]
-    [RegularExpression(@"^\d{5,11}$", ErrorMessage = "QQ号格式不正确")]
+    [StringLength(20, 
+                 ErrorMessageResourceType = typeof(Resources),
+                 ErrorMessageResourceName = "StringLength")]
+    [RegularExpression(@"^\d{5,11}$", 
+                      ErrorMessageResourceType = typeof(Resources),
+                      ErrorMessageResourceName = "QQInvalid")]
     public string? QQ { get; set; }
 
-    [MaxLength(500, ErrorMessage = "备注长度不能超过500个字符")]
+    [StringLength(500, 
+                 ErrorMessageResourceType = typeof(Resources),
+                 ErrorMessageResourceName = "StringLength")]
     public string? Remark { get; set; }
 
-    [Required(ErrorMessage = "状态不能为空")] public bool IsActive { get; set; }
+    [Required(ErrorMessageResourceType = typeof(Resources),
+             ErrorMessageResourceName = "Required")]
+    public bool IsActive { get; set; }
 
-    [MaxLength(500, ErrorMessage = "头像路径长度不能超过500个字符")]
+    [StringLength(500, 
+                 ErrorMessageResourceType = typeof(Resources),
+                 ErrorMessageResourceName = "StringLength")]
     public string? Avatar { get; set; }
 
     // 导航属性

@@ -9,6 +9,7 @@
              xmlns:components="clr-namespace:MMR.Components"
              xmlns:addContact="clr-namespace:MMR.Components.Popups.AddContact"
              xmlns:addExpense="clr-namespace:MMR.Components.Popups.AddExpense"
+             xmlns:loc="clr-namespace:MMR.Lang"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MMR.Views.WorkView"
              x:DataType="vm:WorkViewModel">
@@ -282,7 +283,7 @@
                                     Command="{Binding OpenWorkPopupCommand}">
                                 <StackPanel Orientation="Horizontal" Spacing="8">
                                     <i:Icon Value="fa-solid fa-plus" />
-                                    <TextBlock Text="Add" />
+                                    <TextBlock Text="{x:Static loc:Resources.Add}" />
                                 </StackPanel>
                             </Button>
 
@@ -297,7 +298,7 @@
                                     </Border>
                                     <TextBox Grid.Column="1"
                                              Classes="search-input"
-                                             Watermark="Search works..."
+                                             Watermark="{x:Static loc:Resources.Search}"
                                              Text="{Binding SearchText}" />
                                 </Grid>
                             </Border>
@@ -340,7 +341,7 @@
                                                     <TextBlock Text="{Binding Name}" />
                                                 </StackPanel>
                                                 <StackPanel Classes="icon">
-                                                    <Label Content="Status"></Label>
+                                                    <Label Content="{x:Static loc:Resources.WorkStatus}"></Label>
                                                     <TextBlock Text="{Binding Status}" Classes="label" />
                                                 </StackPanel>
                                             </StackPanel>
@@ -348,15 +349,15 @@
                                             <StackPanel Orientation="Horizontal" Spacing="16">
                                                 <StackPanel Classes="icon" Orientation="Vertical">
                                                     <TextBlock Text="{Binding TotalMoney}" />
-                                                    <TextBlock Text="Total" Classes="label" />
+                                                    <TextBlock Text="{x:Static loc:Resources.TotalAmount}" Classes="label" />
                                                 </StackPanel>
                                                 <StackPanel Classes="icon" Orientation="Vertical">
                                                     <TextBlock Text="{Binding ReceivingPayment}" />
-                                                    <TextBlock Text="Received" Classes="label" />
+                                                    <TextBlock Text="{x:Static loc:Resources.ReceivedAmount}" Classes="label" />
                                                 </StackPanel>
                                                 <StackPanel Classes="icon" Orientation="Vertical">
                                                     <TextBlock Text="{Binding Cost}" />
-                                                    <TextBlock Text="Cost" Classes="label" />
+                                                    <TextBlock Text="{x:Static loc:Resources.Cost}" Classes="label" />
                                                 </StackPanel>
                                             </StackPanel>
 
@@ -364,7 +365,7 @@
                                                 <Grid ColumnDefinitions="Auto,*,Auto">
                                                     <StackPanel Classes="icon">
                                                         <i:Icon Value="fa-solid fa-calendar-days" />
-                                                        <TextBlock Text="Start" Classes="label" />
+                                                        <TextBlock Text="{x:Static loc:Resources.WorkStartDate}" Classes="label" />
                                                         <TextBlock
                                                             Text="{Binding StartAt, StringFormat='{}{0:yyyy-MM-dd}'}" />
                                                     </StackPanel>
@@ -373,7 +374,7 @@
                                                     <StackPanel Classes="icon" HorizontalAlignment="Right"
                                                                 VerticalAlignment="Stretch">
                                                         <i:Icon Value="fa-solid fa-calendar-check" />
-                                                        <TextBlock Text="End" Classes="label" />
+                                                        <TextBlock Text="{x:Static loc:Resources.WorkEndDate}" Classes="label" />
                                                         <TextBlock
                                                             Text="{Binding EndAt, StringFormat='{}{0:yyyy-MM-dd}'}" />
                                                     </StackPanel>
@@ -387,7 +388,7 @@
                                                         CommandParameter="{Binding .}">
                                                     <StackPanel Orientation="Horizontal">
                                                         <i:Icon Value="fa-solid fa-eye"></i:Icon>
-                                                        <TextBlock Text="Show" />
+                                                        <TextBlock Text="{x:Static loc:Resources.Show}" />
                                                     </StackPanel>
                                                 </Button>
                                                 <Button Classes="Action Update"
@@ -395,7 +396,7 @@
                                                         CommandParameter="{Binding .}">
                                                     <StackPanel Orientation="Horizontal">
                                                         <i:Icon Value="fa-solid fa-edit"></i:Icon>
-                                                        <TextBlock Text="Edit" />
+                                                        <TextBlock Text="{x:Static loc:Resources.Edit}" />
                                                     </StackPanel>
                                                 </Button>
 
@@ -404,7 +405,7 @@
                                                         CommandParameter="{Binding .}">
                                                     <StackPanel Orientation="Horizontal">
                                                         <i:Icon Value="fa-solid fa-trash"></i:Icon>
-                                                        <TextBlock Text="Delete" />
+                                                        <TextBlock Text="{x:Static loc:Resources.Delete}" />
                                                     </StackPanel>
                                                 </Button>
                                             </StackPanel>
@@ -426,36 +427,34 @@
                                 <TextBlock Classes="ShowError"
                                            IsVisible="{Binding HasErrors}"
                                            Text="{Binding ErrorMessage}" />
-                                <TextBlock Text="WorkName"></TextBlock>
-                                <TextBox Name="Name" Watermark="input work name" Text="{Binding WorkData.Name}"></TextBox>
-                                <TextBlock Text="WorkDescription"></TextBlock>
+                                <TextBlock Text="{x:Static loc:Resources.WorkName}"></TextBlock>
+                                <TextBox Name="Name" Text="{Binding WorkData.Name}"></TextBox>
+                                <TextBlock Text="{x:Static loc:Resources.WorkDescription}"></TextBlock>
                                 <TextBox Name="Description"
-                                         Watermark="input description:use the enter change line"
                                          Text="{Binding WorkData.Description}"
                                          AcceptsReturn="True"
                                          TextWrapping="Wrap">
                                 </TextBox>
                                 <TextBlock Text="WorkMoney"></TextBlock>
-                                <TextBox Name="TotalMoney"
-                                         Text="{Binding WorkData.TotalMoney}"
-                                         Watermark="please input Total Money">
+                                <TextBox Name="{x:Static loc:Resources.TotalAmount}"
+                                         Text="{Binding WorkData.TotalMoney}">
                                 </TextBox>
                                 <StackPanel>
-                                    <TextBlock Text="Start Date"></TextBlock>
+                                    <TextBlock Text="{x:Static loc:Resources.StartTime}"></TextBlock>
                                     <DatePicker
                                         DayFormat="ddd dd"
                                         SelectedDate="{Binding SelectedStartAt}">
                                     </DatePicker>
                                 </StackPanel>
                                 <StackPanel>
-                                    <TextBlock Text="End Date"></TextBlock>
+                                    <TextBlock Text="{x:Static loc:Resources.EndTime}"></TextBlock>
                                     <DatePicker
                                         DayFormat="ddd dd"
                                         SelectedDate="{Binding SelectedEndAt}">
                                     </DatePicker>
                                 </StackPanel>
                                 <StackPanel>
-                                    <TextBlock Text="Status"></TextBlock>
+                                    <TextBlock Text="{x:Static loc:Resources.WorkStatus}"></TextBlock>
                                     <ComboBox
                                         HorizontalAlignment="Stretch"
                                         SelectedItem="{Binding WorkData.Status}"
@@ -471,12 +470,12 @@
                                     <Button
                                         Classes="Cancel"
                                         Command="{Binding CloseWorkPopupCommand}"
-                                        Content="Cancel" />
+                                        Content="{x:Static loc:Resources.Cancel}" />
                                     <Button
                                         Classes="Update"
                                         HorizontalAlignment="Right"
                                         Command="{Binding SubmitWorkCommand}"
-                                        Content="Submit" />
+                                        Content="{x:Static loc:Resources.Submit}" />
                                 </UniformGrid>
                             </StackPanel>
                         </Border>
