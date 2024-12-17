@@ -20,11 +20,14 @@ public partial class ContactWorkViewModel : ViewModelBase
 
     public void GetWorks(int contactId)
     {
-        var contactWorks = DbHelper.Db.WorkContacts.AsNoTracking().Where(wt => wt.ContactId == contactId)
-            .Include(wt => wt.Work).ToList();
-        if (contactWorks.Any())
+        var cList = DbHelper.Db.WorkContacts
+            .AsNoTracking()
+            .Where(wt => wt.ContactId == contactId)
+            .Include(wt => wt.Work)
+            .ToList().OrderByDescending(ct => ct.UpdatedAt);
+        if (cList.Any())
         {
-            WorkContacts = new ObservableCollection<WorkContact>(contactWorks);
+            WorkContacts = new ObservableCollection<WorkContact>(cList);
         }
     }
 }
