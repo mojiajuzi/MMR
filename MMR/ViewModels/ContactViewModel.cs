@@ -9,6 +9,7 @@ using Avalonia.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.EntityFrameworkCore;
+using MMR.Components.ContactWork;
 using MMR.Data;
 using MMR.Models;
 using MMR.Services;
@@ -35,11 +36,16 @@ public partial class ContactViewModel : ViewModelBase
 
     [ObservableProperty] private string _searchText;
 
+    [ObservableProperty] private bool _isPaneOpen;
+
     // 添加一个用于存储原始数据的集合
     private List<Contact> _allContacts = new();
 
-    public ContactViewModel()
+    [ObservableProperty] private ContactWorkViewModel _contactWorkViewModel;
+
+    public ContactViewModel(ContactWorkViewModel contactWorkViewModel)
     {
+        _contactWorkViewModel = contactWorkViewModel;
         GetContacts();
     }
 
@@ -242,9 +248,9 @@ public partial class ContactViewModel : ViewModelBase
                 ErrorMessage = string.Empty;
                 IsPopupOpen = false;
 
-                ShowNotification(Lang.Resources.Success, 
-                               LangCombService.Succerss(Lang.Resources.Contact, ContactData.Name, ContactData.Id > 0), 
-                               NotificationType.Success);
+                ShowNotification(Lang.Resources.Success,
+                    LangCombService.Succerss(Lang.Resources.Contact, ContactData.Name, ContactData.Id > 0),
+                    NotificationType.Success);
                 GetContacts();
             }
             catch (Exception ex)
@@ -308,11 +314,11 @@ public partial class ContactViewModel : ViewModelBase
         {
             var c = DbHelper.Db.Contacts.FirstOrDefault(c => c.Id == contact.Id);
             if (c == null) return;
-            
+
             DbHelper.Db.Contacts.Remove(c);
             DbHelper.Db.SaveChanges();
             Contacts.Remove(contact);
-            
+
             var msg = LangCombService.Succerss(Lang.Resources.Contact, contact.Name, true);
             ShowNotification(Lang.Resources.Success, msg, NotificationType.Success);
         }
@@ -345,30 +351,11 @@ public partial class ContactViewModel : ViewModelBase
             (c.Phone?.Contains(value, StringComparison.OrdinalIgnoreCase) ?? false) ||
             (c.Wechat?.Contains(value, StringComparison.OrdinalIgnoreCase) ?? false) ||
             (c.QQ?.Contains(value, StringComparison.OrdinalIgnoreCase) ?? false) ||
-            c.ContactTags.Any(ct => 
+            c.ContactTags.Any(ct =>
                 ct.Tag.Name.Contains(value, StringComparison.OrdinalIgnoreCase))
         ).ToList();
 
         Contacts = new ObservableCollection<Contact>(searchResults);
-    }
-
-    private bool IsValidEmail(string email)
-    {
-        try
-        {
-            var addr = new System.Net.Mail.MailAddress(email);
-            return addr.Address == email;
-        }
-        catch
-        {
-            return false;
-        }
-    }
-
-    private bool IsValidPhone(string phone)
-    {
-        // 简单的电话号码验证，可以根据需要修改正则表达式
-        return System.Text.RegularExpressions.Regex.IsMatch(phone, @"^\d{11}$");
     }
 
     private void AddError(string propertyName, string errorMessage)
@@ -381,5 +368,18 @@ public partial class ContactViewModel : ViewModelBase
     {
         HasErrors = false;
         ErrorMessage = string.Empty;
+    }
+
+    [RelayCommand]
+    private void ShowContactWork(Contact contact)
+    {
+        _contactWorkViewModel.GetWorks(contact.Id);
+        IsPaneOpen = true;
+    }
+
+    [RelayCommand]
+    private void ClosePane()
+    {
+        IsPaneOpen = false;
     }
 }

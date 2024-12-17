@@ -1,0 +1,53 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:MMR.Components.ContactWork"
+             x:DataType="vm:ContactWorkViewModel"
+             xmlns:model="clr-namespace:MMR.Models"
+             xmlns:loc="clr-namespace:MMR.Lang"
+             xmlns:converters="clr-namespace:MMR.Converters"
+             x:Class="MMR.Components.ContactWork.ContactWorkView">
+    <StackPanel Classes="Card" Spacing="8">
+        <ItemsControl ItemsSource="{Binding WorkContacts}">
+            <ItemsControl.DataTemplates>
+                <DataTemplate x:DataType="{x:Type model:WorkContact}">
+                    <Border Classes="List" Margin="0,4" Padding="8">
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*">
+                            <Label Grid.Row="0" Grid.Column="0"
+                                   Classes="label"
+                                   Content="{x:Static loc:Resources.Work}" />
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Work.Name}" />
+
+                            <Label Grid.Row="1" Grid.Column="0" Classes="label"
+                                   Content="{x:Static loc:Resources.WorkStatus}">
+                            </Label>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Work.Status}"></TextBlock>
+
+                            <Label Grid.Row="2" Grid.Column="0"
+                                   Classes="label"
+                                   Content="{x:Static loc:Resources.TotalAmount}" />
+                            <TextBlock Grid.Row="2" Grid.Column="1"
+                                       Text="{Binding Work.TotalMoney}"
+                                       Foreground="{DynamicResource WarningBrush}" />
+
+                            <Label Grid.Row="3" Grid.Column="0"
+                                   Classes="label"
+                                   Content="{x:Static loc:Resources.Expense}" />
+                            <TextBlock Grid.Row="3" Grid.Column="1"
+                                       Text="{Binding Money, StringFormat={}{0:C2}}"
+                                       FontWeight="SemiBold"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Foreground="{Binding Income, 
+                                          Converter={x:Static converters:BoolConverters.True},
+                                          ConverterParameter={StaticResource SuccessBrush},
+                                          FallbackValue={StaticResource WarningBrush}}" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.DataTemplates>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>

@@ -6,7 +6,6 @@
              xmlns:vm="clr-namespace:MMR.ViewModels"
              xmlns:model="clr-namespace:MMR.Models"
              xmlns:converters="clr-namespace:MMR.Converters"
-             xmlns:components="clr-namespace:MMR.Components"
              xmlns:addContact="clr-namespace:MMR.Components.Popups.AddContact"
              xmlns:addExpense="clr-namespace:MMR.Components.Popups.AddExpense"
              xmlns:loc="clr-namespace:MMR.Lang"
@@ -349,11 +348,13 @@
                                             <StackPanel Orientation="Horizontal" Spacing="16">
                                                 <StackPanel Classes="icon" Orientation="Vertical">
                                                     <TextBlock Text="{Binding TotalMoney}" />
-                                                    <TextBlock Text="{x:Static loc:Resources.TotalAmount}" Classes="label" />
+                                                    <TextBlock Text="{x:Static loc:Resources.TotalAmount}"
+                                                               Classes="label" />
                                                 </StackPanel>
                                                 <StackPanel Classes="icon" Orientation="Vertical">
                                                     <TextBlock Text="{Binding ReceivingPayment}" />
-                                                    <TextBlock Text="{x:Static loc:Resources.ReceivedAmount}" Classes="label" />
+                                                    <TextBlock Text="{x:Static loc:Resources.ReceivedAmount}"
+                                                               Classes="label" />
                                                 </StackPanel>
                                                 <StackPanel Classes="icon" Orientation="Vertical">
                                                     <TextBlock Text="{Binding Cost}" />
@@ -365,7 +366,8 @@
                                                 <Grid ColumnDefinitions="Auto,*,Auto">
                                                     <StackPanel Classes="icon">
                                                         <i:Icon Value="fa-solid fa-calendar-days" />
-                                                        <TextBlock Text="{x:Static loc:Resources.WorkStartDate}" Classes="label" />
+                                                        <TextBlock Text="{x:Static loc:Resources.WorkStartDate}"
+                                                                   Classes="label" />
                                                         <TextBlock
                                                             Text="{Binding StartAt, StringFormat='{}{0:yyyy-MM-dd}'}" />
                                                     </StackPanel>
@@ -374,7 +376,8 @@
                                                     <StackPanel Classes="icon" HorizontalAlignment="Right"
                                                                 VerticalAlignment="Stretch">
                                                         <i:Icon Value="fa-solid fa-calendar-check" />
-                                                        <TextBlock Text="{x:Static loc:Resources.WorkEndDate}" Classes="label" />
+                                                        <TextBlock Text="{x:Static loc:Resources.WorkEndDate}"
+                                                                   Classes="label" />
                                                         <TextBlock
                                                             Text="{Binding EndAt, StringFormat='{}{0:yyyy-MM-dd}'}" />
                                                     </StackPanel>

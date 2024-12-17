@@ -9,6 +9,7 @@ using System.Threading;
 using Avalonia.Controls.Notifications;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
+using MMR.Components.ContactWork;
 using MMR.Components.Popups.AddContact;
 using MMR.Components.Popups.AddExpense;
 using MMR.ViewModels;
@@ -37,7 +38,7 @@ public partial class App : Application
     {
         // 初始化默认语言
         LanguageService.Instance.ChangeLanguage("zh-Hans");
-        
+
         switch (ApplicationLifetime)
         {
             case IClassicDesktopStyleApplicationLifetime desktop:
@@ -91,6 +92,7 @@ public partial class App : Application
         _services!.AddTransient<WorkViewModel>();
         _services!.AddTransient<AddContactViewModel>();
         _services!.AddTransient<AddExpenseViewModel>();
+        _services!.AddTransient<ContactWorkViewModel>();
         _services!.AddTransient<DashboardViewModel>();
     }
 }

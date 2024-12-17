@@ -1,16 +1,13 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Notifications;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
 using MMR.Services;
 using MMR.ViewModels;
-using Projektanker.Icons.Avalonia;
 using MMR.Models;
 
 namespace MMR.Views;
@@ -20,7 +17,6 @@ public partial class ContactView : UserControl
     public ContactView()
     {
         InitializeComponent();
-        DataContext = new ContactViewModel();
     }
 
     private async void AvatarUploadButtonClick(object? sender, RoutedEventArgs e)
@@ -86,7 +82,7 @@ public partial class ContactView : UserControl
             {
                 viewModel.SelectTagCommand.Execute(selectedTag);
             }
-            
+
             // 清除AutoCompleteBox的选择
             if (sender is AutoCompleteBox autoComplete)
             {
