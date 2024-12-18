@@ -294,6 +294,15 @@ namespace MMR.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Active.
+        /// </summary>
+        public static string CurrentActive {
+            get {
+                return ResourceManager.GetString("CurrentActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dashboard.
         /// </summary>
         public static string Dashboard {
@@ -420,6 +429,24 @@ namespace MMR.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Estimated Total.
+        /// </summary>
+        public static string EstimatedTotalRevenue {
+            get {
+                return ResourceManager.GetString("EstimatedTotalRevenue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expenditure.
+        /// </summary>
+        public static string Expenditure {
+            get {
+                return ResourceManager.GetString("Expenditure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expense.
         /// </summary>
         public static string Expense {
@@ -456,6 +483,15 @@ namespace MMR.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expense Record.
+        /// </summary>
+        public static string ExpenseRecord {
+            get {
+                return ResourceManager.GetString("ExpenseRecord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expenses.
         /// </summary>
         public static string Expenses {
@@ -483,6 +519,15 @@ namespace MMR.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finished.
+        /// </summary>
+        public static string Finished {
+            get {
+                return ResourceManager.GetString("Finished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to InActive.
         /// </summary>
         public static string InActive {
@@ -497,6 +542,15 @@ namespace MMR.Lang {
         public static string Income {
             get {
                 return ResourceManager.GetString("Income", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Income Record.
+        /// </summary>
+        public static string IncomeRecord {
+            get {
+                return ResourceManager.GetString("IncomeRecord", resourceCulture);
             }
         }
         
@@ -524,6 +578,24 @@ namespace MMR.Lang {
         public static string LoadError {
             get {
                 return ResourceManager.GetString("LoadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Month Cost.
+        /// </summary>
+        public static string MonthCost {
+            get {
+                return ResourceManager.GetString("MonthCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Month Cost Trent.
+        /// </summary>
+        public static string MonthCostTrent {
+            get {
+                return ResourceManager.GetString("MonthCostTrent", resourceCulture);
             }
         }
         
@@ -632,6 +704,15 @@ namespace MMR.Lang {
         public static string Required {
             get {
                 return ResourceManager.GetString("Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Runing.
+        /// </summary>
+        public static string Runing {
+            get {
+                return ResourceManager.GetString("Runing", resourceCulture);
             }
         }
         
@@ -780,11 +861,47 @@ namespace MMR.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Amount.
         /// </summary>
         public static string TotalAmount {
             get {
                 return ResourceManager.GetString("TotalAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Cost.
+        /// </summary>
+        public static string TotalCost {
+            get {
+                return ResourceManager.GetString("TotalCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expenses.
+        /// </summary>
+        public static string TotalExpenses {
+            get {
+                return ResourceManager.GetString("TotalExpenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Income.
+        /// </summary>
+        public static string TotalIncome {
+            get {
+                return ResourceManager.GetString("TotalIncome", resourceCulture);
             }
         }
         
@@ -843,6 +960,15 @@ namespace MMR.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Acceptance.
+        /// </summary>
+        public static string WorkAcceptance {
+            get {
+                return ResourceManager.GetString("WorkAcceptance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Work amount must be greater than 0.
         /// </summary>
         public static string WorkAmountRange {
@@ -857,6 +983,24 @@ namespace MMR.Lang {
         public static string WorkAmountRequired {
             get {
                 return ResourceManager.GetString("WorkAmountRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archive.
+        /// </summary>
+        public static string WorkArchive {
+            get {
+                return ResourceManager.GetString("WorkArchive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string WorkCancel {
+            get {
+                return ResourceManager.GetString("WorkCancel", resourceCulture);
             }
         }
         
@@ -884,6 +1028,15 @@ namespace MMR.Lang {
         public static string WorkDetails {
             get {
                 return ResourceManager.GetString("WorkDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End.
+        /// </summary>
+        public static string WorkEnd {
+            get {
+                return ResourceManager.GetString("WorkEnd", resourceCulture);
             }
         }
         
@@ -987,6 +1140,33 @@ namespace MMR.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PreStart.
+        /// </summary>
+        public static string WorkPreStart {
+            get {
+                return ResourceManager.GetString("WorkPreStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Running.
+        /// </summary>
+        public static string WorkRunning {
+            get {
+                return ResourceManager.GetString("WorkRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        public static string WorkStart {
+            get {
+                return ResourceManager.GetString("WorkStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Work StartDate.
         /// </summary>
         public static string WorkStartDate {
@@ -1023,6 +1203,15 @@ namespace MMR.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Work Statistics.
+        /// </summary>
+        public static string WorkStatistics {
+            get {
+                return ResourceManager.GetString("WorkStatistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
         public static string WorkStatus {
@@ -1046,6 +1235,15 @@ namespace MMR.Lang {
         public static string WorkStatusRequired {
             get {
                 return ResourceManager.GetString("WorkStatusRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Status Update.
+        /// </summary>
+        public static string WorkStatusUpdate {
+            get {
+                return ResourceManager.GetString("WorkStatusUpdate", resourceCulture);
             }
         }
         

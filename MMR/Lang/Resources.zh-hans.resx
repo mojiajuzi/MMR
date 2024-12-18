@@ -1,465 +1,536 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
+    <!-- 
+      Microsoft ResX Schema 
+      
+      Version 2.0
+      
+      The primary goals of this format is to allow a simple XML format 
+      that is mostly human readable. The generation and parsing of the 
+      various data types are done through the TypeConverter classes 
+      associated with the data types.
+      
+      Example:
+      
+      ... ado.net/XML headers & schema ...
+      <resheader name="resmimetype">text/microsoft-resx</resheader>
+      <resheader name="version">2.0</resheader>
+      <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+      <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+      <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+      <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+      <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+          <value>[base64 mime encoded serialized .NET Framework object]</value>
+      </data>
+      <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+          <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+          <comment>This is a comment</comment>
+      </data>
+                  
+      There are any number of "resheader" rows that contain simple 
+      name/value pairs.
+      
+      Each data row contains a name, and value. The row also contains a 
+      type or mimetype. Type corresponds to a .NET class that support 
+      text/value conversion through the TypeConverter architecture. 
+      Classes that don't support this are serialized and stored with the 
+      mimetype set.
+      
+      The mimetype is used for serialized objects, and tells the 
+      ResXResourceReader how to depersist the object. This is currently not 
+      extensible. For a given mimetype the value must be set accordingly:
+      
+      Note - application/x-microsoft.net.object.binary.base64 is the format 
+      that the ResXResourceWriter will generate, however the reader can 
+      read any of the formats listed below.
+      
+      mimetype: application/x-microsoft.net.object.binary.base64
+      value   : The object must be serialized with 
+              : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+              : and then encoded with base64 encoding.
+      
+      mimetype: application/x-microsoft.net.object.soap.base64
+      value   : The object must be serialized with 
+              : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+              : and then encoded with base64 encoding.
+  
+      mimetype: application/x-microsoft.net.object.bytearray.base64
+      value   : The object must be serialized into a byte array 
+              : using a System.ComponentModel.TypeConverter
+              : and then encoded with base64 encoding.
+      -->
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+        <xsd:element name="root" msdata:IsDataSet="true">
             <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="metadata">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                            </xsd:sequence>
+                            <xsd:attribute name="name" use="required" type="xsd:string"/>
+                            <xsd:attribute name="type" type="xsd:string"/>
+                            <xsd:attribute name="mimetype" type="xsd:string"/>
+                            <xsd:attribute ref="xml:space"/>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="assembly">
+                        <xsd:complexType>
+                            <xsd:attribute name="alias" type="xsd:string"/>
+                            <xsd:attribute name="name" type="xsd:string"/>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="data">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+                            <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+                            <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+                            <xsd:attribute ref="xml:space"/>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="resheader">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required"/>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:choice>
             </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="Active" xml:space="preserve">
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <data name="Active" xml:space="preserve">
     <value>开启</value>
   </data>
-  <data name="Add" xml:space="preserve">
+    <data name="Add" xml:space="preserve">
     <value>新增</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
+    <data name="Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
-  <data name="CreatedAt" xml:space="preserve">
+    <data name="CreatedAt" xml:space="preserve">
     <value>创建</value>
   </data>
-  <data name="Edit" xml:space="preserve">
+    <data name="Edit" xml:space="preserve">
     <value>编辑</value>
   </data>
-  <data name="Error" xml:space="preserve">
+    <data name="Error" xml:space="preserve">
     <value>错误</value>
   </data>
-  <data name="InActive" xml:space="preserve">
+    <data name="InActive" xml:space="preserve">
     <value>关闭</value>
   </data>
-  <data name="Name" xml:space="preserve">
+    <data name="Name" xml:space="preserve">
     <value>名称</value>
   </data>
-  <data name="NameRequired" xml:space="preserve">
+    <data name="NameRequired" xml:space="preserve">
     <value>名称不能为空</value>
   </data>
-  <data name="Search" xml:space="preserve">
+    <data name="Search" xml:space="preserve">
     <value>搜索</value>
   </data>
-  <data name="Status" xml:space="preserve">
+    <data name="Status" xml:space="preserve">
     <value>状态</value>
   </data>
-  <data name="Submit" xml:space="preserve">
+    <data name="Submit" xml:space="preserve">
     <value>提交</value>
   </data>
-  <data name="Success" xml:space="preserve">
+    <data name="Success" xml:space="preserve">
     <value>成功</value>
   </data>
-  <data name="Tag" xml:space="preserve">
+    <data name="Tag" xml:space="preserve">
     <value>标签</value>
   </data>
-  <data name="Update" xml:space="preserve">
+    <data name="Update" xml:space="preserve">
     <value>更新</value>
   </data>
-  <data name="UpdatedAt" xml:space="preserve">
+    <data name="UpdatedAt" xml:space="preserve">
     <value>更新</value>
   </data>
-  <data name="Required" xml:space="preserve">
+    <data name="Required" xml:space="preserve">
     <value>{0} 缺失</value>
   </data>
-  <data name="StringLength" xml:space="preserve">
+    <data name="StringLength" xml:space="preserve">
     <value>{0}长度需要介于{1},{2}</value>
   </data>
-  <data name="TagNameRequired" xml:space="preserve">
+    <data name="TagNameRequired" xml:space="preserve">
     <value>标签名称不能为空</value>
   </data>
-  <data name="TagNameLength" xml:space="preserve">
+    <data name="TagNameLength" xml:space="preserve">
     <value>标签名称长度在2到50字符之间</value>
   </data>
-  <data name="TagNameExists" xml:space="preserve">
+    <data name="TagNameExists" xml:space="preserve">
     <value>标签名称重复</value>
   </data>
-  <data name="ContactNameRequired" xml:space="preserve">
+    <data name="ContactNameRequired" xml:space="preserve">
     <value>联系人姓名不能为空</value>
   </data>
-  <data name="ContactNameLength" xml:space="preserve">
+    <data name="ContactNameLength" xml:space="preserve">
     <value>联系人姓名长度必须在2到50个字符之间</value>
   </data>
-  <data name="ContactEmailInvalid" xml:space="preserve">
+    <data name="ContactEmailInvalid" xml:space="preserve">
     <value>邮箱格式不正确</value>
   </data>
-  <data name="ContactPhoneInvalid" xml:space="preserve">
+    <data name="ContactPhoneInvalid" xml:space="preserve">
     <value>电话号码格式不正确</value>
   </data>
-  <data name="WorkTitleRequired" xml:space="preserve">
+    <data name="WorkTitleRequired" xml:space="preserve">
     <value>项目名称不能为空</value>
   </data>
-  <data name="WorkTitleLength" xml:space="preserve">
+    <data name="WorkTitleLength" xml:space="preserve">
     <value>项目标题必须在2到100字符之间</value>
   </data>
-  <data name="WorkAmountRequired" xml:space="preserve">
+    <data name="WorkAmountRequired" xml:space="preserve">
     <value>项目金额不能为0</value>
   </data>
-  <data name="WorkAmountRange" xml:space="preserve">
+    <data name="WorkAmountRange" xml:space="preserve">
     <value>项目金额不能小于等于0</value>
   </data>
-  <data name="Contact" xml:space="preserve">
+    <data name="Contact" xml:space="preserve">
     <value>联系人</value>
   </data>
-  <data name="Email" xml:space="preserve">
+    <data name="Email" xml:space="preserve">
     <value>邮箱</value>
   </data>
-  <data name="Phone" xml:space="preserve">
+    <data name="Phone" xml:space="preserve">
     <value>电话</value>
   </data>
-  <data name="Address" xml:space="preserve">
+    <data name="Address" xml:space="preserve">
     <value>地址</value>
   </data>
-  <data name="Remark" xml:space="preserve">
+    <data name="Remark" xml:space="preserve">
     <value>备注</value>
   </data>
-  <data name="Wechat" xml:space="preserve">
+    <data name="Wechat" xml:space="preserve">
     <value>微信</value>
   </data>
-  <data name="QQ" xml:space="preserve">
+    <data name="QQ" xml:space="preserve">
     <value>QQ</value>
   </data>
-  <data name="ContactList" xml:space="preserve">
+    <data name="ContactList" xml:space="preserve">
     <value>联系人列表</value>
   </data>
-  <data name="AddContact" xml:space="preserve">
+    <data name="AddContact" xml:space="preserve">
     <value>添加联系人</value>
   </data>
-  <data name="EditContact" xml:space="preserve">
+    <data name="EditContact" xml:space="preserve">
     <value>编辑联系人</value>
   </data>
-  <data name="DeleteContact" xml:space="preserve">
+    <data name="DeleteContact" xml:space="preserve">
     <value>删除联系人</value>
   </data>
-  <data name="SelectTags" xml:space="preserve">
+    <data name="SelectTags" xml:space="preserve">
     <value>选择标签</value>
   </data>
-  <data name="SearchContacts" xml:space="preserve">
+    <data name="SearchContacts" xml:space="preserve">
     <value>搜索联系人...</value>
   </data>
-  <data name="SearchTags" xml:space="preserve">
+    <data name="SearchTags" xml:space="preserve">
     <value>搜索标签...</value>
   </data>
-  <data name="Avatar" xml:space="preserve">
+    <data name="Avatar" xml:space="preserve">
     <value>头像</value>
   </data>
-  <data name="UploadAvatar" xml:space="preserve">
+    <data name="UploadAvatar" xml:space="preserve">
     <value>上传头像</value>
   </data>
-  <data name="BasicInfo" xml:space="preserve">
+    <data name="BasicInfo" xml:space="preserve">
     <value>基本信息</value>
   </data>
-  <data name="ContactInfo" xml:space="preserve">
+    <data name="ContactInfo" xml:space="preserve">
     <value>联系方式</value>
   </data>
-  <data name="Delete" xml:space="preserve">
+    <data name="Delete" xml:space="preserve">
     <value>删除</value>
   </data>
-  <data name="WorkList" xml:space="preserve">
+    <data name="WorkList" xml:space="preserve">
     <value>工作列表</value>
   </data>
-  <data name="AddWork" xml:space="preserve">
+    <data name="AddWork" xml:space="preserve">
     <value>添加工作</value>
   </data>
-  <data name="EditWork" xml:space="preserve">
+    <data name="EditWork" xml:space="preserve">
     <value>编辑工作</value>
   </data>
-  <data name="WorkDetails" xml:space="preserve">
+    <data name="WorkDetails" xml:space="preserve">
     <value>工作详情</value>
   </data>
-  <data name="All" xml:space="preserve">
+    <data name="All" xml:space="preserve">
     <value>全部</value>
   </data>
-  <data name="PreStart" xml:space="preserve">
+    <data name="PreStart" xml:space="preserve">
     <value>未开始</value>
   </data>
-  <data name="InProgress" xml:space="preserve">
+    <data name="InProgress" xml:space="preserve">
     <value>进行中</value>
   </data>
-  <data name="Completed" xml:space="preserve">
+    <data name="Completed" xml:space="preserve">
     <value>已完成</value>
   </data>
-  <data name="Suspended" xml:space="preserve">
+    <data name="Suspended" xml:space="preserve">
     <value>已暂停</value>
   </data>
-  <data name="Cancelled" xml:space="preserve">
+    <data name="Cancelled" xml:space="preserve">
     <value>已取消</value>
   </data>
-  <data name="WorkName" xml:space="preserve">
+    <data name="WorkName" xml:space="preserve">
     <value>名称</value>
   </data>
-  <data name="WorkDescription" xml:space="preserve">
+    <data name="WorkDescription" xml:space="preserve">
     <value>描述</value>
   </data>
-  <data name="StartTime" xml:space="preserve">
+    <data name="StartTime" xml:space="preserve">
     <value>开始时间</value>
   </data>
-  <data name="EndTime" xml:space="preserve">
+    <data name="EndTime" xml:space="preserve">
     <value>结束时间</value>
   </data>
-  <data name="TotalAmount" xml:space="preserve">
+    <data name="TotalAmount" xml:space="preserve">
     <value>总费用</value>
   </data>
-  <data name="Contacts" xml:space="preserve">
+    <data name="Contacts" xml:space="preserve">
     <value>联系人</value>
   </data>
-  <data name="Expenses" xml:space="preserve">
+    <data name="Expenses" xml:space="preserve">
     <value>支出记录</value>
   </data>
-  <data name="AddExpense" xml:space="preserve">
+    <data name="AddExpense" xml:space="preserve">
     <value>添加支出</value>
   </data>
-  <data name="Income" xml:space="preserve">
+    <data name="Income" xml:space="preserve">
     <value>收入</value>
   </data>
-  <data name="Cost" xml:space="preserve">
+    <data name="Cost" xml:space="preserve">
     <value>支出</value>
   </data>
-  <data name="Filter" xml:space="preserve">
+    <data name="Filter" xml:space="preserve">
     <value>筛选</value>
   </data>
-  <data name="WorkStatus" xml:space="preserve">
+    <data name="WorkStatus" xml:space="preserve">
     <value>进度</value>
   </data>
-  <data name="ReceivedAmount" xml:space="preserve">
+    <data name="ReceivedAmount" xml:space="preserve">
     <value>已收</value>
   </data>
-  <data name="WorkStartDate" xml:space="preserve">
+    <data name="WorkStartDate" xml:space="preserve">
     <value>开始日期</value>
   </data>
-  <data name="WorkEndDate" xml:space="preserve">
+    <data name="WorkEndDate" xml:space="preserve">
     <value>结束</value>
   </data>
-  <data name="Show" xml:space="preserve">
+    <data name="Show" xml:space="preserve">
     <value>查看</value>
   </data>
-  <data name="InitializationError" xml:space="preserve">
+    <data name="InitializationError" xml:space="preserve">
     <value>获取数据失败</value>
   </data>
-  <data name="LoadError" xml:space="preserve">
+    <data name="LoadError" xml:space="preserve">
     <value>数据加载失败</value>
   </data>
-  <data name="SearchError" xml:space="preserve">
+    <data name="SearchError" xml:space="preserve">
     <value>查询数据失败</value>
   </data>
-  <data name="WorkStartTimeRequired" xml:space="preserve">
+    <data name="WorkStartTimeRequired" xml:space="preserve">
     <value>请选择项目开始日期</value>
   </data>
-  <data name="Work" xml:space="preserve">
+    <data name="Work" xml:space="preserve">
     <value>项目</value>
   </data>
-  <data name="DeleteConfirmTitle" xml:space="preserve">
+    <data name="DeleteConfirmTitle" xml:space="preserve">
     <value>是否要删除</value>
   </data>
-  <data name="DeleteWorkConfirmMessage" xml:space="preserve">
+    <data name="DeleteWorkConfirmMessage" xml:space="preserve">
     <value>是否确定删除该项目</value>
   </data>
-  <data name="Expense" xml:space="preserve">
+    <data name="Expense" xml:space="preserve">
     <value>收支明细</value>
   </data>
-  <data name="DeleteExpenseConfirmMessage" xml:space="preserve">
+    <data name="DeleteExpenseConfirmMessage" xml:space="preserve">
     <value>是否删除该收支记录</value>
   </data>
-  <data name="DeleteWorkContactConfirmMessage" xml:space="preserve">
+    <data name="DeleteWorkContactConfirmMessage" xml:space="preserve">
     <value>是否确定删除该项目联系人</value>
   </data>
-  <data name="CalculationError" xml:space="preserve">
+    <data name="CalculationError" xml:space="preserve">
     <value>计算失败</value>
   </data>
-  <data name="Dashboard" xml:space="preserve">
+    <data name="Dashboard" xml:space="preserve">
     <value>首页</value>
   </data>
-  <data name="QQInvalid" xml:space="preserve">
+    <data name="QQInvalid" xml:space="preserve">
     <value>QQ 号码验证失败</value>
   </data>
-  <data name="WorkNameRequired" xml:space="preserve">
+    <data name="WorkNameRequired" xml:space="preserve">
     <value>项目名称不能为空</value>
   </data>
-  <data name="WorkNameError" xml:space="preserve">
+    <data name="WorkNameError" xml:space="preserve">
     <value>项目名称不能为空</value>
   </data>
-  <data name="WorkDescriptionError" xml:space="preserve">
+    <data name="WorkDescriptionError" xml:space="preserve">
     <value>描述不能超过500个字符</value>
   </data>
-  <data name="WorkStartTimeError" xml:space="preserve">
+    <data name="WorkStartTimeError" xml:space="preserve">
     <value>开始时间不能为空</value>
   </data>
-  <data name="WorkEndTimeError" xml:space="preserve">
+    <data name="WorkEndTimeError" xml:space="preserve">
     <value>结束时间必须晚于开始时间</value>
   </data>
-  <data name="WorkStatusError" xml:space="preserve">
+    <data name="WorkStatusError" xml:space="preserve">
     <value>请选择项目状态</value>
   </data>
-  <data name="WorkNameLengthError" xml:space="preserve">
+    <data name="WorkNameLengthError" xml:space="preserve">
     <value>项目名称不能超过50个字符</value>
   </data>
-  <data name="ContactNameError" xml:space="preserve">
+    <data name="ContactNameError" xml:space="preserve">
     <value>联系人姓名不能为空</value>
   </data>
-  <data name="ContactNameLengthError" xml:space="preserve">
+    <data name="ContactNameLengthError" xml:space="preserve">
     <value>联系人姓名不能超过50个字符</value>
   </data>
-  <data name="PhoneError" xml:space="preserve">
+    <data name="PhoneError" xml:space="preserve">
     <value>无效的电话号码格式</value>
   </data>
-  <data name="EmailError" xml:space="preserve">
+    <data name="EmailError" xml:space="preserve">
     <value>无效的邮箱地址格式</value>
   </data>
-  <data name="QQError" xml:space="preserve">
+    <data name="QQError" xml:space="preserve">
     <value>QQ号必须是5-11位数字</value>
   </data>
-  <data name="WechatLengthError" xml:space="preserve">
+    <data name="WechatLengthError" xml:space="preserve">
     <value>微信号不能超过50个字符</value>
   </data>
-  <data name="AddressLengthError" xml:space="preserve">
+    <data name="AddressLengthError" xml:space="preserve">
     <value>地址不能超过200个字符</value>
   </data>
-  <data name="RemarkLengthError" xml:space="preserve">
+    <data name="RemarkLengthError" xml:space="preserve">
     <value>备注不能超过500个字符</value>
   </data>
-  <data name="ExpenseAmountError" xml:space="preserve">
+    <data name="ExpenseAmountError" xml:space="preserve">
     <value>金额不能为空</value>
   </data>
-  <data name="ExpenseAmountRangeError" xml:space="preserve">
+    <data name="ExpenseAmountRangeError" xml:space="preserve">
     <value>金额必须大于0</value>
   </data>
-  <data name="ExpenseTimeError" xml:space="preserve">
+    <data name="ExpenseTimeError" xml:space="preserve">
     <value>时间不能为空</value>
   </data>
-  <data name="ExpenseDescriptionError" xml:space="preserve">
+    <data name="ExpenseDescriptionError" xml:space="preserve">
     <value>描述不能超过200个字符</value>
   </data>
     <data name="WorkStartTimeInvalid" xml:space="preserve">
     <value>开始时间格式无效</value>
   </data>
-  <data name="WorkEndTimeInvalid" xml:space="preserve">
+    <data name="WorkEndTimeInvalid" xml:space="preserve">
     <value>结束时间格式无效</value>
   </data>
-  <data name="WorkEndTimeMustLaterThanStart" xml:space="preserve">
+    <data name="WorkEndTimeMustLaterThanStart" xml:space="preserve">
     <value>结束时间必须晚于开始时间</value>
   </data>
-  <data name="WorkExceptionTimeInvalid" xml:space="preserve">
+    <data name="WorkExceptionTimeInvalid" xml:space="preserve">
     <value>实际完成时间格式无效</value>
   </data>
-  <data name="WorkExceptionTimeMustLaterThanStart" xml:space="preserve">
+    <data name="WorkExceptionTimeMustLaterThanStart" xml:space="preserve">
     <value>实际完成时间必须晚于开始时间</value>
   </data>
-  <data name="WorkTotalMoneyRequired" xml:space="preserve">
+    <data name="WorkTotalMoneyRequired" xml:space="preserve">
     <value>总金额不能为空</value>
   </data>
-  <data name="WorkTotalMoneyRange" xml:space="preserve">
+    <data name="WorkTotalMoneyRange" xml:space="preserve">
     <value>总金额必须大于或等于0</value>
   </data>
-  <data name="WorkTotalMoneyInvalid" xml:space="preserve">
+    <data name="WorkTotalMoneyInvalid" xml:space="preserve">
     <value>总金额格式无效</value>
   </data>
-  <data name="WorkStatusRequired" xml:space="preserve">
+    <data name="WorkStatusRequired" xml:space="preserve">
     <value>工作状态不能为空</value>
   </data>
+    <data name="WorkStatistics" xml:space="preserve">
+    <value>工作统计</value>
+  </data>
+    <data name="Total" xml:space="preserve">
+    <value>总数</value>
+  </data>
+    <data name="Runing" xml:space="preserve">
+    <value>进行中</value>
+  </data>
+    <data name="Finished" xml:space="preserve">
+    <value>已完成</value>
+  </data>
+    <data name="MonthCost" xml:space="preserve">
+    <value>本月收支</value>
+  </data>
+    <data name="Expenditure" xml:space="preserve">
+    <value>支出</value>
+  </data>
+    <data name="CurrentActive" xml:space="preserve">
+    <value>最近活跃</value>
+  </data>
+    <data name="MonthCostTrent" xml:space="preserve">
+    <value>月度收支趋势</value>
+  </data>
+    <data name="EstimatedTotalRevenue" xml:space="preserve">
+    <value>预计总收入</value>
+  </data>
+    <data name="TotalCost" xml:space="preserve">
+    <value>总收支</value>
+  </data>
+    <data name="TotalIncome" xml:space="preserve">
+    <value>总收入</value>
+  </data>
+    <data name="TotalExpenses" xml:space="preserve">
+    <value>总支出</value>
+  </data>
+    <data name="WorkPreStart" xml:space="preserve">
+    <value>意向中</value>
+  </data>
+    <data name="WorkStart" xml:space="preserve">
+    <value>启动</value>
+  </data>
+    <data name="WorkRunning" xml:space="preserve">
+    <value>进行中</value>
+  </data>
+    <data name="WorkEnd" xml:space="preserve">
+    <value>完结</value>
+  </data>
+    <data name="WorkAcceptance" xml:space="preserve">
+    <value>验收</value>
+  </data>
+    <data name="WorkCancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+    <data name="WorkArchive" xml:space="preserve">
+    <value>归档</value>
+  </data>
+    <data name="IncomeRecord" xml:space="preserve">
+      <value>收入记录</value>
+    </data>
+    <data name="ExpenseRecord" xml:space="preserve">
+      <value>支出记录</value>
+    </data>
+    <data name="WorkStatusUpdate" xml:space="preserve">
+      <value>项目状态变更</value>
+    </data>
 </root>

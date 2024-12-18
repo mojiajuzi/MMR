@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading;
 using Avalonia.Controls.Notifications;
 using Avalonia.Markup.Xaml;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
 using Microsoft.Extensions.DependencyInjection;
 using MMR.Components.ContactWork;
 using MMR.Components.Popups.AddContact;
@@ -15,6 +17,7 @@ using MMR.Components.Popups.AddExpense;
 using MMR.ViewModels;
 using MMR.Views;
 using MMR.Services;
+using SkiaSharp;
 
 namespace MMR;
 
@@ -32,6 +35,7 @@ public partial class App : Application
         _services = new ServiceCollection();
         RegisterServices();
         _serviceProvider = _services.BuildServiceProvider();
+        LiveCharts.Configure(config => config.HasGlobalSKTypeface(SKFontManager.Default.MatchCharacter('汉')));
     }
 
     public override void OnFrameworkInitializationCompleted()

@@ -54,6 +54,8 @@ public partial class WorkViewModel : ViewModelBase
 
     [ObservableProperty] private WorkStatus? _selectedStatus;
 
+    [ObservableProperty] private Dictionary<WorkStatus, int> _workStatusData;
+
     public WorkViewModel(AddContactViewModel addContactViewModel, AddExpenseViewModel addExpenseViewModel,
         IDialogService dialogService)
     {
@@ -77,6 +79,10 @@ public partial class WorkViewModel : ViewModelBase
             // 初始化其他属性
             ErrorMessage = string.Empty;
             HasErrors = false;
+
+            // 初始化工作状态数据
+            WorkStatusData = new Dictionary<WorkStatus, int>();
+            LoadWorkStatusChart();
         }
         catch (Exception ex)
         {
@@ -279,6 +285,7 @@ public partial class WorkViewModel : ViewModelBase
             }
 
             await DbHelper.Db.SaveChangesAsync();
+            LoadWorkStatusChart(); // 刷新图表数据
 
             ShowNotification(Lang.Resources.Success, 
                            LangCombService.Succerss(Lang.Resources.Work, WorkData.Name, WorkData.Id > 0), 
@@ -354,6 +361,7 @@ public partial class WorkViewModel : ViewModelBase
                 DbHelper.Db.Works.Remove(workToDelete);
 
                 await DbHelper.Db.SaveChangesAsync();
+                LoadWorkStatusChart(); // 刷新图表数据
 
                 // 如果当前正在查看这个工作的详情，则关闭详情面板
                 if (WorkDetails?.Id == work.Id)
@@ -708,6 +716,34 @@ public partial class WorkViewModel : ViewModelBase
             ShowNotification(Lang.Resources.Error, Lang.Resources.CalculationError, NotificationType.Error);
             ReceivingPayment = 0;
             Cost = 0;
+        }
+    }
+
+    private void LoadWorkStatusChart()
+    {
+        try
+        {
+            var statusCounts = DbHelper.Db.Works
+                .AsNoTracking()
+                .GroupBy(w => w.Status)
+                .Select(g => new { Status = g.Key, Count = g.Count() })
+                .ToDictionary(x => x.Status, x => x.Count);
+
+            // 确保所有状态都有值
+            foreach (WorkStatus status in Enum.GetValues<WorkStatus>())
+            {
+                if (!statusCounts.ContainsKey(status))
+                {
+                    statusCounts[status] = 0;
+                }
+            }
+
+            WorkStatusData = statusCounts;
+        }
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, Lang.Resources.LoadError, NotificationType.Error);
+            System.Diagnostics.Debug.WriteLine($"LoadWorkStatusChart error: {ex}");
         }
     }
 }

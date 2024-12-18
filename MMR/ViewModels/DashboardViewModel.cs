@@ -11,6 +11,15 @@ using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
 using System.Collections.ObjectModel;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.Notifications;
+using Avalonia.Markup.Xaml.MarkupExtensions;
+using Avalonia.Media;
+using Avalonia.Skia;
+using Avalonia.Styling;
+using LiveChartsCore.Kernel;
+using LiveChartsCore.SkiaSharpView.Drawing.Geometries;
 
 namespace MMR.ViewModels;
 
@@ -27,12 +36,46 @@ public partial class DashboardViewModel : ViewModelBase
     [ObservableProperty] private ISeries[] _monthlyExpenseSeries;
     [ObservableProperty] private ObservableCollection<RecentActivity> _recentActivities;
     [ObservableProperty] private decimal _estimatedTotalIncome;
+    [ObservableProperty] private SolidColorPaint _legendTextPaintColor;
 
     public DashboardViewModel()
     {
         LoadStatistics();
         LoadCharts();
         LoadRecentActivities();
+
+        // 初始化图例文字颜色
+        UpdateLegendTextColor();
+
+        // 订阅主题变化事件
+        if (Application.Current != null)
+        {
+            Application.Current.ActualThemeVariantChanged += (s, e) => { UpdateLegendTextColor(); };
+        }
+    }
+
+    // 更新图例文字颜色
+    private void UpdateLegendTextColor()
+    {
+        try
+        {
+            if (Application.Current?.FindResource("PrimaryBrush") is SolidColorBrush brush)
+            {
+                LegendTextPaintColor = new SolidColorPaint(brush.Color.ToSKColor());
+            }
+            else
+            {
+                // 如果找不到资源，使用默认颜色
+                var defaultColor = Application.Current?.FindResource("ForegroundColor") as Color? ?? Colors.Gray;
+                LegendTextPaintColor = new SolidColorPaint(defaultColor.ToSKColor());
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error updating legend text color: {ex}");
+            // 使用默认颜色
+            LegendTextPaintColor = new SolidColorPaint(SKColors.Gray);
+        }
     }
 
     private void LoadStatistics()
@@ -66,34 +109,95 @@ public partial class DashboardViewModel : ViewModelBase
 
     private void LoadWorkStatusChart()
     {
-        var works = DbHelper.Db.Works.AsNoTracking().ToList();
-        var statusGroups = works.GroupBy(w => w.Status)
-            .Select(g => new { Status = GetStatusName(g.Key), Count = g.Count() })
-            .ToList();
-
-        WorkStatusSeries = new ISeries[]
+        try
         {
-            new PieSeries<int>
+            var works = DbHelper.Db.Works.AsNoTracking().ToList();
+            var statusGroups = works.GroupBy(w => w.Status)
+                .Select(g => new { Status = g.Key, Count = g.Count() })
+                .ToList();
+
+            var values = new List<double>();
+            var labels = new List<string>();
+
+            // 确保所有状态都有值
+            foreach (WorkStatus status in Enum.GetValues<WorkStatus>())
             {
-                Values = statusGroups.Select(x => x.Count).ToList(),
-                Name = "工作状态分布",
-                DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
-                DataLabelsFormatter = point => $"{statusGroups[point.Index].Status}: {point.Coordinate.PrimaryValue}"
+                var count = statusGroups.FirstOrDefault(x => x.Status == status)?.Count ?? 0;
+                values.Add(count);
+                labels.Add(GetStatusName(status));
             }
-        };
+
+            // 使用Nord.axaml中定义的颜色
+            var colorKeys = new[]
+            {
+                "Nord11", // 红色
+                "Nord12", // 橙色
+                "Nord13", // 黄色
+                "Nord14", // 绿色
+                "Nord15", // 紫色
+                "Nord7", // 青绿色
+                "Nord8" // 浅蓝色
+            };
+
+            var series = new List<ISeries>();
+
+            // 获取前景色用于图例文字
+            var foregroundColor = TryGetResourceColor("ForegroundColor");
+
+            // 为每个状态创建一个饼图系列
+            for (int i = 0; i < values.Count; i++)
+            {
+                var colorKey = colorKeys[i % colorKeys.Length];
+                var color = TryGetResourceColor(colorKey);
+
+                series.Add(new PieSeries<double>
+                {
+                    Values = new[] { values[i] },
+                    Name = labels[i],
+                    DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                    Fill = new SolidColorPaint(color),
+                });
+            }
+
+            WorkStatusSeries = series.ToArray();
+        }
+        catch (Exception ex)
+        {
+            ShowNotification(Lang.Resources.Error, Lang.Resources.LoadError, NotificationType.Error);
+            System.Diagnostics.Debug.WriteLine($"LoadWorkStatusChart error: {ex}");
+        }
+    }
+
+    // 添加一个安全的颜色获取方法
+    private SKColor TryGetResourceColor(string resourceKey)
+    {
+        try
+        {
+            if (Application.Current?.FindResource(resourceKey) is Color color)
+            {
+                return color.ToSKColor();
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error getting color resource {resourceKey}: {ex}");
+        }
+
+        // 如果获取失败，返回默认颜色
+        return SKColors.Gray;
     }
 
     private string GetStatusName(WorkStatus status)
     {
         return status switch
         {
-            WorkStatus.PreStart => "未开始",
-            WorkStatus.Start => "已开始",
-            WorkStatus.Running => "进行中",
-            WorkStatus.End => "已结束",
-            WorkStatus.Acceptance => "验收中",
-            WorkStatus.Cancel => "已��消",
-            WorkStatus.Archive => "已归档",
+            WorkStatus.PreStart => Lang.Resources.WorkPreStart,
+            WorkStatus.Start => Lang.Resources.WorkStart,
+            WorkStatus.Running => Lang.Resources.WorkRunning,
+            WorkStatus.End => Lang.Resources.WorkEnd,
+            WorkStatus.Acceptance => Lang.Resources.WorkAcceptance,
+            WorkStatus.Cancel => Lang.Resources.WorkCancel,
+            WorkStatus.Archive => Lang.Resources.WorkArchive,
             _ => status.ToString()
         };
     }
@@ -130,25 +234,29 @@ public partial class DashboardViewModel : ViewModelBase
             labels.Add(date.ToString("yyyy-MM"));
         }
 
+        // 获取Nord主题颜色
+        var successColor = TryGetResourceColor("Nord14"); // 绿色
+        var warningColor = TryGetResourceColor("Nord11"); // 红色
+
         MonthlyExpenseSeries = new ISeries[]
         {
             new LineSeries<decimal>
             {
                 Values = incomeData.ToList(),
-                Name = "Income",
-                Stroke = new SolidColorPaint(SKColors.Green),
-                GeometryStroke = new SolidColorPaint(SKColors.Green),
+                Name = Lang.Resources.Income,
+                Stroke = new SolidColorPaint(warningColor),
+                GeometryStroke = new SolidColorPaint(warningColor),
                 GeometrySize = 8,
-                DataLabelsFormatter = (point) => $"收入: {point.Model:C2}"
+                DataLabelsFormatter = (point) => $"{Lang.Resources.Income}: {point.Model:C2}"
             },
             new LineSeries<decimal>
             {
                 Values = expenseData.ToList(),
-                Name = "Expense",
-                Stroke = new SolidColorPaint(SKColors.Red),
-                GeometryStroke = new SolidColorPaint(SKColors.Red),
+                Name = Lang.Resources.Expenditure,
+                Stroke = new SolidColorPaint(successColor),
+                GeometryStroke = new SolidColorPaint(successColor),
                 GeometrySize = 8,
-                DataLabelsFormatter = (point) => $"支出: {point.Model:C2}"
+                DataLabelsFormatter = (point) => $"{Lang.Resources.Expense}: {point.Model:C2}"
             }
         };
     }
@@ -184,13 +292,13 @@ public partial class DashboardViewModel : ViewModelBase
             .Select(e => new RecentActivity
             {
                 Time = e.CreatedAt,
-                Title = e.Income ? "收入记录" : "支出记录",
+                Title = e.Income ? Lang.Resources.IncomeRecord : Lang.Resources.ExpenseRecord,
                 Description = $"{e.Contact.Name} - {e.Work.Name}",
                 Amount = e.Amount,
                 IsIncome = e.Income
             });
 
-        // 获取最近的工作状态变更
+        // 获取最近的工状态变更
         var recentWorks = DbHelper.Db.Works
             .OrderByDescending(w => w.UpdatedAt)
             .Take(5)
@@ -199,7 +307,7 @@ public partial class DashboardViewModel : ViewModelBase
             .Select(w => new RecentActivity
             {
                 Time = w.UpdatedAt,
-                Title = "工作状态更新",
+                Title = Lang.Resources.WorkStatusUpdate,
                 Description = $"{w.Name} - {GetStatusName(w.Status)}",
                 Amount = null,
                 IsIncome = null

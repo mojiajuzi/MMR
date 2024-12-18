@@ -1,465 +1,536 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
+    <!-- 
+      Microsoft ResX Schema 
+      
+      Version 2.0
+      
+      The primary goals of this format is to allow a simple XML format 
+      that is mostly human readable. The generation and parsing of the 
+      various data types are done through the TypeConverter classes 
+      associated with the data types.
+      
+      Example:
+      
+      ... ado.net/XML headers & schema ...
+      <resheader name="resmimetype">text/microsoft-resx</resheader>
+      <resheader name="version">2.0</resheader>
+      <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+      <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+      <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+      <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+      <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+          <value>[base64 mime encoded serialized .NET Framework object]</value>
+      </data>
+      <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+          <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+          <comment>This is a comment</comment>
+      </data>
+                  
+      There are any number of "resheader" rows that contain simple 
+      name/value pairs.
+      
+      Each data row contains a name, and value. The row also contains a 
+      type or mimetype. Type corresponds to a .NET class that support 
+      text/value conversion through the TypeConverter architecture. 
+      Classes that don't support this are serialized and stored with the 
+      mimetype set.
+      
+      The mimetype is used for serialized objects, and tells the 
+      ResXResourceReader how to depersist the object. This is currently not 
+      extensible. For a given mimetype the value must be set accordingly:
+      
+      Note - application/x-microsoft.net.object.binary.base64 is the format 
+      that the ResXResourceWriter will generate, however the reader can 
+      read any of the formats listed below.
+      
+      mimetype: application/x-microsoft.net.object.binary.base64
+      value   : The object must be serialized with 
+              : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+              : and then encoded with base64 encoding.
+      
+      mimetype: application/x-microsoft.net.object.soap.base64
+      value   : The object must be serialized with 
+              : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+              : and then encoded with base64 encoding.
+  
+      mimetype: application/x-microsoft.net.object.bytearray.base64
+      value   : The object must be serialized into a byte array 
+              : using a System.ComponentModel.TypeConverter
+              : and then encoded with base64 encoding.
+      -->
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+        <xsd:element name="root" msdata:IsDataSet="true">
             <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="metadata">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                            </xsd:sequence>
+                            <xsd:attribute name="name" use="required" type="xsd:string"/>
+                            <xsd:attribute name="type" type="xsd:string"/>
+                            <xsd:attribute name="mimetype" type="xsd:string"/>
+                            <xsd:attribute ref="xml:space"/>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="assembly">
+                        <xsd:complexType>
+                            <xsd:attribute name="alias" type="xsd:string"/>
+                            <xsd:attribute name="name" type="xsd:string"/>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="data">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+                            <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+                            <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+                            <xsd:attribute ref="xml:space"/>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="resheader">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required"/>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:choice>
             </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="Active" xml:space="preserve">
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <data name="Active" xml:space="preserve">
     <value>Active</value>
   </data>
-  <data name="Add" xml:space="preserve">
+    <data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
+    <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="CreatedAt" xml:space="preserve">
+    <data name="CreatedAt" xml:space="preserve">
     <value>CreatedAt</value>
   </data>
-  <data name="Edit" xml:space="preserve">
+    <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="Error" xml:space="preserve">
+    <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
-  <data name="InActive" xml:space="preserve">
+    <data name="InActive" xml:space="preserve">
     <value>InActive</value>
   </data>
-  <data name="Name" xml:space="preserve">
+    <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="NameRequired" xml:space="preserve">
+    <data name="NameRequired" xml:space="preserve">
     <value>Name Required</value>
   </data>
-  <data name="Search" xml:space="preserve">
+    <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
-  <data name="Status" xml:space="preserve">
+    <data name="Status" xml:space="preserve">
     <value>Status</value>
   </data>
-  <data name="Submit" xml:space="preserve">
+    <data name="Submit" xml:space="preserve">
     <value>Submit</value>
   </data>
-  <data name="Success" xml:space="preserve">
+    <data name="Success" xml:space="preserve">
     <value>Success</value>
   </data>
-  <data name="Tag" xml:space="preserve">
+    <data name="Tag" xml:space="preserve">
     <value>Tag</value>
   </data>
-  <data name="Update" xml:space="preserve">
+    <data name="Update" xml:space="preserve">
     <value>Update</value>
   </data>
-  <data name="UpdatedAt" xml:space="preserve">
+    <data name="UpdatedAt" xml:space="preserve">
     <value>UpdatedAt</value>
   </data>
-  <data name="Required" xml:space="preserve">
+    <data name="Required" xml:space="preserve">
     <value>{0} is required</value>
   </data>
-  <data name="StringLength" xml:space="preserve">
+    <data name="StringLength" xml:space="preserve">
     <value>{0} must be between {1} and {2} characters</value>
   </data>
-  <data name="TagNameRequired" xml:space="preserve">
+    <data name="TagNameRequired" xml:space="preserve">
     <value>Tag name is required</value>
   </data>
-  <data name="TagNameLength" xml:space="preserve">
+    <data name="TagNameLength" xml:space="preserve">
     <value>Tag name must be between 2 and 50 characters</value>
   </data>
-  <data name="TagNameExists" xml:space="preserve">
+    <data name="TagNameExists" xml:space="preserve">
     <value>Tag name already exists</value>
   </data>
-  <data name="ContactNameRequired" xml:space="preserve">
+    <data name="ContactNameRequired" xml:space="preserve">
     <value>Contact name is required</value>
   </data>
-  <data name="ContactNameLength" xml:space="preserve">
+    <data name="ContactNameLength" xml:space="preserve">
     <value>Contact name must be between 2 and 50 characters</value>
   </data>
-  <data name="ContactEmailInvalid" xml:space="preserve">
+    <data name="ContactEmailInvalid" xml:space="preserve">
     <value>Invalid email format</value>
   </data>
-  <data name="ContactPhoneInvalid" xml:space="preserve">
+    <data name="ContactPhoneInvalid" xml:space="preserve">
     <value>Invalid phone number format</value>
   </data>
-  <data name="WorkTitleRequired" xml:space="preserve">
+    <data name="WorkTitleRequired" xml:space="preserve">
     <value>Work title is required</value>
   </data>
-  <data name="WorkTitleLength" xml:space="preserve">
+    <data name="WorkTitleLength" xml:space="preserve">
     <value>Work title must be between 2 and 100 characters</value>
   </data>
-  <data name="WorkAmountRequired" xml:space="preserve">
+    <data name="WorkAmountRequired" xml:space="preserve">
     <value>Work amount is required</value>
   </data>
-  <data name="WorkAmountRange" xml:space="preserve">
+    <data name="WorkAmountRange" xml:space="preserve">
     <value>Work amount must be greater than 0</value>
   </data>
-  <data name="Contact" xml:space="preserve">
+    <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
-  <data name="Email" xml:space="preserve">
+    <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
-  <data name="Phone" xml:space="preserve">
+    <data name="Phone" xml:space="preserve">
     <value>Phone</value>
   </data>
-  <data name="Address" xml:space="preserve">
+    <data name="Address" xml:space="preserve">
     <value>Address</value>
   </data>
-  <data name="Remark" xml:space="preserve">
+    <data name="Remark" xml:space="preserve">
     <value>Remark</value>
   </data>
-  <data name="Wechat" xml:space="preserve">
+    <data name="Wechat" xml:space="preserve">
     <value>Wechat</value>
   </data>
-  <data name="QQ" xml:space="preserve">
+    <data name="QQ" xml:space="preserve">
     <value>QQ</value>
   </data>
-  <data name="ContactList" xml:space="preserve">
+    <data name="ContactList" xml:space="preserve">
     <value>Contact List</value>
   </data>
-  <data name="AddContact" xml:space="preserve">
+    <data name="AddContact" xml:space="preserve">
     <value>Add Contact</value>
   </data>
-  <data name="EditContact" xml:space="preserve">
+    <data name="EditContact" xml:space="preserve">
     <value>Edit Contact</value>
   </data>
-  <data name="DeleteContact" xml:space="preserve">
+    <data name="DeleteContact" xml:space="preserve">
     <value>Delete Contact</value>
   </data>
-  <data name="SelectTags" xml:space="preserve">
+    <data name="SelectTags" xml:space="preserve">
     <value>Select Tags</value>
   </data>
-  <data name="SearchContacts" xml:space="preserve">
+    <data name="SearchContacts" xml:space="preserve">
     <value>Search contacts...</value>
   </data>
-  <data name="SearchTags" xml:space="preserve">
+    <data name="SearchTags" xml:space="preserve">
     <value>Search tags...</value>
   </data>
-  <data name="Avatar" xml:space="preserve">
+    <data name="Avatar" xml:space="preserve">
     <value>Avatar</value>
   </data>
-  <data name="UploadAvatar" xml:space="preserve">
+    <data name="UploadAvatar" xml:space="preserve">
     <value>Upload Avatar</value>
   </data>
-  <data name="BasicInfo" xml:space="preserve">
+    <data name="BasicInfo" xml:space="preserve">
     <value>Basic Information</value>
   </data>
-  <data name="ContactInfo" xml:space="preserve">
+    <data name="ContactInfo" xml:space="preserve">
     <value>Contact Information</value>
   </data>
-  <data name="Delete" xml:space="preserve">
+    <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="WorkList" xml:space="preserve">
+    <data name="WorkList" xml:space="preserve">
     <value>Work List</value>
   </data>
-  <data name="AddWork" xml:space="preserve">
+    <data name="AddWork" xml:space="preserve">
     <value>Add Work</value>
   </data>
-  <data name="EditWork" xml:space="preserve">
+    <data name="EditWork" xml:space="preserve">
     <value>Edit Work</value>
   </data>
-  <data name="WorkDetails" xml:space="preserve">
+    <data name="WorkDetails" xml:space="preserve">
     <value>Work Details</value>
   </data>
-  <data name="All" xml:space="preserve">
+    <data name="All" xml:space="preserve">
     <value>All</value>
   </data>
-  <data name="PreStart" xml:space="preserve">
+    <data name="PreStart" xml:space="preserve">
     <value>Not Started</value>
   </data>
-  <data name="InProgress" xml:space="preserve">
+    <data name="InProgress" xml:space="preserve">
     <value>In Progress</value>
   </data>
-  <data name="Completed" xml:space="preserve">
+    <data name="Completed" xml:space="preserve">
     <value>Completed</value>
   </data>
-  <data name="Suspended" xml:space="preserve">
+    <data name="Suspended" xml:space="preserve">
     <value>Suspended</value>
   </data>
-  <data name="Cancelled" xml:space="preserve">
+    <data name="Cancelled" xml:space="preserve">
     <value>Cancelled</value>
   </data>
-  <data name="WorkName" xml:space="preserve">
+    <data name="WorkName" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="WorkDescription" xml:space="preserve">
+    <data name="WorkDescription" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="StartTime" xml:space="preserve">
+    <data name="StartTime" xml:space="preserve">
     <value>Start Time</value>
   </data>
-  <data name="EndTime" xml:space="preserve">
+    <data name="EndTime" xml:space="preserve">
     <value>End Time</value>
   </data>
-  <data name="TotalAmount" xml:space="preserve">
+    <data name="TotalAmount" xml:space="preserve">
     <value>Total Amount</value>
   </data>
-  <data name="Contacts" xml:space="preserve">
+    <data name="Contacts" xml:space="preserve">
     <value>Contacts</value>
   </data>
-  <data name="Expenses" xml:space="preserve">
+    <data name="Expenses" xml:space="preserve">
     <value>Expenses</value>
   </data>
-  <data name="AddExpense" xml:space="preserve">
+    <data name="AddExpense" xml:space="preserve">
     <value>Add Expense</value>
   </data>
-  <data name="Income" xml:space="preserve">
+    <data name="Income" xml:space="preserve">
     <value>Income</value>
   </data>
-  <data name="Cost" xml:space="preserve">
+    <data name="Cost" xml:space="preserve">
     <value>Cost</value>
   </data>
-  <data name="Filter" xml:space="preserve">
+    <data name="Filter" xml:space="preserve">
     <value>Filter</value>
   </data>
-  <data name="WorkStatus" xml:space="preserve">
+    <data name="WorkStatus" xml:space="preserve">
     <value>Status</value>
   </data>
-  <data name="ReceivedAmount" xml:space="preserve">
+    <data name="ReceivedAmount" xml:space="preserve">
     <value>Received Amount</value>
   </data>
-  <data name="WorkStartDate" xml:space="preserve">
+    <data name="WorkStartDate" xml:space="preserve">
     <value>Work StartDate</value>
   </data>
-  <data name="WorkEndDate" xml:space="preserve">
+    <data name="WorkEndDate" xml:space="preserve">
     <value>Work End Date</value>
   </data>
-  <data name="Show" xml:space="preserve">
+    <data name="Show" xml:space="preserve">
     <value>Show</value>
   </data>
-  <data name="InitializationError" xml:space="preserve">
+    <data name="InitializationError" xml:space="preserve">
     <value>InitializationError</value>
   </data>
-  <data name="LoadError" xml:space="preserve">
+    <data name="LoadError" xml:space="preserve">
     <value>Load Data Error</value>
   </data>
-  <data name="SearchError" xml:space="preserve">
+    <data name="SearchError" xml:space="preserve">
     <value>Search Error</value>
   </data>
-  <data name="WorkStartTimeRequired" xml:space="preserve">
+    <data name="WorkStartTimeRequired" xml:space="preserve">
     <value>Work StartTime Required</value>
   </data>
-  <data name="Work" xml:space="preserve">
+    <data name="Work" xml:space="preserve">
     <value>Work</value>
   </data>
-  <data name="DeleteConfirmTitle" xml:space="preserve">
+    <data name="DeleteConfirmTitle" xml:space="preserve">
     <value>Delete Confirm Title</value>
   </data>
-  <data name="DeleteWorkConfirmMessage" xml:space="preserve">
+    <data name="DeleteWorkConfirmMessage" xml:space="preserve">
     <value>can you sure delete the work?</value>
   </data>
-  <data name="Expense" xml:space="preserve">
+    <data name="Expense" xml:space="preserve">
     <value>Expense</value>
   </data>
-  <data name="DeleteExpenseConfirmMessage" xml:space="preserve">
+    <data name="DeleteExpenseConfirmMessage" xml:space="preserve">
     <value>can you sure delete the expense?</value>
   </data>
-  <data name="DeleteWorkContactConfirmMessage" xml:space="preserve">
+    <data name="DeleteWorkContactConfirmMessage" xml:space="preserve">
     <value>can you sure delete the Contact record?</value>
   </data>
-  <data name="CalculationError" xml:space="preserve">
+    <data name="CalculationError" xml:space="preserve">
     <value>CalculationError</value>
   </data>
-  <data name="Dashboard" xml:space="preserve">
+    <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
   </data>
-  <data name="QQInvalid" xml:space="preserve">
+    <data name="QQInvalid" xml:space="preserve">
     <value>QQ Invalid fail</value>
   </data>
-  <data name="WorkNameRequired" xml:space="preserve">
+    <data name="WorkNameRequired" xml:space="preserve">
     <value>work name required</value>
   </data>
-  <data name="WorkNameError" xml:space="preserve">
+    <data name="WorkNameError" xml:space="preserve">
     <value>Work name is required</value>
   </data>
-  <data name="WorkDescriptionError" xml:space="preserve">
+    <data name="WorkDescriptionError" xml:space="preserve">
     <value>Description cannot exceed 500 characters</value>
   </data>
-  <data name="WorkStartTimeError" xml:space="preserve">
+    <data name="WorkStartTimeError" xml:space="preserve">
     <value>Start time is required</value>
   </data>
-  <data name="WorkEndTimeError" xml:space="preserve">
+    <data name="WorkEndTimeError" xml:space="preserve">
     <value>End time must be later than start time</value>
   </data>
-  <data name="WorkStatusError" xml:space="preserve">
+    <data name="WorkStatusError" xml:space="preserve">
     <value>Status is required</value>
   </data>
-  <data name="WorkNameLengthError" xml:space="preserve">
+    <data name="WorkNameLengthError" xml:space="preserve">
     <value>Work name cannot exceed 50 characters</value>
   </data>
-  <data name="ContactNameError" xml:space="preserve">
+    <data name="ContactNameError" xml:space="preserve">
     <value>Contact name is required</value>
   </data>
-  <data name="ContactNameLengthError" xml:space="preserve">
+    <data name="ContactNameLengthError" xml:space="preserve">
     <value>Contact name cannot exceed 50 characters</value>
   </data>
-  <data name="PhoneError" xml:space="preserve">
+    <data name="PhoneError" xml:space="preserve">
     <value>Invalid phone number format</value>
   </data>
-  <data name="EmailError" xml:space="preserve">
+    <data name="EmailError" xml:space="preserve">
     <value>Invalid email address format</value>
   </data>
-  <data name="QQError" xml:space="preserve">
+    <data name="QQError" xml:space="preserve">
     <value>QQ number must be 5-11 digits</value>
   </data>
-  <data name="WechatLengthError" xml:space="preserve">
+    <data name="WechatLengthError" xml:space="preserve">
     <value>WeChat ID cannot exceed 50 characters</value>
   </data>
-  <data name="AddressLengthError" xml:space="preserve">
+    <data name="AddressLengthError" xml:space="preserve">
     <value>Address cannot exceed 200 characters</value>
   </data>
-  <data name="RemarkLengthError" xml:space="preserve">
+    <data name="RemarkLengthError" xml:space="preserve">
     <value>Remark cannot exceed 500 characters</value>
   </data>
-  <data name="ExpenseAmountError" xml:space="preserve">
+    <data name="ExpenseAmountError" xml:space="preserve">
     <value>Amount is required</value>
   </data>
-  <data name="ExpenseAmountRangeError" xml:space="preserve">
+    <data name="ExpenseAmountRangeError" xml:space="preserve">
     <value>Amount must be greater than 0</value>
   </data>
-  <data name="ExpenseTimeError" xml:space="preserve">
+    <data name="ExpenseTimeError" xml:space="preserve">
     <value>Time is required</value>
   </data>
-  <data name="ExpenseDescriptionError" xml:space="preserve">
+    <data name="ExpenseDescriptionError" xml:space="preserve">
     <value>Description cannot exceed 200 characters</value>
   </data>
-  <data name="WorkStartTimeInvalid" xml:space="preserve">
+    <data name="WorkStartTimeInvalid" xml:space="preserve">
     <value>Start time format is invalid</value>
   </data>
-  <data name="WorkEndTimeInvalid" xml:space="preserve">
+    <data name="WorkEndTimeInvalid" xml:space="preserve">
     <value>End time format is invalid</value>
   </data>
-  <data name="WorkEndTimeMustLaterThanStart" xml:space="preserve">
+    <data name="WorkEndTimeMustLaterThanStart" xml:space="preserve">
     <value>End time must be later than start time</value>
   </data>
-  <data name="WorkExceptionTimeInvalid" xml:space="preserve">
+    <data name="WorkExceptionTimeInvalid" xml:space="preserve">
     <value>Actual completion time format is invalid</value>
   </data>
-  <data name="WorkExceptionTimeMustLaterThanStart" xml:space="preserve">
+    <data name="WorkExceptionTimeMustLaterThanStart" xml:space="preserve">
     <value>Actual completion time must be later than start time</value>
   </data>
-  <data name="WorkTotalMoneyRequired" xml:space="preserve">
+    <data name="WorkTotalMoneyRequired" xml:space="preserve">
     <value>Total amount is required</value>
   </data>
-  <data name="WorkTotalMoneyRange" xml:space="preserve">
+    <data name="WorkTotalMoneyRange" xml:space="preserve">
     <value>Total amount must be greater than or equal to 0</value>
   </data>
-  <data name="WorkTotalMoneyInvalid" xml:space="preserve">
+    <data name="WorkTotalMoneyInvalid" xml:space="preserve">
     <value>Total amount format is invalid</value>
   </data>
-  <data name="WorkStatusRequired" xml:space="preserve">
+    <data name="WorkStatusRequired" xml:space="preserve">
     <value>Work status is required</value>
   </data>
+    <data name="WorkStatistics" xml:space="preserve">
+    <value>Work Statistics</value>
+  </data>
+    <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+    <data name="Runing" xml:space="preserve">
+    <value>Runing</value>
+  </data>
+    <data name="Finished" xml:space="preserve">
+    <value>Finished</value>
+  </data>
+    <data name="MonthCost" xml:space="preserve">
+    <value>Month Cost</value>
+  </data>
+    <data name="Expenditure" xml:space="preserve">
+    <value>Expenditure</value>
+  </data>
+    <data name="CurrentActive" xml:space="preserve">
+    <value>Current Active</value>
+  </data>
+    <data name="MonthCostTrent" xml:space="preserve">
+    <value>Month Cost Trent</value>
+  </data>
+    <data name="EstimatedTotalRevenue" xml:space="preserve">
+    <value>Estimated Total</value>
+  </data>
+    <data name="TotalCost" xml:space="preserve">
+    <value>Total Cost</value>
+  </data>
+    <data name="TotalIncome" xml:space="preserve">
+    <value>Income</value>
+  </data>
+    <data name="TotalExpenses" xml:space="preserve">
+    <value>Expenses</value>
+  </data>
+    <data name="WorkPreStart" xml:space="preserve">
+    <value>PreStart</value>
+  </data>
+    <data name="WorkStart" xml:space="preserve">
+    <value>Start</value>
+  </data>
+    <data name="WorkRunning" xml:space="preserve">
+    <value>Running</value>
+  </data>
+    <data name="WorkEnd" xml:space="preserve">
+    <value>End</value>
+  </data>
+    <data name="WorkAcceptance" xml:space="preserve">
+    <value>Acceptance</value>
+  </data>
+    <data name="WorkCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+    <data name="WorkArchive" xml:space="preserve">
+    <value>Archive</value>
+  </data>
+    <data name="IncomeRecord" xml:space="preserve">
+      <value>Income Record</value>
+    </data>
+    <data name="ExpenseRecord" xml:space="preserve">
+      <value>Expense Record</value>
+    </data>
+    <data name="WorkStatusUpdate" xml:space="preserve">
+      <value>Work Status Update</value>
+    </data>
 </root>
