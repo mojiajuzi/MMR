@@ -1,5 +1,3 @@
-# MMR(My Money Record)
-
 <div align="center">
     <img src="assets/logo.png" alt="MMR Logo" width="200"/>
 </div>
