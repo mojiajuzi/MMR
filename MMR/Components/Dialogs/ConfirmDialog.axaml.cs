@@ -34,9 +34,6 @@ public partial class ConfirmDialog : Window
     public ConfirmDialog()
     {
         InitializeComponent();
-#if DEBUG
-        this.AttachDevTools();
-#endif
         // 设置窗口属性
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
         ShowInTaskbar = false;

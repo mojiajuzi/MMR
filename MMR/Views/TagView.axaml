@@ -96,7 +96,7 @@
                                     <StackPanel>
                                         <StackPanel Classes="icon">
                                             <Label Classes="label" Content="{x:Static loc:Resources.Name}"></Label>
-                                            <TextBlock Text="{Binding Name}"></TextBlock>
+                                            <TextBlock  Text="{Binding Name}"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Classes="icon">
                                             <Label Classes="label" Content="{x:Static loc:Resources.Status}"></Label>

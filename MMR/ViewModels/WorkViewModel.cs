@@ -256,7 +256,6 @@ public partial class WorkViewModel : ViewModelBase
             WorkData.StartAt = SelectedStartAt!.Value.DateTime;
             WorkData.EndAt = SelectedEndAt?.DateTime;
 
-            // 设置创建和更新时间
             if (WorkData.Id == 0) // 新建
             {
                 WorkData.CreatedAt = DateTime.UtcNow;
@@ -266,7 +265,17 @@ public partial class WorkViewModel : ViewModelBase
             else // 更新
             {
                 WorkData.UpdatedAt = DateTime.UtcNow;
-                DbHelper.Db.Works.Update(WorkData);
+                
+                // 修改这里的更新逻辑
+                var existingWork = await DbHelper.Db.Works.FindAsync(WorkData.Id);
+                if (existingWork == null)
+                {
+                    ShowNotification(Lang.Resources.Error, Lang.Resources.LoadError, NotificationType.Error);
+                    return;
+                }
+
+                // 更新属性
+                DbHelper.Db.Entry(existingWork).CurrentValues.SetValues(WorkData);
             }
 
             await DbHelper.Db.SaveChangesAsync();
@@ -281,7 +290,7 @@ public partial class WorkViewModel : ViewModelBase
             SelectedStartAt = null;
             SelectedEndAt = null;
 
-            // 更新works
+            // 更新works列表
             Works = new ObservableCollection<Work>(GetWorks());
         }
         catch (Exception ex)

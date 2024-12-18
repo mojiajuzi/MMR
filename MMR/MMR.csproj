@@ -68,4 +68,15 @@
     <ItemGroup>
         <AdditionalFiles Include="Components\ContactWork\ContactWorkView.axaml"/>
     </ItemGroup>
+
+    <PropertyGroup>
+        <ApplicationIcon>Assets\logo.ico</ApplicationIcon>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Update="Assets\logo.ico">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
 </Project>

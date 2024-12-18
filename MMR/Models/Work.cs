@@ -24,14 +24,14 @@ public class Work : BaseModel
 
     [DataType(DataType.DateTime, ErrorMessageResourceType = typeof(Resources),
               ErrorMessageResourceName = "WorkEndTimeInvalid")]
-    [Compare(nameof(StartAt), ErrorMessageResourceType = typeof(Resources),
-             ErrorMessageResourceName = "WorkEndTimeMustLaterThanStart")]
+    [DateGreaterThan("StartAt", ErrorMessageResourceType = typeof(Resources),
+                     ErrorMessageResourceName = "WorkEndTimeMustLaterThanStart")]
     public DateTime? EndAt { get; set; } //预期结束时间
 
     [DataType(DataType.DateTime, ErrorMessageResourceType = typeof(Resources),
               ErrorMessageResourceName = "WorkExceptionTimeInvalid")]
-    [Compare(nameof(StartAt), ErrorMessageResourceType = typeof(Resources),
-             ErrorMessageResourceName = "WorkExceptionTimeMustLaterThanStart")]
+    [DateGreaterThan("StartAt", ErrorMessageResourceType = typeof(Resources),
+                     ErrorMessageResourceName = "WorkExceptionTimeMustLaterThanStart")]
     public DateTime? ExceptionAt { get; set; } //实际结束时间
 
     [Required(ErrorMessageResourceType = typeof(Resources),
@@ -49,4 +49,33 @@ public class Work : BaseModel
     // 不存储在数据库中的计算属性
     [NotMapped] public decimal ReceivingPayment => Expenses?.Where(e => e.Income).Sum(e => e.Amount) ?? 0;
     [NotMapped] public decimal Cost => Expenses?.Where(e => !e.Income).Sum(e => e.Amount) ?? 0;
+}
+
+// 添加自定义验证特性
+public class DateGreaterThanAttribute : ValidationAttribute
+{
+    private readonly string _comparisonProperty;
+
+    public DateGreaterThanAttribute(string comparisonProperty)
+    {
+        _comparisonProperty = comparisonProperty;
+    }
+
+    protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
+    {
+        if (value == null) return ValidationResult.Success;
+
+        var currentValue = (DateTime)value;
+        var property = validationContext.ObjectType.GetProperty(_comparisonProperty);
+
+        if (property == null)
+            throw new ArgumentException("属性不存在");
+
+        var comparisonValue = (DateTime)property.GetValue(validationContext.ObjectInstance)!;
+
+        if (currentValue <= comparisonValue)
+            return new ValidationResult(ErrorMessage);
+
+        return ValidationResult.Success;
+    }
 }
