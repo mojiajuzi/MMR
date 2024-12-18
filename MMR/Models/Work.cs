@@ -49,6 +49,18 @@ public class Work : BaseModel
     // 不存储在数据库中的计算属性
     [NotMapped] public decimal ReceivingPayment => Expenses?.Where(e => e.Income).Sum(e => e.Amount) ?? 0;
     [NotMapped] public decimal Cost => Expenses?.Where(e => !e.Income).Sum(e => e.Amount) ?? 0;
+
+    public string StatusText => Status switch
+    {
+        WorkStatus.PreStart => Resources.WorkPreStart,
+        WorkStatus.Start => Resources.WorkStart,
+        WorkStatus.Running => Resources.WorkRunning,
+        WorkStatus.End => Resources.WorkEnd,
+        WorkStatus.Acceptance => Resources.WorkAcceptance,
+        WorkStatus.Cancel => Resources.WorkCancel,
+        WorkStatus.Archive => Resources.WorkArchive,
+        _ => Status.ToString()
+    };
 }
 
 // 添加自定义验证特性

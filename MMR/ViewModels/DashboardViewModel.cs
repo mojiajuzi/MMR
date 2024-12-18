@@ -20,6 +20,7 @@ using Avalonia.Skia;
 using Avalonia.Styling;
 using LiveChartsCore.Kernel;
 using LiveChartsCore.SkiaSharpView.Drawing.Geometries;
+using MMR.Models;
 
 namespace MMR.ViewModels;
 
@@ -119,12 +120,13 @@ public partial class DashboardViewModel : ViewModelBase
             var values = new List<double>();
             var labels = new List<string>();
 
-            // 确保所有状态都有值
+            // 使用WorkStatusItem来获取本地化的状态文本
             foreach (WorkStatus status in Enum.GetValues<WorkStatus>())
             {
                 var count = statusGroups.FirstOrDefault(x => x.Status == status)?.Count ?? 0;
                 values.Add(count);
-                labels.Add(GetStatusName(status));
+                // 使用WorkStatusItem获取本地化文本
+                labels.Add(new WorkStatusItem(status).Text);
             }
 
             // 使用Nord.axaml中定义的颜色
@@ -187,20 +189,6 @@ public partial class DashboardViewModel : ViewModelBase
         return SKColors.Gray;
     }
 
-    private string GetStatusName(WorkStatus status)
-    {
-        return status switch
-        {
-            WorkStatus.PreStart => Lang.Resources.WorkPreStart,
-            WorkStatus.Start => Lang.Resources.WorkStart,
-            WorkStatus.Running => Lang.Resources.WorkRunning,
-            WorkStatus.End => Lang.Resources.WorkEnd,
-            WorkStatus.Acceptance => Lang.Resources.WorkAcceptance,
-            WorkStatus.Cancel => Lang.Resources.WorkCancel,
-            WorkStatus.Archive => Lang.Resources.WorkArchive,
-            _ => status.ToString()
-        };
-    }
 
     private void LoadMonthlyExpenseChart()
     {
@@ -308,7 +296,7 @@ public partial class DashboardViewModel : ViewModelBase
             {
                 Time = w.UpdatedAt,
                 Title = Lang.Resources.WorkStatusUpdate,
-                Description = $"{w.Name} - {GetStatusName(w.Status)}",
+                Description = $"{w.Name} - {w.StatusText}",
                 Amount = null,
                 IsIncome = null
             });

@@ -23,7 +23,7 @@
                             <Label Grid.Row="1" Grid.Column="0" Classes="label"
                                    Content="{x:Static loc:Resources.WorkStatus}">
                             </Label>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Work.Status}"></TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Work.StatusText}"></TextBlock>
 
                             <Label Grid.Row="2" Grid.Column="0"
                                    Classes="label"

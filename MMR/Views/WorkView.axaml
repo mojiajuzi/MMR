@@ -128,7 +128,7 @@
                                                                 </StackPanel>
                                                             </Grid>
 
-                                                            <!-- 右列：金额和操作按钮 -->
+                                                            <!-- 右列：金��和操作按钮 -->
                                                             <StackPanel Grid.Column="1" Spacing="8">
                                                                 <!-- 金额 -->
                                                                 <TextBlock
@@ -159,7 +159,7 @@
                                     </StackPanel>
                                 </Border>
 
-                                <!-- 支出列表 -->
+                                <!-- 支出列�� -->
                                 <Border>
                                     <StackPanel Classes="Card" Spacing="8">
                                         <Grid ColumnDefinitions="*,Auto">
@@ -176,7 +176,7 @@
                                                 <DataTemplate>
                                                     <Border Classes="List" Margin="0,4" Padding="8">
                                                         <Grid RowDefinitions="Auto,Auto">
-                                                            <!-- 第一行：���系人、日期和金额 -->
+                                                            <!-- 第一行：联系人、日期和金额 -->
                                                             <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto">
                                                                 <!-- 左列：联系人头像和信息 -->
                                                                 <StackPanel Grid.Column="0"
@@ -271,7 +271,7 @@
                         <RowDefinition Height="80"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <!-- 顶部工具栏 -->
+                    <!-- 顶工具栏 -->
                     <Grid Row="0" Margin="16,8">
                         <Grid ColumnDefinitions="*,400,*" VerticalAlignment="Center">
                             <!-- 左侧添加按钮 -->
@@ -308,14 +308,14 @@
                                         Spacing="20"
                                         HorizontalAlignment="Right">
                                 <Border>
-                                    <ComboBox Width="150"
-                                              Background="{DynamicResource BackgroundBrush}"
-                                              SelectedItem="{Binding SelectedStatus}"
-                                              ItemsSource="{Binding StatusList}">
+                                    <ComboBox Grid.Column="1"
+                                              ItemsSource="{Binding StatusList}"
+                                              SelectedItem="{Binding SelectedStatusItem}"
+                                              HorizontalAlignment="Left"
+                                              Width="200">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
-                                                <TextBlock
-                                                    Text="{Binding Converter={StaticResource NullToAllConverter},FallbackValue='All',TargetNullValue='All'}" />
+                                                <TextBlock Text="{Binding Text}" />
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
                                     </ComboBox>
@@ -341,7 +341,7 @@
                                                 </StackPanel>
                                                 <StackPanel Classes="icon">
                                                     <Label Content="{x:Static loc:Resources.WorkStatus}"></Label>
-                                                    <TextBlock Text="{Binding Status}" Classes="label" />
+                                                    <TextBlock Text="{Binding StatusText}" Classes="label" />
                                                 </StackPanel>
                                             </StackPanel>
 

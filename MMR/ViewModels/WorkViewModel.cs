@@ -30,7 +30,7 @@ public partial class WorkViewModel : ViewModelBase
 
     [ObservableProperty] private ObservableCollection<Work> _works;
 
-    [ObservableProperty] private ObservableCollection<WorkStatus?> _statusList;
+    [ObservableProperty] private ObservableCollection<WorkStatusItem> _statusList;
     [ObservableProperty] private string _searchText;
 
     [ObservableProperty] private Work _workDetails;
@@ -52,7 +52,7 @@ public partial class WorkViewModel : ViewModelBase
     [ObservableProperty] private decimal _receivingPayment;
     [ObservableProperty] private decimal _cost;
 
-    [ObservableProperty] private WorkStatus? _selectedStatus;
+    [ObservableProperty] private WorkStatusItem _selectedStatusItem;
 
     [ObservableProperty] private Dictionary<WorkStatus, int> _workStatusData;
 
@@ -68,9 +68,7 @@ public partial class WorkViewModel : ViewModelBase
             Works = new ObservableCollection<Work>(GetWorks());
 
             // 创建状态列表，添加 All 选项
-            var statusList = new List<WorkStatus?> { null };  // null 代表 "All"
-            statusList.AddRange(Enum.GetValues<WorkStatus>().Cast<WorkStatus?>());
-            StatusList = new ObservableCollection<WorkStatus?>(statusList);
+            StatusList = new ObservableCollection<WorkStatusItem>(WorkStatusListExtensions.GetStatusList());
 
             // 订阅事件
             _addContactViewModel.ContactAdded += OnContactAdded;
@@ -127,16 +125,16 @@ public partial class WorkViewModel : ViewModelBase
         }
     }
 
-    partial void OnSelectedStatusChanged(WorkStatus? value)
+    partial void OnSelectedStatusItemChanged(WorkStatusItem value)
     {
         try
         {
             IQueryable<Work> query = DbHelper.Db.Works.AsNoTracking();
 
             // 应用状态筛选
-            if (value.HasValue)
+            if (value.Status.HasValue)
             {
-                query = query.Where(w => w.Status == value);
+                query = query.Where(w => w.Status == value.Status.Value);
             }
 
             // 应用搜索条件（如果有）
