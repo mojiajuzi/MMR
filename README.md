@@ -7,11 +7,11 @@
 ## 预览
 
 <div align="center">
-    <img src="assets/screenshots/dark-theme.png" alt="深色主题" width="400"/>
+    <img src="assets/screenshots/home.png" alt="深色主题" style="width:100%"/>
 </div>
 
 <div align="center">
-    <img src="assets/screenshots/transactions.png" alt="交易记录" width="400"/>
+    <img src="assets/screenshots/transactions.png" alt="交易记录" />
 </div>
 
 ## 特性
